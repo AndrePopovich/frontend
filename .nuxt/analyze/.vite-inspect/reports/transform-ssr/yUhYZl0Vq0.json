@@ -1,0 +1,269 @@
+{
+  "resolvedId": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/assets/css/main.css",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "*{\n  padding: 0;\n  margin: 0;\n}\n\n.btn{\n  background-color: aqua;\n}\n.btn:hover{\n  background-color: rgb(153, 0, 255);\n  cursor: pointer;\n  color: white;\n}\n.btn-admin {\n  background-color: #6B46C1; /* фіолетовий колір */\n  color: #fff; /* білий колір тексту */\n  padding: 0.5rem 1rem; /* відступи */\n  border-radius: 0.375rem; /* закруглені кути */\n  text-align: center; /* вирівнювання тексту по центру */\n  font-weight: 600; /* напівжирний текст */\n  transition: background-color 0.3s ease; /* плавний перехід для hover */\n}\n\n.btn-admin:hover {\n  background-color: #805AD5; /* колір при наведенні */\n}\n.white-button {\n  background-color: #fff; /* білий колір фону */\n  color: #805AD5; /* чорний колір тексту */\n  padding: 0.5rem 1rem; /* відступи */\n  border: none; /* чорна рамка */\n  border-radius: 0.375rem; /* закруглені кути */\n  text-align: center; /* вирівнювання тексту по центру */\n  font-weight: 600; /* напівжирний текст */\n  transition: background-color 0.3s ease, color 0.3s ease; /* плавний перехід для hover */\n  min-width: 100px;\n}\n\n.white-button:hover {\n  background-color: #552fa5; /* чорний колір фону при наведенні */\n  color: #fff; /* білий колір тексту при наведенні */\n}\n\n.black-button {\n  background-color: #000; /* чорний колір фону */\n  color: #fff; /* білий колір тексту */\n  padding: 0.5rem 1rem; /* відступи */\n  border: none; /* без рамки */\n  border-radius: 0.375rem; /* закруглені кути */\n  text-align: center; /* вирівнювання тексту по центру */\n  font-weight: 600; /* напівжирний текст */\n  transition: background-color 0.3s ease, color 0.3s ease; /* плавний перехід для hover */\n  min-width: 100px;\n}\n\n.black-button:hover {\n  background-color: #552fa5; /* білий колір фону при наведенні */\n  color: #fff; /* чорний колір тексту при наведенні */\n}\n\n.red-button {\n  background-color: #b00000; /* чорний колір фону */\n  color: #fff; /* білий колір тексту */\n  padding: 0.5rem 1rem; /* відступи */\n  border: none; /* без рамки */\n  border-radius: 0.375rem; /* закруглені кути */\n  text-align: center; /* вирівнювання тексту по центру */\n  font-weight: 600; /* напівжирний текст */\n  transition: background-color 0.3s ease, color 0.3s ease; /* плавний перехід для hover */\n  min-width: 100px;\n}\n.red-button:hover {\n  background-color: #730000; /* білий колір фону при наведенні */\n  color: #fff; /* чорний колір тексту при наведенні */\n}\n.orange-button {\n  background-color: #c89d1b; /* чорний колір фону */\n  color: #fff; /* білий колір тексту */\n  padding: 0.5rem 1rem; /* відступи */\n  border: none; /* без рамки */\n  border-radius: 0.375rem; /* закруглені кути */\n  text-align: center; /* вирівнювання тексту по центру */\n  font-weight: 600; /* напівжирний текст */\n  transition: background-color 0.3s ease, color 0.3s ease; /* плавний перехід для hover */\n  min-width: 100px;\n}\n.orange-button:hover {\n  background-color: #b08400; /* білий колір фону при наведенні */\n  color: #fff; /* чорний колір тексту при наведенні */\n}\n.green-button {\n  background-color: #00913c; /* чорний колір фону */\n  color: #fff; /* білий колір тексту */\n  padding: 0.5rem 1rem; /* відступи */\n  border: none; /* без рамки */\n  border-radius: 0.375rem; /* закруглені кути */\n  text-align: center; /* вирівнювання тексту по центру */\n  font-weight: 600; /* напівжирний текст */\n  transition: background-color 0.3s ease, color 0.3s ease; /* плавний перехід для hover */\n  min-width: 250px;\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n.green-button:hover {\n  background-color: #236941; /* білий колір фону при наведенні */\n  color: #fff; /* чорний колір тексту при наведенні */\n}\n.big-center-text {\n  font-size: 1.875rem; /* відповідає text-3xl в Tailwind CSS */\n  font-weight: 700; /* відповідає font-bold в Tailwind CSS */\n  text-align: center; /* відповідає text-center в Tailwind CSS */\n  margin-bottom: 1.5rem; /* відповідає mb-6 в Tailwind CSS */\n  margin-top: 1.5rem; /* відповідає mb-6 в Tailwind CSS */\n}\n\n.input-field {\n  width: 100%;\n  padding: 0.5rem;\n  border: 1px solid #d1d5db;\n  border-radius: 0.375rem;\n  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n  font-size: 1rem;\n  line-height: 1.5;\n}\n\n.input-field-textarea {\n  width: 100%;\n  padding: 0.5rem;\n  border: 1px solid #d1d5db;\n  border-radius: 0.375rem;\n  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n  font-size: 1rem;\n  line-height: 1.5;\n  resize: none;\n  /* Вимикаємо можливість зміни розміру полів вводу */\n  min-height: 5rem;\n  /* Мінімальна висота поля вводу *\n  height: auto;\n  /* Автоматично збільшуємо висоту поля вводу */\n}\n\n.input-field-textarea:focus {\n  border-color: #c025eb;\n  outline: 0;\n  box-shadow: 0 0 0 0.125rem rgba(37, 99, 235, 0.25);\n}\n\n.input-field:focus {\n  border-color: #c025eb;\n  outline: 0;\n  box-shadow: 0 0 0 0.125rem rgba(37, 99, 235, 0.25);\n}\n\n.image {\n  max-width: 100%;\n  height: auto;\n  padding-top: 5px;\n  border-radius: 8px;\n  /* Заокруглені кути */\n  display: block;\n  /* Зробити картинку блоком, щоб встановити margin: auto; */\n  margin: 0 auto;\n  /* Центрує картинку */\n}\n\n.rounded-center {\n  border-radius: 5px;\n}\n",
+      "start": 1713884695062,
+      "end": 1713884695309,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884695309,
+      "end": 1713884695309,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884695309,
+      "end": 1713884695309,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884695309,
+      "end": 1713884695309,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884695309,
+      "end": 1713884695309,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1713884695309,
+      "end": 1713884695309,
+      "order": "pre"
+    },
+    {
+      "name": "server-only-component-transform",
+      "start": 1713884695309,
+      "end": 1713884695309,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": "*{margin:0;padding:0}.btn{background-color:aqua}.btn:hover{background-color:#90f;color:#fff;cursor:pointer}.btn-admin{background-color:#6b46c1;border-radius:.375rem;color:#fff;font-weight:600;padding:.5rem 1rem;text-align:center;transition:background-color .3s ease}.btn-admin:hover{background-color:#805ad5}.white-button{background-color:#fff;border:none;border-radius:.375rem;color:#805ad5;font-weight:600;min-width:100px;padding:.5rem 1rem;text-align:center;transition:background-color .3s ease,color .3s ease}.white-button:hover{background-color:#552fa5;color:#fff}.black-button{background-color:#000;border:none;border-radius:.375rem;color:#fff;font-weight:600;min-width:100px;padding:.5rem 1rem;text-align:center;transition:background-color .3s ease,color .3s ease}.black-button:hover{background-color:#552fa5;color:#fff}.red-button{background-color:#b00000;border:none;border-radius:.375rem;color:#fff;font-weight:600;min-width:100px;padding:.5rem 1rem;text-align:center;transition:background-color .3s ease,color .3s ease}.red-button:hover{background-color:#730000;color:#fff}.orange-button{background-color:#c89d1b;border:none;border-radius:.375rem;color:#fff;font-weight:600;min-width:100px;padding:.5rem 1rem;text-align:center;transition:background-color .3s ease,color .3s ease}.orange-button:hover{background-color:#b08400;color:#fff}.green-button{background-color:#00913c;border:none;border-radius:.375rem;color:#fff;font-weight:600;margin-bottom:20px;margin-top:20px;min-width:250px;padding:.5rem 1rem;text-align:center;transition:background-color .3s ease,color .3s ease}.green-button:hover{background-color:#236941;color:#fff}.big-center-text{font-size:1.875rem;font-weight:700;margin-bottom:1.5rem;margin-top:1.5rem;text-align:center}.input-field,.input-field-textarea{border:1px solid #d1d5db;border-radius:.375rem;font-size:1rem;line-height:1.5;padding:.5rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out;width:100%}.input-field-textarea{min-height:5rem;resize:none}.input-field-textarea:focus,.input-field:focus{border-color:#c025eb;box-shadow:0 0 0 .125rem rgba(37,99,235,.25);outline:0}.image{border-radius:8px;display:block;height:auto;margin:0 auto;max-width:100%;padding-top:5px}.rounded-center{border-radius:5px}",
+      "start": 1713884695310,
+      "end": 1713884695344,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/assets/css/main.css",
+        "mappings": "AAAA,EAEE,QAAS,CADT,SAEF,CAEA,KACE,qBACF,CACA,WACE,qBAAkC,CAElC,UAAY,CADZ,cAEF,CACA,WACE,wBAAyB,CAGzB,qBAAuB,CAFvB,UAAW,CAIX,eAAgB,CAHhB,kBAAoB,CAEpB,iBAAkB,CAElB,oCACF,CAEA,iBACE,wBACF,CACA,cACE,qBAAsB,CAGtB,WAAY,CACZ,qBAAuB,CAHvB,aAAc,CAKd,eAAgB,CAEhB,eAAgB,CANhB,kBAAoB,CAGpB,iBAAkB,CAElB,mDAEF,CAEA,oBACE,wBAAyB,CACzB,UACF,CAEA,cACE,qBAAsB,CAGtB,WAAY,CACZ,qBAAuB,CAHvB,UAAW,CAKX,eAAgB,CAEhB,eAAgB,CANhB,kBAAoB,CAGpB,iBAAkB,CAElB,mDAEF,CAEA,oBACE,wBAAyB,CACzB,UACF,CAEA,YACE,wBAAyB,CAGzB,WAAY,CACZ,qBAAuB,CAHvB,UAAW,CAKX,eAAgB,CAEhB,eAAgB,CANhB,kBAAoB,CAGpB,iBAAkB,CAElB,mDAEF,CACA,kBACE,wBAAyB,CACzB,UACF,CACA,eACE,wBAAyB,CAGzB,WAAY,CACZ,qBAAuB,CAHvB,UAAW,CAKX,eAAgB,CAEhB,eAAgB,CANhB,kBAAoB,CAGpB,iBAAkB,CAElB,mDAEF,CACA,qBACE,wBAAyB,CACzB,UACF,CACA,cACE,wBAAyB,CAGzB,WAAY,CACZ,qBAAuB,CAHvB,UAAW,CAKX,eAAgB,CAIhB,kBAAmB,CADnB,eAAgB,CADhB,eAAgB,CANhB,kBAAoB,CAGpB,iBAAkB,CAElB,mDAIF,CACA,oBACE,wBAAyB,CACzB,UACF,CACA,iBACE,kBAAmB,CACnB,eAAgB,CAEhB,oBAAqB,CACrB,iBAAkB,CAFlB,iBAGF,CAYA,mCAPE,wBAAyB,CACzB,qBAAuB,CAEvB,cAAe,CACf,eAAgB,CALhB,aAAe,CAGf,oEAAwE,CAJxE,UAuBF,CAdA,sBAUE,eAAgB,CAFhB,WAMF,CAQA,+CACE,oBAAqB,CAErB,4CAAkD,CADlD,SAEF,CAEA,OAIE,iBAAkB,CAElB,aAAc,CAJd,WAAY,CAMZ,aAAc,CAPd,cAAe,CAEf,eAOF,CAEA,gBACE,iBACF",
+        "names": [],
+        "sources": [
+          "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/assets/css/main.css"
+        ],
+        "sourcesContent": [
+          "*{\n  padding: 0;\n  margin: 0;\n}\n\n.btn{\n  background-color: aqua;\n}\n.btn:hover{\n  background-color: rgb(153, 0, 255);\n  cursor: pointer;\n  color: white;\n}\n.btn-admin {\n  background-color: #6B46C1; /* фіолетовий колір */\n  color: #fff; /* білий колір тексту */\n  padding: 0.5rem 1rem; /* відступи */\n  border-radius: 0.375rem; /* закруглені кути */\n  text-align: center; /* вирівнювання тексту по центру */\n  font-weight: 600; /* напівжирний текст */\n  transition: background-color 0.3s ease; /* плавний перехід для hover */\n}\n\n.btn-admin:hover {\n  background-color: #805AD5; /* колір при наведенні */\n}\n.white-button {\n  background-color: #fff; /* білий колір фону */\n  color: #805AD5; /* чорний колір тексту */\n  padding: 0.5rem 1rem; /* відступи */\n  border: none; /* чорна рамка */\n  border-radius: 0.375rem; /* закруглені кути */\n  text-align: center; /* вирівнювання тексту по центру */\n  font-weight: 600; /* напівжирний текст */\n  transition: background-color 0.3s ease, color 0.3s ease; /* плавний перехід для hover */\n  min-width: 100px;\n}\n\n.white-button:hover {\n  background-color: #552fa5; /* чорний колір фону при наведенні */\n  color: #fff; /* білий колір тексту при наведенні */\n}\n\n.black-button {\n  background-color: #000; /* чорний колір фону */\n  color: #fff; /* білий колір тексту */\n  padding: 0.5rem 1rem; /* відступи */\n  border: none; /* без рамки */\n  border-radius: 0.375rem; /* закруглені кути */\n  text-align: center; /* вирівнювання тексту по центру */\n  font-weight: 600; /* напівжирний текст */\n  transition: background-color 0.3s ease, color 0.3s ease; /* плавний перехід для hover */\n  min-width: 100px;\n}\n\n.black-button:hover {\n  background-color: #552fa5; /* білий колір фону при наведенні */\n  color: #fff; /* чорний колір тексту при наведенні */\n}\n\n.red-button {\n  background-color: #b00000; /* чорний колір фону */\n  color: #fff; /* білий колір тексту */\n  padding: 0.5rem 1rem; /* відступи */\n  border: none; /* без рамки */\n  border-radius: 0.375rem; /* закруглені кути */\n  text-align: center; /* вирівнювання тексту по центру */\n  font-weight: 600; /* напівжирний текст */\n  transition: background-color 0.3s ease, color 0.3s ease; /* плавний перехід для hover */\n  min-width: 100px;\n}\n.red-button:hover {\n  background-color: #730000; /* білий колір фону при наведенні */\n  color: #fff; /* чорний колір тексту при наведенні */\n}\n.orange-button {\n  background-color: #c89d1b; /* чорний колір фону */\n  color: #fff; /* білий колір тексту */\n  padding: 0.5rem 1rem; /* відступи */\n  border: none; /* без рамки */\n  border-radius: 0.375rem; /* закруглені кути */\n  text-align: center; /* вирівнювання тексту по центру */\n  font-weight: 600; /* напівжирний текст */\n  transition: background-color 0.3s ease, color 0.3s ease; /* плавний перехід для hover */\n  min-width: 100px;\n}\n.orange-button:hover {\n  background-color: #b08400; /* білий колір фону при наведенні */\n  color: #fff; /* чорний колір тексту при наведенні */\n}\n.green-button {\n  background-color: #00913c; /* чорний колір фону */\n  color: #fff; /* білий колір тексту */\n  padding: 0.5rem 1rem; /* відступи */\n  border: none; /* без рамки */\n  border-radius: 0.375rem; /* закруглені кути */\n  text-align: center; /* вирівнювання тексту по центру */\n  font-weight: 600; /* напівжирний текст */\n  transition: background-color 0.3s ease, color 0.3s ease; /* плавний перехід для hover */\n  min-width: 250px;\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n.green-button:hover {\n  background-color: #236941; /* білий колір фону при наведенні */\n  color: #fff; /* чорний колір тексту при наведенні */\n}\n.big-center-text {\n  font-size: 1.875rem; /* відповідає text-3xl в Tailwind CSS */\n  font-weight: 700; /* відповідає font-bold в Tailwind CSS */\n  text-align: center; /* відповідає text-center в Tailwind CSS */\n  margin-bottom: 1.5rem; /* відповідає mb-6 в Tailwind CSS */\n  margin-top: 1.5rem; /* відповідає mb-6 в Tailwind CSS */\n}\n\n.input-field {\n  width: 100%;\n  padding: 0.5rem;\n  border: 1px solid #d1d5db;\n  border-radius: 0.375rem;\n  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n  font-size: 1rem;\n  line-height: 1.5;\n}\n\n.input-field-textarea {\n  width: 100%;\n  padding: 0.5rem;\n  border: 1px solid #d1d5db;\n  border-radius: 0.375rem;\n  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n  font-size: 1rem;\n  line-height: 1.5;\n  resize: none;\n  /* Вимикаємо можливість зміни розміру полів вводу */\n  min-height: 5rem;\n  /* Мінімальна висота поля вводу *\n  height: auto;\n  /* Автоматично збільшуємо висоту поля вводу */\n}\n\n.input-field-textarea:focus {\n  border-color: #c025eb;\n  outline: 0;\n  box-shadow: 0 0 0 0.125rem rgba(37, 99, 235, 0.25);\n}\n\n.input-field:focus {\n  border-color: #c025eb;\n  outline: 0;\n  box-shadow: 0 0 0 0.125rem rgba(37, 99, 235, 0.25);\n}\n\n.image {\n  max-width: 100%;\n  height: auto;\n  padding-top: 5px;\n  border-radius: 8px;\n  /* Заокруглені кути */\n  display: block;\n  /* Зробити картинку блоком, щоб встановити margin: auto; */\n  margin: 0 auto;\n  /* Центрує картинку */\n}\n\n.rounded-center {\n  border-radius: 5px;\n}\n"
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1713884695344,
+      "end": 1713884695344,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1713884695344,
+      "end": 1713884695344,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1713884695344,
+      "end": 1713884695344,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1713884695344,
+      "end": 1713884695344,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1713884695344,
+      "end": 1713884695344,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884695344,
+      "end": 1713884695344,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884695344,
+      "end": 1713884695344,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884695344,
+      "end": 1713884695344,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884695344,
+      "end": 1713884695344,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1713884695344,
+      "end": 1713884695344,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884695344,
+      "end": 1713884695344,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1713884695344,
+      "end": 1713884695344,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1713884695344,
+      "end": 1713884695344,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1713884695345,
+      "end": 1713884695345,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,284 @@
+{
+  "resolvedId": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/user/ads/index.vue?macro=true",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n    <div class=\"bg-gray-200 min-h-screen p-8\">\n        <div v-if=\"profile\" class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\">\n            <div class=\"flex flex-col sm:flex-row justify-between items-center mb-4\">\n                <h1 class=\"big-center-text lg:mb-0 lg:mr-4\">Мої оголошення</h1>\n                <nuxt-link to=\"/profile/user/ads/add\" class=\"green-button\">Додати оголошення</nuxt-link>\n            </div>\n\n\n\n            <div v-if=\"profile.ads.length > 0\"\n                class=\"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4\">\n                <div v-for=\"ad in profile.ads\" :key=\"ad.id\"\n                    class=\"bg-white rounded-lg shadow-md overflow-hidden min-w-0 min-h-0\">\n                    <div class=\"aspect-w-1 aspect-h-1\">\n                        <div v-if=\"ad.previewImageId\">\n                            <img class=\"thumb\" v-if=\"loadedImages[ad.previewImageId]\"\n                                :src=\"loadedImages[ad.previewImageId]\" alt=\"Image\">\n                        </div>\n                    </div>\n                    <div class=\"p-4\">\n                        <h3 class=\"text-lg font-semibold truncate mb-2\">{{ ad.name }}</h3>\n                        <div class=\"flex items-center\">\n                            <img src=\"/img/card/location.png\" alt=\"Місто\" class=\"mr-2 inline-block h-4 w-4\">\n                            <p>{{ ad.city.name }}</p>\n                        </div>\n                        <div class=\"flex items-center\">\n                            <img src=\"/img/card/category.png\" alt=\"Категорія\" class=\"mr-2 inline-block h-4 w-4\">\n                            <p>{{ ad.category.name }}</p>\n                        </div>\n                        <hr class=\"my-4 border-t border-gray-300\">\n                        <p class=\"font-bold text-xl my-4\">{{ ad.price }} грн</p>\n                        <div class=\"mt-4\">\n                            <button @click.prevent=\"editAd(ad.id)\" class=\"orange-button w-full mb-2\">Редагувати</button>\n                            <button @click.prevent=\"deleteAd(ad.id)\" class=\"red-button w-full\">Видалити</button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n\n            <div v-else>\n                <p>У Вас все ще немає оголошень, додайте їх.</p>\n            </div>\n        </div>\n        <div v-else class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center h-full\">\n            <p class=\"text-lg mb-4\">Ви не ввійшли в профіль</p>\n            <nuxt-link to=\"/auth/\" class=\"btn-admin\">Ввійти</nuxt-link>\n        </div>\n    </div>\n</template>\n\n\n\n<script setup>\nimport { useRouter } from 'vue-router'\nimport { ref } from 'vue';\nimport { onMounted } from 'vue';\nimport { getProfileFromLocalStorage, isAuthenticated, saveProfile, fetchWithToken, setEditObjectInLocalStorage, getEditObjectFromLocalStorage } from '/utils/auth.js';\n\nconst profile = ref(null);\nconst router = useRouter();\nconst referalImg = 'https://buy-sell-api.onrender.com/api/user/image/';\nconst loadedImages = ref({});\n\nconst editAd = async (idAd) => {\n    const object = {\n        id: idAd\n    }\n    setEditObjectInLocalStorage(object);\n    console.log(getEditObjectFromLocalStorage().id)\n    router.push('/profile/user/ads/edit');\n}\nconst deleteAd = async (idAd) => {\n    const deleteObject = {\n        id: idAd\n    }\n    const deleteURL = 'https://buy-sell-api.onrender.com/api/user/ads/' + idAd;\n    const response = await fetchWithToken(deleteURL, {\n        method: 'DELETE',\n        body: JSON.stringify(deleteObject)\n    })\n    if (response.ok) {\n        console.log(\"Успішно видалено!!!\")\n\n        await saveProfile();\n        await loadData();\n        router.push('/profile/user/ads');\n    }\n}\n\nconst loadImage = async (imageId) => {\n    try {\n\n        const url = referalImg + imageId;\n        const response = await fetchWithToken(url);\n        if (!response.ok) {\n            throw new Error('Failed to load image');\n        }\n        const blob = await response.blob();\n        const imageUrl = URL.createObjectURL(blob);\n        loadedImages.value[imageId] = imageUrl;\n    } catch (error) {\n        console.error('Error loading image:', error);\n    }\n}\nasync function loadData() {\n    const fetchedProfile = getProfileFromLocalStorage();\n    if (fetchedProfile) {\n        profile.value = fetchedProfile;\n    }\n}\n\n\nonMounted(() => {\n    if (!isAuthenticated()) {\n        router.push('/auth/');\n    }\n    saveProfile();\n    loadData();\n    for (const ad of profile.value.ads) {\n        loadImage(ad.previewImageId);\n    }\n});\n</script>\n\n<style scoped>\n.thumb {\n    width: 100%;\n    height: 200px;\n    /* або будь-яка фіксована висота */\n    margin: 0 auto;\n    overflow: hidden;\n    /* Додаємо обрізання контенту */\n}\n</style>\n",
+      "start": 1713884695529,
+      "end": 1713884695696,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884695696,
+      "end": 1713884695696,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884695696,
+      "end": 1713884695696,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884695696,
+      "end": 1713884695696,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884695696,
+      "end": 1713884695696,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1713884695696,
+      "end": 1713884695696,
+      "order": "pre"
+    },
+    {
+      "name": "server-only-component-transform",
+      "start": 1713884695696,
+      "end": 1713884695696,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1713884695696,
+      "end": 1713884695696,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1713884695696,
+      "end": 1713884695696,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1713884695696,
+      "end": 1713884695696,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1713884695696,
+      "end": 1713884695696,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { resolveComponent as _resolveComponent, withCtx as _withCtx, createTextVNode as _createTextVNode, mergeProps as _mergeProps } from \"vue\"\nimport { ssrRenderComponent as _ssrRenderComponent, ssrRenderAttr as _ssrRenderAttr, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\"\nimport _imports_0 from '/img/card/location.png'\nimport _imports_1 from '/img/card/category.png'\n\n\nimport { useRouter } from 'vue-router'\nimport { ref } from 'vue';\nimport { onMounted } from 'vue';\nimport { getProfileFromLocalStorage, isAuthenticated, saveProfile, fetchWithToken, setEditObjectInLocalStorage, getEditObjectFromLocalStorage } from '/utils/auth.js';\n\nconst referalImg = 'https://buy-sell-api.onrender.com/api/user/image/';\n\nconst _sfc_main = {\n  __name: 'index',\n  __ssrInlineRender: true,\n  setup(__props) {\n\nconst profile = ref(null);\nconst router = useRouter();\nconst loadedImages = ref({});\n\nconst editAd = async (idAd) => {\n    const object = {\n        id: idAd\n    }\n    setEditObjectInLocalStorage(object);\n    console.log(getEditObjectFromLocalStorage().id)\n    router.push('/profile/user/ads/edit');\n}\nconst deleteAd = async (idAd) => {\n    const deleteObject = {\n        id: idAd\n    }\n    const deleteURL = 'https://buy-sell-api.onrender.com/api/user/ads/' + idAd;\n    const response = await fetchWithToken(deleteURL, {\n        method: 'DELETE',\n        body: JSON.stringify(deleteObject)\n    })\n    if (response.ok) {\n        console.log(\"Успішно видалено!!!\")\n\n        await saveProfile();\n        await loadData();\n        router.push('/profile/user/ads');\n    }\n}\n\nconst loadImage = async (imageId) => {\n    try {\n\n        const url = referalImg + imageId;\n        const response = await fetchWithToken(url);\n        if (!response.ok) {\n            throw new Error('Failed to load image');\n        }\n        const blob = await response.blob();\n        const imageUrl = URL.createObjectURL(blob);\n        loadedImages.value[imageId] = imageUrl;\n    } catch (error) {\n        console.error('Error loading image:', error);\n    }\n}\nasync function loadData() {\n    const fetchedProfile = getProfileFromLocalStorage();\n    if (fetchedProfile) {\n        profile.value = fetchedProfile;\n    }\n}\n\n\nonMounted(() => {\n    if (!isAuthenticated()) {\n        router.push('/auth/');\n    }\n    saveProfile();\n    loadData();\n    for (const ad of profile.value.ads) {\n        loadImage(ad.previewImageId);\n    }\n});\n\nreturn (_ctx, _push, _parent, _attrs) => {\n  const _component_nuxt_link = _resolveComponent(\"nuxt-link\")\n\n  _push(`<div${_ssrRenderAttrs(_mergeProps({ class: \"bg-gray-200 min-h-screen p-8\" }, _attrs))} data-v-97cb30a9>`)\n  if (profile.value) {\n    _push(`<div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\" data-v-97cb30a9><div class=\"flex flex-col sm:flex-row justify-between items-center mb-4\" data-v-97cb30a9><h1 class=\"big-center-text lg:mb-0 lg:mr-4\" data-v-97cb30a9>Мої оголошення</h1>`)\n    _push(_ssrRenderComponent(_component_nuxt_link, {\n      to: \"/profile/user/ads/add\",\n      class: \"green-button\"\n    }, {\n      default: _withCtx((_, _push, _parent, _scopeId) => {\n        if (_push) {\n          _push(`Додати оголошення`)\n        } else {\n          return [\n            _createTextVNode(\"Додати оголошення\")\n          ]\n        }\n      }),\n      _: 1\n    }, _parent))\n    _push(`</div>`)\n    if (profile.value.ads.length > 0) {\n      _push(`<div class=\"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4\" data-v-97cb30a9><!--[-->`)\n      _ssrRenderList(profile.value.ads, (ad) => {\n        _push(`<div class=\"bg-white rounded-lg shadow-md overflow-hidden min-w-0 min-h-0\" data-v-97cb30a9><div class=\"aspect-w-1 aspect-h-1\" data-v-97cb30a9>`)\n        if (ad.previewImageId) {\n          _push(`<div data-v-97cb30a9>`)\n          if (loadedImages.value[ad.previewImageId]) {\n            _push(`<img class=\"thumb\"${_ssrRenderAttr(\"src\", loadedImages.value[ad.previewImageId])} alt=\"Image\" data-v-97cb30a9>`)\n          } else {\n            _push(`<!---->`)\n          }\n          _push(`</div>`)\n        } else {\n          _push(`<!---->`)\n        }\n        _push(`</div><div class=\"p-4\" data-v-97cb30a9><h3 class=\"text-lg font-semibold truncate mb-2\" data-v-97cb30a9>${\n          _ssrInterpolate(ad.name)\n        }</h3><div class=\"flex items-center\" data-v-97cb30a9><img${\n          _ssrRenderAttr(\"src\", _imports_0)\n        } alt=\"Місто\" class=\"mr-2 inline-block h-4 w-4\" data-v-97cb30a9><p data-v-97cb30a9>${\n          _ssrInterpolate(ad.city.name)\n        }</p></div><div class=\"flex items-center\" data-v-97cb30a9><img${\n          _ssrRenderAttr(\"src\", _imports_1)\n        } alt=\"Категорія\" class=\"mr-2 inline-block h-4 w-4\" data-v-97cb30a9><p data-v-97cb30a9>${\n          _ssrInterpolate(ad.category.name)\n        }</p></div><hr class=\"my-4 border-t border-gray-300\" data-v-97cb30a9><p class=\"font-bold text-xl my-4\" data-v-97cb30a9>${\n          _ssrInterpolate(ad.price)\n        } грн</p><div class=\"mt-4\" data-v-97cb30a9><button class=\"orange-button w-full mb-2\" data-v-97cb30a9>Редагувати</button><button class=\"red-button w-full\" data-v-97cb30a9>Видалити</button></div></div></div>`)\n      })\n      _push(`<!--]--></div>`)\n    } else {\n      _push(`<div data-v-97cb30a9><p data-v-97cb30a9>У Вас все ще немає оголошень, додайте їх.</p></div>`)\n    }\n    _push(`</div>`)\n  } else {\n    _push(`<div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center h-full\" data-v-97cb30a9><p class=\"text-lg mb-4\" data-v-97cb30a9>Ви не ввійшли в профіль</p>`)\n    _push(_ssrRenderComponent(_component_nuxt_link, {\n      to: \"/auth/\",\n      class: \"btn-admin\"\n    }, {\n      default: _withCtx((_, _push, _parent, _scopeId) => {\n        if (_push) {\n          _push(`Ввійти`)\n        } else {\n          return [\n            _createTextVNode(\"Ввійти\")\n          ]\n        }\n      }),\n      _: 1\n    }, _parent))\n    _push(`</div>`)\n  }\n  _push(`</div>`)\n}\n}\n\n}\n\n\nimport \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/user/ads/index.vue?vue&type=style&index=0&scoped=97cb30a9&lang.css\"\n\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\nconst _sfc_setup = _sfc_main.setup\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext()\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\"pages/profile/user/ads/index.vue\")\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\n}\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['__scopeId',\"data-v-97cb30a9\"]])",
+      "start": 1713884695696,
+      "end": 1713884695700,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/user/ads/index.vue"
+        ],
+        "sourcesContent": [
+          "<template>\n    <div class=\"bg-gray-200 min-h-screen p-8\">\n        <div v-if=\"profile\" class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\">\n            <div class=\"flex flex-col sm:flex-row justify-between items-center mb-4\">\n                <h1 class=\"big-center-text lg:mb-0 lg:mr-4\">Мої оголошення</h1>\n                <nuxt-link to=\"/profile/user/ads/add\" class=\"green-button\">Додати оголошення</nuxt-link>\n            </div>\n\n\n\n            <div v-if=\"profile.ads.length > 0\"\n                class=\"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4\">\n                <div v-for=\"ad in profile.ads\" :key=\"ad.id\"\n                    class=\"bg-white rounded-lg shadow-md overflow-hidden min-w-0 min-h-0\">\n                    <div class=\"aspect-w-1 aspect-h-1\">\n                        <div v-if=\"ad.previewImageId\">\n                            <img class=\"thumb\" v-if=\"loadedImages[ad.previewImageId]\"\n                                :src=\"loadedImages[ad.previewImageId]\" alt=\"Image\">\n                        </div>\n                    </div>\n                    <div class=\"p-4\">\n                        <h3 class=\"text-lg font-semibold truncate mb-2\">{{ ad.name }}</h3>\n                        <div class=\"flex items-center\">\n                            <img src=\"/img/card/location.png\" alt=\"Місто\" class=\"mr-2 inline-block h-4 w-4\">\n                            <p>{{ ad.city.name }}</p>\n                        </div>\n                        <div class=\"flex items-center\">\n                            <img src=\"/img/card/category.png\" alt=\"Категорія\" class=\"mr-2 inline-block h-4 w-4\">\n                            <p>{{ ad.category.name }}</p>\n                        </div>\n                        <hr class=\"my-4 border-t border-gray-300\">\n                        <p class=\"font-bold text-xl my-4\">{{ ad.price }} грн</p>\n                        <div class=\"mt-4\">\n                            <button @click.prevent=\"editAd(ad.id)\" class=\"orange-button w-full mb-2\">Редагувати</button>\n                            <button @click.prevent=\"deleteAd(ad.id)\" class=\"red-button w-full\">Видалити</button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n\n            <div v-else>\n                <p>У Вас все ще немає оголошень, додайте їх.</p>\n            </div>\n        </div>\n        <div v-else class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center h-full\">\n            <p class=\"text-lg mb-4\">Ви не ввійшли в профіль</p>\n            <nuxt-link to=\"/auth/\" class=\"btn-admin\">Ввійти</nuxt-link>\n        </div>\n    </div>\n</template>\n\n\n\n<script setup>\nimport { useRouter } from 'vue-router'\nimport { ref } from 'vue';\nimport { onMounted } from 'vue';\nimport { getProfileFromLocalStorage, isAuthenticated, saveProfile, fetchWithToken, setEditObjectInLocalStorage, getEditObjectFromLocalStorage } from '/utils/auth.js';\n\nconst profile = ref(null);\nconst router = useRouter();\nconst referalImg = 'https://buy-sell-api.onrender.com/api/user/image/';\nconst loadedImages = ref({});\n\nconst editAd = async (idAd) => {\n    const object = {\n        id: idAd\n    }\n    setEditObjectInLocalStorage(object);\n    console.log(getEditObjectFromLocalStorage().id)\n    router.push('/profile/user/ads/edit');\n}\nconst deleteAd = async (idAd) => {\n    const deleteObject = {\n        id: idAd\n    }\n    const deleteURL = 'https://buy-sell-api.onrender.com/api/user/ads/' + idAd;\n    const response = await fetchWithToken(deleteURL, {\n        method: 'DELETE',\n        body: JSON.stringify(deleteObject)\n    })\n    if (response.ok) {\n        console.log(\"Успішно видалено!!!\")\n\n        await saveProfile();\n        await loadData();\n        router.push('/profile/user/ads');\n    }\n}\n\nconst loadImage = async (imageId) => {\n    try {\n\n        const url = referalImg + imageId;\n        const response = await fetchWithToken(url);\n        if (!response.ok) {\n            throw new Error('Failed to load image');\n        }\n        const blob = await response.blob();\n        const imageUrl = URL.createObjectURL(blob);\n        loadedImages.value[imageId] = imageUrl;\n    } catch (error) {\n        console.error('Error loading image:', error);\n    }\n}\nasync function loadData() {\n    const fetchedProfile = getProfileFromLocalStorage();\n    if (fetchedProfile) {\n        profile.value = fetchedProfile;\n    }\n}\n\n\nonMounted(() => {\n    if (!isAuthenticated()) {\n        router.push('/auth/');\n    }\n    saveProfile();\n    loadData();\n    for (const ad of profile.value.ads) {\n        loadImage(ad.previewImageId);\n    }\n});\n</script>\n\n<style scoped>\n.thumb {\n    width: 100%;\n    height: 200px;\n    /* або будь-яка фіксована висота */\n    margin: 0 auto;\n    overflow: hidden;\n    /* Додаємо обрізання контенту */\n}\n</style>\n"
+        ],
+        "names": [],
+        "mappings": ";;;;;;AAsDA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,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AC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/E,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1C;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzC,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC;AACD;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACT;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACT,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrD,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC;AACD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvC,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC;AACD;AACA;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9B,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACf,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrC,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC,CAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;"
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1713884695700,
+      "end": 1713884695701,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884695701,
+      "end": 1713884695701,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884695701,
+      "end": 1713884695701,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884695701,
+      "end": 1713884695701,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884695701,
+      "end": 1713884695701,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1713884695701,
+      "end": 1713884695701,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884695701,
+      "end": 1713884695701,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1713884695701,
+      "end": 1713884695701,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import { resolveComponent as _resolveComponent, withCtx as _withCtx, createTextVNode as _createTextVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderComponent as _ssrRenderComponent, ssrRenderAttr as _ssrRenderAttr, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nimport _imports_0 from \"/img/card/location.png\";\nimport _imports_1 from \"/img/card/category.png\";\nimport { useRouter } from \"vue-router\";\nimport { ref } from \"vue\";\nimport { onMounted } from \"vue\";\nimport { getProfileFromLocalStorage, isAuthenticated, saveProfile, fetchWithToken, setEditObjectInLocalStorage, getEditObjectFromLocalStorage } from \"/utils/auth.js\";\nconst referalImg = \"https://buy-sell-api.onrender.com/api/user/image/\";\nconst _sfc_main = {\n  __name: \"index\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    const profile = ref(null);\n    const router = useRouter();\n    const loadedImages = ref({});\n    const editAd = async (idAd) => {\n      const object = {\n        id: idAd\n      };\n      setEditObjectInLocalStorage(object);\n      console.log(getEditObjectFromLocalStorage().id);\n      router.push(\"/profile/user/ads/edit\");\n    };\n    const deleteAd = async (idAd) => {\n      const deleteObject = {\n        id: idAd\n      };\n      const deleteURL = \"https://buy-sell-api.onrender.com/api/user/ads/\" + idAd;\n      const response = await fetchWithToken(deleteURL, {\n        method: \"DELETE\",\n        body: JSON.stringify(deleteObject)\n      });\n      if (response.ok) {\n        console.log(\"Успішно видалено!!!\");\n        await saveProfile();\n        await loadData();\n        router.push(\"/profile/user/ads\");\n      }\n    };\n    const loadImage = async (imageId) => {\n      try {\n        const url = referalImg + imageId;\n        const response = await fetchWithToken(url);\n        if (!response.ok) {\n          throw new Error(\"Failed to load image\");\n        }\n        const blob = await response.blob();\n        const imageUrl = URL.createObjectURL(blob);\n        loadedImages.value[imageId] = imageUrl;\n      } catch (error) {\n        console.error(\"Error loading image:\", error);\n      }\n    };\n    async function loadData() {\n      const fetchedProfile = getProfileFromLocalStorage();\n      if (fetchedProfile) {\n        profile.value = fetchedProfile;\n      }\n    }\n    onMounted(() => {\n      if (!isAuthenticated()) {\n        router.push(\"/auth/\");\n      }\n      saveProfile();\n      loadData();\n      for (const ad of profile.value.ads) {\n        loadImage(ad.previewImageId);\n      }\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_nuxt_link = _resolveComponent(\"nuxt-link\");\n      _push(`<div${_ssrRenderAttrs(_mergeProps({ class: \"bg-gray-200 min-h-screen p-8\" }, _attrs))} data-v-97cb30a9>`);\n      if (profile.value) {\n        _push(`<div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\" data-v-97cb30a9><div class=\"flex flex-col sm:flex-row justify-between items-center mb-4\" data-v-97cb30a9><h1 class=\"big-center-text lg:mb-0 lg:mr-4\" data-v-97cb30a9>Мої оголошення</h1>`);\n        _push(_ssrRenderComponent(_component_nuxt_link, {\n          to: \"/profile/user/ads/add\",\n          class: \"green-button\"\n        }, {\n          default: _withCtx((_, _push2, _parent2, _scopeId) => {\n            if (_push2) {\n              _push2(`Додати оголошення`);\n            } else {\n              return [\n                _createTextVNode(\"Додати оголошення\")\n              ];\n            }\n          }),\n          _: 1\n        }, _parent));\n        _push(`</div>`);\n        if (profile.value.ads.length > 0) {\n          _push(`<div class=\"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4\" data-v-97cb30a9><!--[-->`);\n          _ssrRenderList(profile.value.ads, (ad) => {\n            _push(`<div class=\"bg-white rounded-lg shadow-md overflow-hidden min-w-0 min-h-0\" data-v-97cb30a9><div class=\"aspect-w-1 aspect-h-1\" data-v-97cb30a9>`);\n            if (ad.previewImageId) {\n              _push(`<div data-v-97cb30a9>`);\n              if (loadedImages.value[ad.previewImageId]) {\n                _push(`<img class=\"thumb\"${_ssrRenderAttr(\"src\", loadedImages.value[ad.previewImageId])} alt=\"Image\" data-v-97cb30a9>`);\n              } else {\n                _push(`<!---->`);\n              }\n              _push(`</div>`);\n            } else {\n              _push(`<!---->`);\n            }\n            _push(`</div><div class=\"p-4\" data-v-97cb30a9><h3 class=\"text-lg font-semibold truncate mb-2\" data-v-97cb30a9>${_ssrInterpolate(ad.name)}</h3><div class=\"flex items-center\" data-v-97cb30a9><img${_ssrRenderAttr(\"src\", _imports_0)} alt=\"Місто\" class=\"mr-2 inline-block h-4 w-4\" data-v-97cb30a9><p data-v-97cb30a9>${_ssrInterpolate(ad.city.name)}</p></div><div class=\"flex items-center\" data-v-97cb30a9><img${_ssrRenderAttr(\"src\", _imports_1)} alt=\"Категорія\" class=\"mr-2 inline-block h-4 w-4\" data-v-97cb30a9><p data-v-97cb30a9>${_ssrInterpolate(ad.category.name)}</p></div><hr class=\"my-4 border-t border-gray-300\" data-v-97cb30a9><p class=\"font-bold text-xl my-4\" data-v-97cb30a9>${_ssrInterpolate(ad.price)} грн</p><div class=\"mt-4\" data-v-97cb30a9><button class=\"orange-button w-full mb-2\" data-v-97cb30a9>Редагувати</button><button class=\"red-button w-full\" data-v-97cb30a9>Видалити</button></div></div></div>`);\n          });\n          _push(`<!--]--></div>`);\n        } else {\n          _push(`<div data-v-97cb30a9><p data-v-97cb30a9>У Вас все ще немає оголошень, додайте їх.</p></div>`);\n        }\n        _push(`</div>`);\n      } else {\n        _push(`<div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center h-full\" data-v-97cb30a9><p class=\"text-lg mb-4\" data-v-97cb30a9>Ви не ввійшли в профіль</p>`);\n        _push(_ssrRenderComponent(_component_nuxt_link, {\n          to: \"/auth/\",\n          class: \"btn-admin\"\n        }, {\n          default: _withCtx((_, _push2, _parent2, _scopeId) => {\n            if (_push2) {\n              _push2(`Ввійти`);\n            } else {\n              return [\n                _createTextVNode(\"Ввійти\")\n              ];\n            }\n          }),\n          _: 1\n        }, _parent));\n        _push(`</div>`);\n      }\n      _push(`</div>`);\n    };\n  }\n};\nimport \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/user/ads/index.vue?vue&type=style&index=0&scoped=97cb30a9&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"pages/profile/user/ads/index.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-97cb30a9\"]]);\n",
+      "start": 1713884695701,
+      "end": 1713884695939,
+      "order": "normal",
+      "sourcemaps": "{\n  \"version\": 3,\n  \"sources\": [\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/user/ads/index.vue?macro=true\"],\n  \"sourcesContent\": [\"import { resolveComponent as _resolveComponent, withCtx as _withCtx, createTextVNode as _createTextVNode, mergeProps as _mergeProps } from \\\"vue\\\"\\nimport { ssrRenderComponent as _ssrRenderComponent, ssrRenderAttr as _ssrRenderAttr, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \\\"vue/server-renderer\\\"\\nimport _imports_0 from '/img/card/location.png'\\nimport _imports_1 from '/img/card/category.png'\\n\\n\\nimport { useRouter } from 'vue-router'\\nimport { ref } from 'vue';\\nimport { onMounted } from 'vue';\\nimport { getProfileFromLocalStorage, isAuthenticated, saveProfile, fetchWithToken, setEditObjectInLocalStorage, getEditObjectFromLocalStorage } from '/utils/auth.js';\\n\\nconst referalImg = 'https://buy-sell-api.onrender.com/api/user/image/';\\n\\nconst _sfc_main = {\\n  __name: 'index',\\n  __ssrInlineRender: true,\\n  setup(__props) {\\n\\nconst profile = ref(null);\\nconst router = useRouter();\\nconst loadedImages = ref({});\\n\\nconst editAd = async (idAd) => {\\n    const object = {\\n        id: idAd\\n    }\\n    setEditObjectInLocalStorage(object);\\n    console.log(getEditObjectFromLocalStorage().id)\\n    router.push('/profile/user/ads/edit');\\n}\\nconst deleteAd = async (idAd) => {\\n    const deleteObject = {\\n        id: idAd\\n    }\\n    const deleteURL = 'https://buy-sell-api.onrender.com/api/user/ads/' + idAd;\\n    const response = await fetchWithToken(deleteURL, {\\n        method: 'DELETE',\\n        body: JSON.stringify(deleteObject)\\n    })\\n    if (response.ok) {\\n        console.log(\\\"Успішно видалено!!!\\\")\\n\\n        await saveProfile();\\n        await loadData();\\n        router.push('/profile/user/ads');\\n    }\\n}\\n\\nconst loadImage = async (imageId) => {\\n    try {\\n\\n        const url = referalImg + imageId;\\n        const response = await fetchWithToken(url);\\n        if (!response.ok) {\\n            throw new Error('Failed to load image');\\n        }\\n        const blob = await response.blob();\\n        const imageUrl = URL.createObjectURL(blob);\\n        loadedImages.value[imageId] = imageUrl;\\n    } catch (error) {\\n        console.error('Error loading image:', error);\\n    }\\n}\\nasync function loadData() {\\n    const fetchedProfile = getProfileFromLocalStorage();\\n    if (fetchedProfile) {\\n        profile.value = fetchedProfile;\\n    }\\n}\\n\\n\\nonMounted(() => {\\n    if (!isAuthenticated()) {\\n        router.push('/auth/');\\n    }\\n    saveProfile();\\n    loadData();\\n    for (const ad of profile.value.ads) {\\n        loadImage(ad.previewImageId);\\n    }\\n});\\n\\nreturn (_ctx, _push, _parent, _attrs) => {\\n  const _component_nuxt_link = _resolveComponent(\\\"nuxt-link\\\")\\n\\n  _push(`<div${_ssrRenderAttrs(_mergeProps({ class: \\\"bg-gray-200 min-h-screen p-8\\\" }, _attrs))} data-v-97cb30a9>`)\\n  if (profile.value) {\\n    _push(`<div class=\\\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\\\" data-v-97cb30a9><div class=\\\"flex flex-col sm:flex-row justify-between items-center mb-4\\\" data-v-97cb30a9><h1 class=\\\"big-center-text lg:mb-0 lg:mr-4\\\" data-v-97cb30a9>Мої оголошення</h1>`)\\n    _push(_ssrRenderComponent(_component_nuxt_link, {\\n      to: \\\"/profile/user/ads/add\\\",\\n      class: \\\"green-button\\\"\\n    }, {\\n      default: _withCtx((_, _push, _parent, _scopeId) => {\\n        if (_push) {\\n          _push(`Додати оголошення`)\\n        } else {\\n          return [\\n            _createTextVNode(\\\"Додати оголошення\\\")\\n          ]\\n        }\\n      }),\\n      _: 1\\n    }, _parent))\\n    _push(`</div>`)\\n    if (profile.value.ads.length > 0) {\\n      _push(`<div class=\\\"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4\\\" data-v-97cb30a9><!--[-->`)\\n      _ssrRenderList(profile.value.ads, (ad) => {\\n        _push(`<div class=\\\"bg-white rounded-lg shadow-md overflow-hidden min-w-0 min-h-0\\\" data-v-97cb30a9><div class=\\\"aspect-w-1 aspect-h-1\\\" data-v-97cb30a9>`)\\n        if (ad.previewImageId) {\\n          _push(`<div data-v-97cb30a9>`)\\n          if (loadedImages.value[ad.previewImageId]) {\\n            _push(`<img class=\\\"thumb\\\"${_ssrRenderAttr(\\\"src\\\", loadedImages.value[ad.previewImageId])} alt=\\\"Image\\\" data-v-97cb30a9>`)\\n          } else {\\n            _push(`<!---->`)\\n          }\\n          _push(`</div>`)\\n        } else {\\n          _push(`<!---->`)\\n        }\\n        _push(`</div><div class=\\\"p-4\\\" data-v-97cb30a9><h3 class=\\\"text-lg font-semibold truncate mb-2\\\" data-v-97cb30a9>${\\n          _ssrInterpolate(ad.name)\\n        }</h3><div class=\\\"flex items-center\\\" data-v-97cb30a9><img${\\n          _ssrRenderAttr(\\\"src\\\", _imports_0)\\n        } alt=\\\"Місто\\\" class=\\\"mr-2 inline-block h-4 w-4\\\" data-v-97cb30a9><p data-v-97cb30a9>${\\n          _ssrInterpolate(ad.city.name)\\n        }</p></div><div class=\\\"flex items-center\\\" data-v-97cb30a9><img${\\n          _ssrRenderAttr(\\\"src\\\", _imports_1)\\n        } alt=\\\"Категорія\\\" class=\\\"mr-2 inline-block h-4 w-4\\\" data-v-97cb30a9><p data-v-97cb30a9>${\\n          _ssrInterpolate(ad.category.name)\\n        }</p></div><hr class=\\\"my-4 border-t border-gray-300\\\" data-v-97cb30a9><p class=\\\"font-bold text-xl my-4\\\" data-v-97cb30a9>${\\n          _ssrInterpolate(ad.price)\\n        } грн</p><div class=\\\"mt-4\\\" data-v-97cb30a9><button class=\\\"orange-button w-full mb-2\\\" data-v-97cb30a9>Редагувати</button><button class=\\\"red-button w-full\\\" data-v-97cb30a9>Видалити</button></div></div></div>`)\\n      })\\n      _push(`<!--]--></div>`)\\n    } else {\\n      _push(`<div data-v-97cb30a9><p data-v-97cb30a9>У Вас все ще немає оголошень, додайте їх.</p></div>`)\\n    }\\n    _push(`</div>`)\\n  } else {\\n    _push(`<div class=\\\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center h-full\\\" data-v-97cb30a9><p class=\\\"text-lg mb-4\\\" data-v-97cb30a9>Ви не ввійшли в профіль</p>`)\\n    _push(_ssrRenderComponent(_component_nuxt_link, {\\n      to: \\\"/auth/\\\",\\n      class: \\\"btn-admin\\\"\\n    }, {\\n      default: _withCtx((_, _push, _parent, _scopeId) => {\\n        if (_push) {\\n          _push(`Ввійти`)\\n        } else {\\n          return [\\n            _createTextVNode(\\\"Ввійти\\\")\\n          ]\\n        }\\n      }),\\n      _: 1\\n    }, _parent))\\n    _push(`</div>`)\\n  }\\n  _push(`</div>`)\\n}\\n}\\n\\n}\\n\\n\\nimport \\\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/user/ads/index.vue?vue&type=style&index=0&scoped=97cb30a9&lang.css\\\"\\n\\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\\nconst _sfc_setup = _sfc_main.setup\\n_sfc_main.setup = (props, ctx) => {\\n  const ssrContext = __vite_useSSRContext()\\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\\\"pages/profile/user/ads/index.vue\\\")\\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\\n}\\nimport _export_sfc from '\\u0000plugin-vue:export-helper'\\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['__scopeId',\\\"data-v-97cb30a9\\\"]])\"],\n  \"mappings\": \"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\",\n  \"names\": [\"_push\", \"_parent\"]\n}\n"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1713884695939,
+      "end": 1713884695939,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1713884695939,
+      "end": 1713884695939,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1713884695939,
+      "end": 1713884695939,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1713884695939,
+      "end": 1713884695939,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1713884695939,
+      "end": 1713884695939,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1713884695939,
+      "end": 1713884695939,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1713884695939,
+      "end": 1713884695939,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884695939,
+      "end": 1713884695939,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884695939,
+      "end": 1713884695939,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884695939,
+      "end": 1713884695944,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884695939,
+      "end": 1713884695944,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884695944,
+      "end": 1713884695944,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884695944,
+      "end": 1713884695944,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "result": "\nconst __nuxt_page_meta = null\nexport default __nuxt_page_meta\n",
+      "start": 1713884695944,
+      "end": 1713884695947,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": "AAAA;AAAA;AAAA;"
+      }
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "result": "\nconst __nuxt_page_meta = null\nexport default __nuxt_page_meta\n",
+      "start": 1713884695944,
+      "end": 1713884695947,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": "AAAA;AAAA;AAAA;"
+      }
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1713884695947,
+      "end": 1713884695947,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1713884695947,
+      "end": 1713884695947,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1713884695947,
+      "end": 1713884695947,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1713884695947,
+      "end": 1713884695947,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1713884695947,
+      "end": 1713884695947,
+      "order": "normal"
+    }
+  ]
+}

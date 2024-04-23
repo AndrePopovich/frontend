@@ -1,0 +1,214 @@
+{
+  "resolvedId": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/components/search/SearchData.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n    <div class=\"bg-gray-300\">\n        <div class=\"bg-gray-300 rounded-lg shadow-lg p-8 mx-auto\">\n            <form @submit.prevent=\"searchAds\" class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n                <!-- Поле введення \"Що шукаєте?\" -->\n                <div class=\"flex flex-col relative\">\n                    <input type=\"text\" id=\"adName\" placeholder=\"Що шукаєте?\" v-model=\"adName\" class=\"custom-input\">\n                    <!-- Підсвічування знизу -->\n                    <div class=\"highlight-border\"></div>\n                </div>\n                <!-- Поле введення \"Виберіть категорію\" -->\n                <div class=\"flex flex-col relative\">\n                    <input list=\"categories\" id=\"selectedCategory\" placeholder=\"Виберіть категорію\"\n                        v-model=\"selectedCategory\" class=\"custom-input\">\n                    <!-- Підсвічування знизу -->\n                    <div class=\"highlight-border\"></div>\n                    <datalist id=\"categories\">\n                        <option v-for=\"category in categories\" :key=\"category.id\" :value=\"category.name\">{{\n                category.name }}</option>\n                    </datalist>\n                </div>\n                <!-- Поле введення \"Виберіть місто\" -->\n                <div class=\"flex flex-col relative\">\n                    <input list=\"cities\" id=\"selectedCity\" placeholder=\"Виберіть місто\" v-model=\"selectedCity\"\n                        class=\"custom-input\">\n                    <!-- Підсвічування знизу -->\n                    <div class=\"highlight-border\"></div>\n                    <datalist id=\"cities\">\n                        <option v-for=\"city in cities\" :key=\"city.id\" :value=\"city.name\">{{ city.name }}</option>\n                    </datalist>\n                </div>\n                <!-- Поле введення \"Мінімальна ціна\" -->\n                <div class=\"flex flex-col relative\">\n                    <input type=\"number\" placeholder=\"Мінімальна ціна\" id=\"minPrice\" v-model.number=\"minPrice\" min=\"0\"\n                        max=\"1000000\" class=\"custom-input\">\n                    <!-- Підсвічування знизу -->\n                    <div class=\"highlight-border\"></div>\n                </div>\n                <!-- Поле введення \"Максимальна ціна\" -->\n                <div class=\"flex flex-col relative\">\n                    <input type=\"number\" placeholder=\"Максимальна ціна\" id=\"maxPrice\" v-model.number=\"maxPrice\" min=\"0\"\n                        max=\"1000000\" class=\"custom-input\">\n                    <!-- Підсвічування знизу -->\n                    <div class=\"highlight-border\"></div>\n                </div>\n                <!-- Поле вибору \"Сортувати за\" -->\n                <div class=\"flex flex-col relative\">\n                    <select id=\"sortBy\" v-model=\"sortBy\" class=\"custom-input\">\n                        <option value=\"default\">За замовчуванням</option>\n                        <option value=\"priceAsc\">Ціна (зростанням)</option>\n                        <option value=\"priceDesc\">Ціна (спаданням)</option>\n                        <option value=\"dateAsc\">Дата (зростанням)</option>\n                        <option value=\"dateDesc\">Дата (спаданням)</option>\n                    </select>\n                    <!-- Підсвічування знизу -->\n                    <div class=\"highlight-border\"></div>\n                </div>\n                <!-- Кнопка \"Знайти оголошення\" -->\n                <div class=\"col-span-full flex justify-center\">\n                    <button type=\"submit\" class=\"btn-admin w-64\">Знайти оголошення</button>\n                </div>\n            </form>\n        </div>\n    </div>\n</template>\n\n\n<script setup>\nimport { useRouter } from 'vue-router';\nimport { ref, onMounted } from 'vue';\n\nconst router = useRouter();\nconst adName = ref('');\nconst minPrice = ref(null);\nconst maxPrice = ref(null);\nconst sortBy = ref('default');\nconst categories = ref([]);\nconst cities = ref([]);\nconst selectedCategory = ref(null); // Зберігаємо лише ідентифікатор категорії\nconst selectedCity = ref(null); // Зберігаємо лише ідентифікатор міста\n\nconst searchAds = async () => {\n    // Отримуємо значення змінних з компоненту\n    const name = adName.value; // Отримуємо значення ім'я оголошення\n    const category = selectedCategory.value;\n    const city = selectedCity.value;\n    const min = minPrice.value;\n    const max = maxPrice.value;\n    const sort = sortBy.value;\n\n    // Встановлюємо значення в localStorage\n    localStorage.setItem('adName', name);\n    localStorage.setItem('categoryName', category);\n    localStorage.setItem('cityName', city);\n    localStorage.setItem('minPrice', min);\n    localStorage.setItem('maxPrice', max);\n    localStorage.setItem('sortBy', sort);\n\n    if (router.currentRoute.value.path === '/search') {\n        // Якщо ми вже на сторінці пошуку, оновлюємо параметри запиту\n        router.replace({\n            query: {\n                adName: name, // Додаємо ім'я оголошення до об'єкта запиту\n                categoryName: category,\n                cityName: city,\n                minPrice: min,\n                maxPrice: max,\n                sortBy: sort\n            }\n        });\n    } else {\n        // Якщо ми не на сторінці пошуку, переходимо на неї з новими параметрами\n        router.push({\n            path: '/search',\n            query: {\n                adName: name, // Додаємо ім'я оголошення до об'єкта запиту\n                categoryName: category,\n                cityName: city,\n                minPrice: min,\n                maxPrice: max,\n                sortBy: sort\n            }\n        });\n    }\n}\n\n\nasync function loadData() {\n    const categoriesResponse = await fetch('https://buy-sell-api.onrender.com/api/search/categories');\n    const citiesResponse = await fetch('https://buy-sell-api.onrender.com/api/search/cities');\n\n    categories.value = await categoriesResponse.json();\n    cities.value = await citiesResponse.json();\n}\nonMounted(() => {\n    loadData();\n\n    // Перевірка значень у localStorage перед їхнім використанням\n    /*const categoryName = localStorage.getItem('categoryName');\n    selectedCategory.value = categoryName !== null ? categoryName : '';\n\n    const cityName = localStorage.getItem('cityName');\n    selectedCity.value = cityName !== null ? cityName : '';\n\n    const storedMinPrice = localStorage.getItem('minPrice');\n    minPrice.value = storedMinPrice !== null ? parseFloat(storedMinPrice) : null;\n\n    const storedMaxPrice = localStorage.getItem('maxPrice');\n    maxPrice.value = storedMaxPrice !== null ? parseFloat(storedMaxPrice) : null;\n\n           const storedSortBy = localStorage.getItem('sortBy');\n           sortBy.value = storedSortBy !== null ? storedSortBy : 'default';*/\n});\n\n</script>\n\n<style scoped>\n.custom-input {\n    padding: 5px;\n    border-radius: 5px;\n    border: 1px solid transparent;\n    transition: border-color 0.3s ease-in-out;\n    /* Плавний перехід для бордера */\n    position: relative;\n}\n\n.custom-input:focus {\n    border-color: transparent;\n    /* Транспарентний бордер при фокусі */\n    outline: none;\n    /* Видалення контурів */\n}\n\n.highlight-border {\n    position: absolute;\n    bottom: 0;\n    left: 0;\n    width: 100%;\n    height: 1px;\n    background-color: #8a2be2;\n    /* Фіолетовий колір підсвічування */\n    transition: height 0.3s ease-in-out;\n    /* Плавний перехід для висоти */\n    pointer-events: none;\n    /* Вимкнення можливості взаємодії з елементом */\n}\n\n.custom-input:focus+.highlight-border {\n    height: 4px;\n    /* Збільшення висоти при фокусі */\n}\n</style>\n",
+      "start": 1713884693120,
+      "end": 1713884693401,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884693401,
+      "end": 1713884693401,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884693401,
+      "end": 1713884693401,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1713884693401,
+      "end": 1713884693401,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1713884693401,
+      "end": 1713884693401,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1713884693401,
+      "end": 1713884693401,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1713884693401,
+      "end": 1713884693401,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1713884693401,
+      "end": 1713884693401,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { vModelText as _vModelText, createElementVNode as _createElementVNode, withDirectives as _withDirectives, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, toDisplayString as _toDisplayString, vModelSelect as _vModelSelect, withModifiers as _withModifiers, createStaticVNode as _createStaticVNode, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-c62feb46\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = { class: \"bg-gray-300\" }\nconst _hoisted_2 = { class: \"bg-gray-300 rounded-lg shadow-lg p-8 mx-auto\" }\nconst _hoisted_3 = { class: \"flex flex-col relative\" }\nconst _hoisted_4 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"div\", { class: \"highlight-border\" }, null, -1))\nconst _hoisted_5 = { class: \"flex flex-col relative\" }\nconst _hoisted_6 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"div\", { class: \"highlight-border\" }, null, -1))\nconst _hoisted_7 = { id: \"categories\" }\nconst _hoisted_8 = [\"value\"]\nconst _hoisted_9 = { class: \"flex flex-col relative\" }\nconst _hoisted_10 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"div\", { class: \"highlight-border\" }, null, -1))\nconst _hoisted_11 = { id: \"cities\" }\nconst _hoisted_12 = [\"value\"]\nconst _hoisted_13 = { class: \"flex flex-col relative\" }\nconst _hoisted_14 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"div\", { class: \"highlight-border\" }, null, -1))\nconst _hoisted_15 = { class: \"flex flex-col relative\" }\nconst _hoisted_16 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"div\", { class: \"highlight-border\" }, null, -1))\nconst _hoisted_17 = { class: \"flex flex-col relative\" }\nconst _hoisted_18 = /*#__PURE__*/_createStaticVNode(\"<option value=\\\"default\\\" data-v-c62feb46>За замовчуванням</option><option value=\\\"priceAsc\\\" data-v-c62feb46>Ціна (зростанням)</option><option value=\\\"priceDesc\\\" data-v-c62feb46>Ціна (спаданням)</option><option value=\\\"dateAsc\\\" data-v-c62feb46>Дата (зростанням)</option><option value=\\\"dateDesc\\\" data-v-c62feb46>Дата (спаданням)</option>\", 5)\nconst _hoisted_23 = [\n  _hoisted_18\n]\nconst _hoisted_24 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"div\", { class: \"highlight-border\" }, null, -1))\nconst _hoisted_25 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"div\", { class: \"col-span-full flex justify-center\" }, [\n  /*#__PURE__*/_createElementVNode(\"button\", {\n    type: \"submit\",\n    class: \"btn-admin w-64\"\n  }, \"Знайти оголошення\")\n], -1))\n\nimport { useRouter } from 'vue-router';\nimport { ref, onMounted } from 'vue';\n\n\nconst _sfc_main = {\n  __name: 'SearchData',\n  setup(__props) {\n\nconst router = useRouter();\nconst adName = ref('');\nconst minPrice = ref(null);\nconst maxPrice = ref(null);\nconst sortBy = ref('default');\nconst categories = ref([]);\nconst cities = ref([]);\nconst selectedCategory = ref(null); // Зберігаємо лише ідентифікатор категорії\nconst selectedCity = ref(null); // Зберігаємо лише ідентифікатор міста\n\nconst searchAds = async () => {\n    // Отримуємо значення змінних з компоненту\n    const name = adName.value; // Отримуємо значення ім'я оголошення\n    const category = selectedCategory.value;\n    const city = selectedCity.value;\n    const min = minPrice.value;\n    const max = maxPrice.value;\n    const sort = sortBy.value;\n\n    // Встановлюємо значення в localStorage\n    localStorage.setItem('adName', name);\n    localStorage.setItem('categoryName', category);\n    localStorage.setItem('cityName', city);\n    localStorage.setItem('minPrice', min);\n    localStorage.setItem('maxPrice', max);\n    localStorage.setItem('sortBy', sort);\n\n    if (router.currentRoute.value.path === '/search') {\n        // Якщо ми вже на сторінці пошуку, оновлюємо параметри запиту\n        router.replace({\n            query: {\n                adName: name, // Додаємо ім'я оголошення до об'єкта запиту\n                categoryName: category,\n                cityName: city,\n                minPrice: min,\n                maxPrice: max,\n                sortBy: sort\n            }\n        });\n    } else {\n        // Якщо ми не на сторінці пошуку, переходимо на неї з новими параметрами\n        router.push({\n            path: '/search',\n            query: {\n                adName: name, // Додаємо ім'я оголошення до об'єкта запиту\n                categoryName: category,\n                cityName: city,\n                minPrice: min,\n                maxPrice: max,\n                sortBy: sort\n            }\n        });\n    }\n}\n\n\nasync function loadData() {\n    const categoriesResponse = await fetch('https://buy-sell-api.onrender.com/api/search/categories');\n    const citiesResponse = await fetch('https://buy-sell-api.onrender.com/api/search/cities');\n\n    categories.value = await categoriesResponse.json();\n    cities.value = await citiesResponse.json();\n}\nonMounted(() => {\n    loadData();\n\n    // Перевірка значень у localStorage перед їхнім використанням\n    /*const categoryName = localStorage.getItem('categoryName');\n    selectedCategory.value = categoryName !== null ? categoryName : '';\n\n    const cityName = localStorage.getItem('cityName');\n    selectedCity.value = cityName !== null ? cityName : '';\n\n    const storedMinPrice = localStorage.getItem('minPrice');\n    minPrice.value = storedMinPrice !== null ? parseFloat(storedMinPrice) : null;\n\n    const storedMaxPrice = localStorage.getItem('maxPrice');\n    maxPrice.value = storedMaxPrice !== null ? parseFloat(storedMaxPrice) : null;\n\n           const storedSortBy = localStorage.getItem('sortBy');\n           sortBy.value = storedSortBy !== null ? storedSortBy : 'default';*/\n});\n\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createElementVNode(\"div\", _hoisted_2, [\n      _createElementVNode(\"form\", {\n        onSubmit: _withModifiers(searchAds, [\"prevent\"]),\n        class: \"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\"\n      }, [\n        _createElementVNode(\"div\", _hoisted_3, [\n          _withDirectives(_createElementVNode(\"input\", {\n            type: \"text\",\n            id: \"adName\",\n            placeholder: \"Що шукаєте?\",\n            \"onUpdate:modelValue\": _cache[0] || (_cache[0] = $event => ((adName).value = $event)),\n            class: \"custom-input\"\n          }, null, 512), [\n            [_vModelText, adName.value]\n          ]),\n          _hoisted_4\n        ]),\n        _createElementVNode(\"div\", _hoisted_5, [\n          _withDirectives(_createElementVNode(\"input\", {\n            list: \"categories\",\n            id: \"selectedCategory\",\n            placeholder: \"Виберіть категорію\",\n            \"onUpdate:modelValue\": _cache[1] || (_cache[1] = $event => ((selectedCategory).value = $event)),\n            class: \"custom-input\"\n          }, null, 512), [\n            [_vModelText, selectedCategory.value]\n          ]),\n          _hoisted_6,\n          _createElementVNode(\"datalist\", _hoisted_7, [\n            (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(categories.value, (category) => {\n              return (_openBlock(), _createElementBlock(\"option\", {\n                key: category.id,\n                value: category.name\n              }, _toDisplayString(category.name), 9, _hoisted_8))\n            }), 128))\n          ])\n        ]),\n        _createElementVNode(\"div\", _hoisted_9, [\n          _withDirectives(_createElementVNode(\"input\", {\n            list: \"cities\",\n            id: \"selectedCity\",\n            placeholder: \"Виберіть місто\",\n            \"onUpdate:modelValue\": _cache[2] || (_cache[2] = $event => ((selectedCity).value = $event)),\n            class: \"custom-input\"\n          }, null, 512), [\n            [_vModelText, selectedCity.value]\n          ]),\n          _hoisted_10,\n          _createElementVNode(\"datalist\", _hoisted_11, [\n            (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(cities.value, (city) => {\n              return (_openBlock(), _createElementBlock(\"option\", {\n                key: city.id,\n                value: city.name\n              }, _toDisplayString(city.name), 9, _hoisted_12))\n            }), 128))\n          ])\n        ]),\n        _createElementVNode(\"div\", _hoisted_13, [\n          _withDirectives(_createElementVNode(\"input\", {\n            type: \"number\",\n            placeholder: \"Мінімальна ціна\",\n            id: \"minPrice\",\n            \"onUpdate:modelValue\": _cache[3] || (_cache[3] = $event => ((minPrice).value = $event)),\n            min: \"0\",\n            max: \"1000000\",\n            class: \"custom-input\"\n          }, null, 512), [\n            [\n              _vModelText,\n              minPrice.value,\n              void 0,\n              { number: true }\n            ]\n          ]),\n          _hoisted_14\n        ]),\n        _createElementVNode(\"div\", _hoisted_15, [\n          _withDirectives(_createElementVNode(\"input\", {\n            type: \"number\",\n            placeholder: \"Максимальна ціна\",\n            id: \"maxPrice\",\n            \"onUpdate:modelValue\": _cache[4] || (_cache[4] = $event => ((maxPrice).value = $event)),\n            min: \"0\",\n            max: \"1000000\",\n            class: \"custom-input\"\n          }, null, 512), [\n            [\n              _vModelText,\n              maxPrice.value,\n              void 0,\n              { number: true }\n            ]\n          ]),\n          _hoisted_16\n        ]),\n        _createElementVNode(\"div\", _hoisted_17, [\n          _withDirectives(_createElementVNode(\"select\", {\n            id: \"sortBy\",\n            \"onUpdate:modelValue\": _cache[5] || (_cache[5] = $event => ((sortBy).value = $event)),\n            class: \"custom-input\"\n          }, _hoisted_23, 512), [\n            [_vModelSelect, sortBy.value]\n          ]),\n          _hoisted_24\n        ]),\n        _hoisted_25\n      ], 32)\n    ])\n  ]))\n}\n}\n\n}\n\n\nimport \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/components/search/SearchData.vue?vue&type=style&index=0&scoped=c62feb46&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['__scopeId',\"data-v-c62feb46\"]])",
+      "start": 1713884693401,
+      "end": 1713884693406,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1713884693406,
+      "end": 1713884693406,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884693406,
+      "end": 1713884693406,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884693406,
+      "end": 1713884693406,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1713884693406,
+      "end": 1713884693406,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1713884693406,
+      "end": 1713884693406,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884693406,
+      "end": 1713884693406,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1713884693406,
+      "end": 1713884693406,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1713884693406,
+      "end": 1713884693406,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1713884693406,
+      "end": 1713884693406,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1713884693406,
+      "end": 1713884693406,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1713884693406,
+      "end": 1713884693406,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1713884693406,
+      "end": 1713884693406,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1713884693406,
+      "end": 1713884693406,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1713884693406,
+      "end": 1713884693406,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1713884693406,
+      "end": 1713884693406,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884693406,
+      "end": 1713884693407,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884693407,
+      "end": 1713884693408,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884693408,
+      "end": 1713884693409,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884693409,
+      "end": 1713884693409,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1713884693409,
+      "end": 1713884693409,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1713884693409,
+      "end": 1713884693409,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1713884693409,
+      "end": 1713884693409,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1713884693409,
+      "end": 1713884693409,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1713884693409,
+      "end": 1713884693409,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1713884693409,
+      "end": 1713884693409,
+      "order": "normal"
+    }
+  ]
+}

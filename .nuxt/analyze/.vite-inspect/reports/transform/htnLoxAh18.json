@@ -1,0 +1,225 @@
+{
+  "resolvedId": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/index.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n    <div class=\"bg-gray-900 h-screen flex items-center justify-center\">\n        <div class=\"bg-white p-8 rounded-lg shadow-lg mx-4\">\n            <div v-if=\"profile && profile.role === 'ADMIN'\">\n                <h1 class=\"text-3xl font-bold mb-4\">Це сторінка адміністратора</h1>\n                <p class=\"mb-4\">Вітаємо вас, шановний адміністратор - {{ profile.firstname }}</p>\n                <div class=\"space-y-4\">\n                    <nuxt-link to=\"/profile/admin/cities\" class=\"block btn-admin\">\n                        Редагувати міста\n                    </nuxt-link>\n                    <nuxt-link to=\"/profile/admin/categories\" class=\"block btn-admin\">\n                        Редагувати категорії\n                    </nuxt-link>\n                    <nuxt-link to=\"/profile/admin/users\" class=\"block btn-admin\">\n                        Переглянути користувачів\n                    </nuxt-link>\n                </div>\n            </div>\n            <div v-else>\n                <h1 class=\"text-3xl font-bold\">В вас немає прав</h1>\n            </div>\n        </div>\n    </div>\n</template>\n\n<script setup>\nimport { getProfileFromLocalStorage, isAuthenticated } from '/utils/auth.js';\nimport { onMounted } from 'vue';\nimport { useRouter } from 'vue-router'\n\nconst router = useRouter();\nconst profile = ref(null);\n\nasync function loadData() {\n    const fetchedProfile = getProfileFromLocalStorage();\n    if (fetchedProfile) {\n        profile.value = fetchedProfile;\n    }\n}\n\nonMounted(() => {\n    if (!isAuthenticated()) {\n        router.push('/auth/');\n    }\n    loadData();\n});\ndefinePageMeta({\n    layout: 'admin'\n})\n</script>\n\n<style scoped></style>\n",
+      "start": 1713884692559,
+      "end": 1713884692938,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { unref as _unref, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\"\n\nconst _hoisted_1 = { class: \"bg-gray-900 h-screen flex items-center justify-center\" }\nconst _hoisted_2 = { class: \"bg-white p-8 rounded-lg shadow-lg mx-4\" }\nconst _hoisted_3 = { key: 0 }\nconst _hoisted_4 = /*#__PURE__*/_createElementVNode(\"h1\", { class: \"text-3xl font-bold mb-4\" }, \"Це сторінка адміністратора\", -1)\nconst _hoisted_5 = { class: \"mb-4\" }\nconst _hoisted_6 = { class: \"space-y-4\" }\nconst _hoisted_7 = { key: 1 }\nconst _hoisted_8 = /*#__PURE__*/_createElementVNode(\"h1\", { class: \"text-3xl font-bold\" }, \"В вас немає прав\", -1)\nconst _hoisted_9 = [\n  _hoisted_8\n]\n\nimport { getProfileFromLocalStorage, isAuthenticated } from '/utils/auth.js';\nimport { onMounted } from 'vue';\nimport { useRouter } from 'vue-router'\n\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\nconst router = useRouter();\nconst profile = ref(null);\n\nasync function loadData() {\n    const fetchedProfile = getProfileFromLocalStorage();\n    if (fetchedProfile) {\n        profile.value = fetchedProfile;\n    }\n}\n\nonMounted(() => {\n    if (!isAuthenticated()) {\n        router.push('/auth/');\n    }\n    loadData();\n});\ndefinePageMeta({\n    layout: 'admin'\n})\n\nreturn (_ctx, _cache) => {\n  const _component_nuxt_link = _resolveComponent(\"nuxt-link\")\n\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createElementVNode(\"div\", _hoisted_2, [\n      (_unref(profile) && _unref(profile).role === 'ADMIN')\n        ? (_openBlock(), _createElementBlock(\"div\", _hoisted_3, [\n            _hoisted_4,\n            _createElementVNode(\"p\", _hoisted_5, \"Вітаємо вас, шановний адміністратор - \" + _toDisplayString(_unref(profile).firstname), 1),\n            _createElementVNode(\"div\", _hoisted_6, [\n              _createVNode(_component_nuxt_link, {\n                to: \"/profile/admin/cities\",\n                class: \"block btn-admin\"\n              }, {\n                default: _withCtx(() => [\n                  _createTextVNode(\" Редагувати міста \")\n                ]),\n                _: 1\n              }),\n              _createVNode(_component_nuxt_link, {\n                to: \"/profile/admin/categories\",\n                class: \"block btn-admin\"\n              }, {\n                default: _withCtx(() => [\n                  _createTextVNode(\" Редагувати категорії \")\n                ]),\n                _: 1\n              }),\n              _createVNode(_component_nuxt_link, {\n                to: \"/profile/admin/users\",\n                class: \"block btn-admin\"\n              }, {\n                default: _withCtx(() => [\n                  _createTextVNode(\" Переглянути користувачів \")\n                ]),\n                _: 1\n              })\n            ])\n          ]))\n        : (_openBlock(), _createElementBlock(\"div\", _hoisted_7, _hoisted_9))\n    ])\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884692938,
+      "end": 1713884692938,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "result": "import { ref } from 'vue';\nimport { definePageMeta } from 'C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/node_modules/nuxt/dist/pages/runtime/composables';\nimport { unref as _unref, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\"\n\nconst _hoisted_1 = { class: \"bg-gray-900 h-screen flex items-center justify-center\" }\nconst _hoisted_2 = { class: \"bg-white p-8 rounded-lg shadow-lg mx-4\" }\nconst _hoisted_3 = { key: 0 }\nconst _hoisted_4 = /*#__PURE__*/_createElementVNode(\"h1\", { class: \"text-3xl font-bold mb-4\" }, \"Це сторінка адміністратора\", -1)\nconst _hoisted_5 = { class: \"mb-4\" }\nconst _hoisted_6 = { class: \"space-y-4\" }\nconst _hoisted_7 = { key: 1 }\nconst _hoisted_8 = /*#__PURE__*/_createElementVNode(\"h1\", { class: \"text-3xl font-bold\" }, \"В вас немає прав\", -1)\nconst _hoisted_9 = [\n  _hoisted_8\n]\n\nimport { getProfileFromLocalStorage, isAuthenticated } from '/utils/auth.js';\nimport { onMounted } from 'vue';\nimport { useRouter } from 'vue-router'\n\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\nconst router = useRouter();\nconst profile = ref(null);\n\nasync function loadData() {\n    const fetchedProfile = getProfileFromLocalStorage();\n    if (fetchedProfile) {\n        profile.value = fetchedProfile;\n    }\n}\n\nonMounted(() => {\n    if (!isAuthenticated()) {\n        router.push('/auth/');\n    }\n    loadData();\n});\ndefinePageMeta({\n    layout: 'admin'\n})\n\nreturn (_ctx, _cache) => {\n  const _component_nuxt_link = _resolveComponent(\"nuxt-link\")\n\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createElementVNode(\"div\", _hoisted_2, [\n      (_unref(profile) && _unref(profile).role === 'ADMIN')\n        ? (_openBlock(), _createElementBlock(\"div\", _hoisted_3, [\n            _hoisted_4,\n            _createElementVNode(\"p\", _hoisted_5, \"Вітаємо вас, шановний адміністратор - \" + _toDisplayString(_unref(profile).firstname), 1),\n            _createElementVNode(\"div\", _hoisted_6, [\n              _createVNode(_component_nuxt_link, {\n                to: \"/profile/admin/cities\",\n                class: \"block btn-admin\"\n              }, {\n                default: _withCtx(() => [\n                  _createTextVNode(\" Редагувати міста \")\n                ]),\n                _: 1\n              }),\n              _createVNode(_component_nuxt_link, {\n                to: \"/profile/admin/categories\",\n                class: \"block btn-admin\"\n              }, {\n                default: _withCtx(() => [\n                  _createTextVNode(\" Редагувати категорії \")\n                ]),\n                _: 1\n              }),\n              _createVNode(_component_nuxt_link, {\n                to: \"/profile/admin/users\",\n                class: \"block btn-admin\"\n              }, {\n                default: _withCtx(() => [\n                  _createTextVNode(\" Переглянути користувачів \")\n                ]),\n                _: 1\n              })\n            ])\n          ]))\n        : (_openBlock(), _createElementBlock(\"div\", _hoisted_7, _hoisted_9))\n    ])\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1713884692938,
+      "end": 1713884692939,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": ";;AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClW;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjI,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC;AACD;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7E,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtC;AACA;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,C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C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5I,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5E,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC;AACD,CAAC;AACD;AACA,CAAC;AACD;AACA;AACA;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC"
+      }
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884692939,
+      "end": 1713884692940,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884692940,
+      "end": 1713884692940,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1713884692940,
+      "end": 1713884692940,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1713884692940,
+      "end": 1713884692940,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "result": "import { default as __nuxt_component_0 } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/node_modules/nuxt/dist/app/components/nuxt-link\";\nimport { ref } from 'vue';\nimport { definePageMeta } from 'C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/node_modules/nuxt/dist/pages/runtime/composables';\nimport { unref as _unref, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\"\n\nconst _hoisted_1 = { class: \"bg-gray-900 h-screen flex items-center justify-center\" }\nconst _hoisted_2 = { class: \"bg-white p-8 rounded-lg shadow-lg mx-4\" }\nconst _hoisted_3 = { key: 0 }\nconst _hoisted_4 = /*#__PURE__*/_createElementVNode(\"h1\", { class: \"text-3xl font-bold mb-4\" }, \"Це сторінка адміністратора\", -1)\nconst _hoisted_5 = { class: \"mb-4\" }\nconst _hoisted_6 = { class: \"space-y-4\" }\nconst _hoisted_7 = { key: 1 }\nconst _hoisted_8 = /*#__PURE__*/_createElementVNode(\"h1\", { class: \"text-3xl font-bold\" }, \"В вас немає прав\", -1)\nconst _hoisted_9 = [\n  _hoisted_8\n]\n\nimport { getProfileFromLocalStorage, isAuthenticated } from '/utils/auth.js';\nimport { onMounted } from 'vue';\nimport { useRouter } from 'vue-router'\n\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\nconst router = useRouter();\nconst profile = ref(null);\n\nasync function loadData() {\n    const fetchedProfile = getProfileFromLocalStorage();\n    if (fetchedProfile) {\n        profile.value = fetchedProfile;\n    }\n}\n\nonMounted(() => {\n    if (!isAuthenticated()) {\n        router.push('/auth/');\n    }\n    loadData();\n});\ndefinePageMeta({\n    layout: 'admin'\n})\n\nreturn (_ctx, _cache) => {\n  const _component_nuxt_link = __nuxt_component_0\n\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createElementVNode(\"div\", _hoisted_2, [\n      (_unref(profile) && _unref(profile).role === 'ADMIN')\n        ? (_openBlock(), _createElementBlock(\"div\", _hoisted_3, [\n            _hoisted_4,\n            _createElementVNode(\"p\", _hoisted_5, \"Вітаємо вас, шановний адміністратор - \" + _toDisplayString(_unref(profile).firstname), 1),\n            _createElementVNode(\"div\", _hoisted_6, [\n              _createVNode(_component_nuxt_link, {\n                to: \"/profile/admin/cities\",\n                class: \"block btn-admin\"\n              }, {\n                default: _withCtx(() => [\n                  _createTextVNode(\" Редагувати міста \")\n                ]),\n                _: 1\n              }),\n              _createVNode(_component_nuxt_link, {\n                to: \"/profile/admin/categories\",\n                class: \"block btn-admin\"\n              }, {\n                default: _withCtx(() => [\n                  _createTextVNode(\" Редагувати категорії \")\n                ]),\n                _: 1\n              }),\n              _createVNode(_component_nuxt_link, {\n                to: \"/profile/admin/users\",\n                class: \"block btn-admin\"\n              }, {\n                default: _withCtx(() => [\n                  _createTextVNode(\" Переглянути користувачів \")\n                ]),\n                _: 1\n              })\n            ])\n          ]))\n        : (_openBlock(), _createElementBlock(\"div\", _hoisted_7, _hoisted_9))\n    ])\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1713884692940,
+      "end": 1713884692940,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "result": "import { default as __nuxt_component_0 } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/node_modules/nuxt/dist/app/components/nuxt-link\";\nimport { ref } from 'vue';\nimport { definePageMeta } from 'C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/node_modules/nuxt/dist/pages/runtime/composables';\nimport { unref as _unref, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\"\n\nconst _hoisted_1 = { class: \"bg-gray-900 h-screen flex items-center justify-center\" }\nconst _hoisted_2 = { class: \"bg-white p-8 rounded-lg shadow-lg mx-4\" }\nconst _hoisted_3 = { key: 0 }\nconst _hoisted_4 = /*#__PURE__*/_createElementVNode(\"h1\", { class: \"text-3xl font-bold mb-4\" }, \"Це сторінка адміністратора\", -1)\nconst _hoisted_5 = { class: \"mb-4\" }\nconst _hoisted_6 = { class: \"space-y-4\" }\nconst _hoisted_7 = { key: 1 }\nconst _hoisted_8 = /*#__PURE__*/_createElementVNode(\"h1\", { class: \"text-3xl font-bold\" }, \"В вас немає прав\", -1)\nconst _hoisted_9 = [\n  _hoisted_8\n]\n\nimport { getProfileFromLocalStorage, isAuthenticated } from '/utils/auth.js';\nimport { onMounted } from 'vue';\nimport { useRouter } from 'vue-router'\n\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\nconst router = useRouter();\nconst profile = ref(null);\n\nasync function loadData() {\n    const fetchedProfile = getProfileFromLocalStorage();\n    if (fetchedProfile) {\n        profile.value = fetchedProfile;\n    }\n}\n\nonMounted(() => {\n    if (!isAuthenticated()) {\n        router.push('/auth/');\n    }\n    loadData();\n});\n false && /*@__PURE__*/ definePageMeta({\n    layout: 'admin'\n})\n\nreturn (_ctx, _cache) => {\n  const _component_nuxt_link = __nuxt_component_0\n\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createElementVNode(\"div\", _hoisted_2, [\n      (_unref(profile) && _unref(profile).role === 'ADMIN')\n        ? (_openBlock(), _createElementBlock(\"div\", _hoisted_3, [\n            _hoisted_4,\n            _createElementVNode(\"p\", _hoisted_5, \"Вітаємо вас, шановний адміністратор - \" + _toDisplayString(_unref(profile).firstname), 1),\n            _createElementVNode(\"div\", _hoisted_6, [\n              _createVNode(_component_nuxt_link, {\n                to: \"/profile/admin/cities\",\n                class: \"block btn-admin\"\n              }, {\n                default: _withCtx(() => [\n                  _createTextVNode(\" Редагувати міста \")\n                ]),\n                _: 1\n              }),\n              _createVNode(_component_nuxt_link, {\n                to: \"/profile/admin/categories\",\n                class: \"block btn-admin\"\n              }, {\n                default: _withCtx(() => [\n                  _createTextVNode(\" Редагувати категорії \")\n                ]),\n                _: 1\n              }),\n              _createVNode(_component_nuxt_link, {\n                to: \"/profile/admin/users\",\n                class: \"block btn-admin\"\n              }, {\n                default: _withCtx(() => [\n                  _createTextVNode(\" Переглянути користувачів \")\n                ]),\n                _: 1\n              })\n            ])\n          ]))\n        : (_openBlock(), _createElementBlock(\"div\", _hoisted_7, _hoisted_9))\n    ])\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1713884692940,
+      "end": 1713884692941,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1713884692941,
+      "end": 1713884692941,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1713884692941,
+      "end": 1713884692941,
+      "order": "normal"
+    }
+  ]
+}

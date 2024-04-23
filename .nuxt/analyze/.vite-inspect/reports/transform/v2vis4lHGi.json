@@ -1,0 +1,223 @@
+{
+  "resolvedId": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/user/index.vue?macro=true",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n    <div class=\"bg-gray-900 h-screen flex items-center justify-center\">\n        <div class=\"bg-white p-8 rounded-lg shadow-lg mx-auto\">\n            <h1 class=\"text-3xl text-center font-bold mb-4\">Мій профіль</h1>\n            <div v-if=\"profile\" class=\"text-center\">\n                <p class=\"font-semibold\">ID: {{ profile.id }}</p>\n                <p class=\"font-semibold\">Ім'я: {{ profile.firstname }}</p>\n                <p class=\"font-semibold\">Фамілія: {{ profile.lastname }}</p>\n                <p class=\"font-semibold\">Email: {{ profile.email }}</p>\n                <p class=\"font-semibold\">Номер телефону: {{ profile.phone }}</p>\n                <p class=\"font-semibold\">Дата реєстрації: {{ profile.dateOfRegistration }}</p>\n                <div\n                    class=\"flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between pt-2\">\n                    <nuxt-link to=\"/\" class=\"btn-admin mt-4 md:mt-0 md:mr-4\">Головна сторінка</nuxt-link>\n                    <button @click.prevent=\"logout\" class=\"red-button mt-2 md:mt-0\">Вийти з акаунту</button>\n                </div>\n            </div>\n            <div v-else class=\"text-center mt-8\">\n                <p class=\"text-xl font-semibold mb-4\">Ви не ввійшли в профіль</p>\n                <nuxt-link to=\"/auth/\" class=\"btn-admin\">Ввійти</nuxt-link>\n            </div>\n        </div>\n    </div>\n</template>\n\n\n\n\n<script setup>\nimport { useRouter } from 'vue-router'\nimport { ref } from 'vue';\nimport { getProfileFromLocalStorage, isAuthenticated } from '/utils/auth.js';\nimport { onMounted } from 'vue';\n\nconst profile = ref(null);\nconst router = useRouter();\n\nasync function loadData() {\n    const fetchedProfile = getProfileFromLocalStorage();\n    if (fetchedProfile) {\n        profile.value = fetchedProfile;\n    }\n}\n\nasync function logout() {\n    try {\n        await router.push('/auth/');\n        localStorage.removeItem('jwtToken');\n        localStorage.removeItem('profile');\n    } catch (error) {\n        console.error('Помилка при виході:', error);\n    }\n}\n\nonMounted(() => {\n    if (!isAuthenticated()) {\n        router.push('/auth/');\n    }\n    loadData();\n});\n</script>\n\n<style scoped></style>\n",
+      "start": 1713884692144,
+      "end": 1713884692667,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884692667,
+      "end": 1713884692667,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884692667,
+      "end": 1713884692667,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1713884692667,
+      "end": 1713884692667,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1713884692667,
+      "end": 1713884692667,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1713884692667,
+      "end": 1713884692667,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1713884692667,
+      "end": 1713884692667,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1713884692667,
+      "end": 1713884692667,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, withModifiers as _withModifiers, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\"\n\nconst _hoisted_1 = { class: \"bg-gray-900 h-screen flex items-center justify-center\" }\nconst _hoisted_2 = { class: \"bg-white p-8 rounded-lg shadow-lg mx-auto\" }\nconst _hoisted_3 = /*#__PURE__*/_createElementVNode(\"h1\", { class: \"text-3xl text-center font-bold mb-4\" }, \"Мій профіль\", -1)\nconst _hoisted_4 = {\n  key: 0,\n  class: \"text-center\"\n}\nconst _hoisted_5 = { class: \"font-semibold\" }\nconst _hoisted_6 = { class: \"font-semibold\" }\nconst _hoisted_7 = { class: \"font-semibold\" }\nconst _hoisted_8 = { class: \"font-semibold\" }\nconst _hoisted_9 = { class: \"font-semibold\" }\nconst _hoisted_10 = { class: \"font-semibold\" }\nconst _hoisted_11 = { class: \"flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between pt-2\" }\nconst _hoisted_12 = {\n  key: 1,\n  class: \"text-center mt-8\"\n}\nconst _hoisted_13 = /*#__PURE__*/_createElementVNode(\"p\", { class: \"text-xl font-semibold mb-4\" }, \"Ви не ввійшли в профіль\", -1)\n\nimport { useRouter } from 'vue-router'\nimport { ref } from 'vue';\nimport { getProfileFromLocalStorage, isAuthenticated } from '/utils/auth.js';\nimport { onMounted } from 'vue';\n\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\nconst profile = ref(null);\nconst router = useRouter();\n\nasync function loadData() {\n    const fetchedProfile = getProfileFromLocalStorage();\n    if (fetchedProfile) {\n        profile.value = fetchedProfile;\n    }\n}\n\nasync function logout() {\n    try {\n        await router.push('/auth/');\n        localStorage.removeItem('jwtToken');\n        localStorage.removeItem('profile');\n    } catch (error) {\n        console.error('Помилка при виході:', error);\n    }\n}\n\nonMounted(() => {\n    if (!isAuthenticated()) {\n        router.push('/auth/');\n    }\n    loadData();\n});\n\nreturn (_ctx, _cache) => {\n  const _component_nuxt_link = _resolveComponent(\"nuxt-link\")\n\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createElementVNode(\"div\", _hoisted_2, [\n      _hoisted_3,\n      (profile.value)\n        ? (_openBlock(), _createElementBlock(\"div\", _hoisted_4, [\n            _createElementVNode(\"p\", _hoisted_5, \"ID: \" + _toDisplayString(profile.value.id), 1),\n            _createElementVNode(\"p\", _hoisted_6, \"Ім'я: \" + _toDisplayString(profile.value.firstname), 1),\n            _createElementVNode(\"p\", _hoisted_7, \"Фамілія: \" + _toDisplayString(profile.value.lastname), 1),\n            _createElementVNode(\"p\", _hoisted_8, \"Email: \" + _toDisplayString(profile.value.email), 1),\n            _createElementVNode(\"p\", _hoisted_9, \"Номер телефону: \" + _toDisplayString(profile.value.phone), 1),\n            _createElementVNode(\"p\", _hoisted_10, \"Дата реєстрації: \" + _toDisplayString(profile.value.dateOfRegistration), 1),\n            _createElementVNode(\"div\", _hoisted_11, [\n              _createVNode(_component_nuxt_link, {\n                to: \"/\",\n                class: \"btn-admin mt-4 md:mt-0 md:mr-4\"\n              }, {\n                default: _withCtx(() => [\n                  _createTextVNode(\"Головна сторінка\")\n                ]),\n                _: 1\n              }),\n              _createElementVNode(\"button\", {\n                onClick: _withModifiers(logout, [\"prevent\"]),\n                class: \"red-button mt-2 md:mt-0\"\n              }, \"Вийти з акаунту\")\n            ])\n          ]))\n        : (_openBlock(), _createElementBlock(\"div\", _hoisted_12, [\n            _hoisted_13,\n            _createVNode(_component_nuxt_link, {\n              to: \"/auth/\",\n              class: \"btn-admin\"\n            }, {\n              default: _withCtx(() => [\n                _createTextVNode(\"Ввійти\")\n              ]),\n              _: 1\n            })\n          ]))\n    ])\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1713884692667,
+      "end": 1713884692670,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1713884692670,
+      "end": 1713884692670,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884692670,
+      "end": 1713884692670,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884692670,
+      "end": 1713884692670,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1713884692670,
+      "end": 1713884692670,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1713884692670,
+      "end": 1713884692670,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884692670,
+      "end": 1713884692670,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1713884692670,
+      "end": 1713884692670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1713884692670,
+      "end": 1713884692670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1713884692670,
+      "end": 1713884692670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1713884692670,
+      "end": 1713884692670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1713884692670,
+      "end": 1713884692670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1713884692670,
+      "end": 1713884692670,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1713884692670,
+      "end": 1713884692670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1713884692670,
+      "end": 1713884692670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1713884692670,
+      "end": 1713884692670,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884692670,
+      "end": 1713884692670,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884692670,
+      "end": 1713884692671,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884692671,
+      "end": 1713884692671,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "result": "\nconst __nuxt_page_meta = null\nexport default __nuxt_page_meta\n",
+      "start": 1713884692671,
+      "end": 1713884692672,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": "AAAA;AAAA;AAAA;"
+      }
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1713884692672,
+      "end": 1713884692672,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1713884692672,
+      "end": 1713884692672,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1713884692672,
+      "end": 1713884692672,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1713884692672,
+      "end": 1713884692672,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1713884692672,
+      "end": 1713884692672,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1713884692672,
+      "end": 1713884692672,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+{
+  "resolvedId": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/layouts/login.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n    <div>\n        <nav class=\"navbar\">\n            <nuxt-link to=\"/\" class=\"logo\">BuySell</nuxt-link>\n        </nav>\n        <slot />\n    </div>\n</template>\n\n<script setup>\n</script>\n\n<style scoped>\n.navbar {\n    background-color: #fff;\n    /* Білий фон */\n    padding: 1rem;\n    /* Додатковий відступ для кращого вигляду */\n}\n\n.logo {\n    color: #c222ac;\n    /* Фіолетовий колір */\n    font-weight: bold;\n    /* Жирний шрифт */\n    font-size: 1.5rem;\n    /* Розмір шрифту */\n}\n</style>\n",
+      "start": 1713884692689,
+      "end": 1713884692996,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884692996,
+      "end": 1713884692996,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884692996,
+      "end": 1713884692996,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1713884692996,
+      "end": 1713884692996,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1713884692996,
+      "end": 1713884692996,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1713884692996,
+      "end": 1713884692996,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1713884692996,
+      "end": 1713884692996,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1713884692996,
+      "end": 1713884692996,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "const _sfc_main = {}\nimport { createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, createElementVNode as _createElementVNode, renderSlot as _renderSlot, openBlock as _openBlock, createElementBlock as _createElementBlock, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-5b61abe8\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = { class: \"navbar\" }\n\nfunction _sfc_render(_ctx, _cache) {\n  const _component_nuxt_link = _resolveComponent(\"nuxt-link\")\n\n  return (_openBlock(), _createElementBlock(\"div\", null, [\n    _createElementVNode(\"nav\", _hoisted_1, [\n      _createVNode(_component_nuxt_link, {\n        to: \"/\",\n        class: \"logo\"\n      }, {\n        default: _withCtx(() => [\n          _createTextVNode(\"BuySell\")\n        ]),\n        _: 1\n      })\n    ]),\n    _renderSlot(_ctx.$slots, \"default\", {}, undefined, true)\n  ]))\n}\n\nimport \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/layouts/login.vue?vue&type=style&index=0&scoped=5b61abe8&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render],['__scopeId',\"data-v-5b61abe8\"]])",
+      "start": 1713884692996,
+      "end": 1713884692997,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1713884692997,
+      "end": 1713884692997,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884692997,
+      "end": 1713884692997,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884692997,
+      "end": 1713884692997,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1713884692997,
+      "end": 1713884692997,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1713884692997,
+      "end": 1713884692997,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884692997,
+      "end": 1713884692997,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1713884692997,
+      "end": 1713884692997,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1713884692997,
+      "end": 1713884692997,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1713884692997,
+      "end": 1713884692997,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1713884692997,
+      "end": 1713884692997,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1713884692997,
+      "end": 1713884692997,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1713884692997,
+      "end": 1713884692997,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1713884692997,
+      "end": 1713884692997,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1713884692997,
+      "end": 1713884692997,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1713884692997,
+      "end": 1713884692997,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884692997,
+      "end": 1713884692997,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884692997,
+      "end": 1713884692998,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884692998,
+      "end": 1713884692998,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884692998,
+      "end": 1713884692998,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1713884692998,
+      "end": 1713884692998,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1713884692998,
+      "end": 1713884692998,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "result": "import { default as __nuxt_component_0 } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/node_modules/nuxt/dist/app/components/nuxt-link\";\nconst _sfc_main = {}\nimport { createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, createElementVNode as _createElementVNode, renderSlot as _renderSlot, openBlock as _openBlock, createElementBlock as _createElementBlock, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-5b61abe8\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = { class: \"navbar\" }\n\nfunction _sfc_render(_ctx, _cache) {\n  const _component_nuxt_link = __nuxt_component_0\n\n  return (_openBlock(), _createElementBlock(\"div\", null, [\n    _createElementVNode(\"nav\", _hoisted_1, [\n      _createVNode(_component_nuxt_link, {\n        to: \"/\",\n        class: \"logo\"\n      }, {\n        default: _withCtx(() => [\n          _createTextVNode(\"BuySell\")\n        ]),\n        _: 1\n      })\n    ]),\n    _renderSlot(_ctx.$slots, \"default\", {}, undefined, true)\n  ]))\n}\n\nimport \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/layouts/login.vue?vue&type=style&index=0&scoped=5b61abe8&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render],['__scopeId',\"data-v-5b61abe8\"]])",
+      "start": 1713884692998,
+      "end": 1713884692998,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1713884692998,
+      "end": 1713884692998,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1713884692998,
+      "end": 1713884692998,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1713884692998,
+      "end": 1713884692998,
+      "order": "normal"
+    }
+  ]
+}

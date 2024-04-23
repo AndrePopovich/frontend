@@ -1,0 +1,215 @@
+{
+  "resolvedId": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/user/ads/index.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n    <div class=\"bg-gray-200 min-h-screen p-8\">\n        <div v-if=\"profile\" class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\">\n            <div class=\"flex flex-col sm:flex-row justify-between items-center mb-4\">\n                <h1 class=\"big-center-text lg:mb-0 lg:mr-4\">Мої оголошення</h1>\n                <nuxt-link to=\"/profile/user/ads/add\" class=\"green-button\">Додати оголошення</nuxt-link>\n            </div>\n\n\n\n            <div v-if=\"profile.ads.length > 0\"\n                class=\"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4\">\n                <div v-for=\"ad in profile.ads\" :key=\"ad.id\"\n                    class=\"bg-white rounded-lg shadow-md overflow-hidden min-w-0 min-h-0\">\n                    <div class=\"aspect-w-1 aspect-h-1\">\n                        <div v-if=\"ad.previewImageId\">\n                            <img class=\"thumb\" v-if=\"loadedImages[ad.previewImageId]\"\n                                :src=\"loadedImages[ad.previewImageId]\" alt=\"Image\">\n                        </div>\n                    </div>\n                    <div class=\"p-4\">\n                        <h3 class=\"text-lg font-semibold truncate mb-2\">{{ ad.name }}</h3>\n                        <div class=\"flex items-center\">\n                            <img src=\"/img/card/location.png\" alt=\"Місто\" class=\"mr-2 inline-block h-4 w-4\">\n                            <p>{{ ad.city.name }}</p>\n                        </div>\n                        <div class=\"flex items-center\">\n                            <img src=\"/img/card/category.png\" alt=\"Категорія\" class=\"mr-2 inline-block h-4 w-4\">\n                            <p>{{ ad.category.name }}</p>\n                        </div>\n                        <hr class=\"my-4 border-t border-gray-300\">\n                        <p class=\"font-bold text-xl my-4\">{{ ad.price }} грн</p>\n                        <div class=\"mt-4\">\n                            <button @click.prevent=\"editAd(ad.id)\" class=\"orange-button w-full mb-2\">Редагувати</button>\n                            <button @click.prevent=\"deleteAd(ad.id)\" class=\"red-button w-full\">Видалити</button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n\n            <div v-else>\n                <p>У Вас все ще немає оголошень, додайте їх.</p>\n            </div>\n        </div>\n        <div v-else class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center h-full\">\n            <p class=\"text-lg mb-4\">Ви не ввійшли в профіль</p>\n            <nuxt-link to=\"/auth/\" class=\"btn-admin\">Ввійти</nuxt-link>\n        </div>\n    </div>\n</template>\n\n\n\n<script setup>\nimport { useRouter } from 'vue-router'\nimport { ref } from 'vue';\nimport { onMounted } from 'vue';\nimport { getProfileFromLocalStorage, isAuthenticated, saveProfile, fetchWithToken, setEditObjectInLocalStorage, getEditObjectFromLocalStorage } from '/utils/auth.js';\n\nconst profile = ref(null);\nconst router = useRouter();\nconst referalImg = 'https://buy-sell-api.onrender.com/api/user/image/';\nconst loadedImages = ref({});\n\nconst editAd = async (idAd) => {\n    const object = {\n        id: idAd\n    }\n    setEditObjectInLocalStorage(object);\n    console.log(getEditObjectFromLocalStorage().id)\n    router.push('/profile/user/ads/edit');\n}\nconst deleteAd = async (idAd) => {\n    const deleteObject = {\n        id: idAd\n    }\n    const deleteURL = 'https://buy-sell-api.onrender.com/api/user/ads/' + idAd;\n    const response = await fetchWithToken(deleteURL, {\n        method: 'DELETE',\n        body: JSON.stringify(deleteObject)\n    })\n    if (response.ok) {\n        console.log(\"Успішно видалено!!!\")\n\n        await saveProfile();\n        await loadData();\n        router.push('/profile/user/ads');\n    }\n}\n\nconst loadImage = async (imageId) => {\n    try {\n\n        const url = referalImg + imageId;\n        const response = await fetchWithToken(url);\n        if (!response.ok) {\n            throw new Error('Failed to load image');\n        }\n        const blob = await response.blob();\n        const imageUrl = URL.createObjectURL(blob);\n        loadedImages.value[imageId] = imageUrl;\n    } catch (error) {\n        console.error('Error loading image:', error);\n    }\n}\nasync function loadData() {\n    const fetchedProfile = getProfileFromLocalStorage();\n    if (fetchedProfile) {\n        profile.value = fetchedProfile;\n    }\n}\n\n\nonMounted(() => {\n    if (!isAuthenticated()) {\n        router.push('/auth/');\n    }\n    saveProfile();\n    loadData();\n    for (const ad of profile.value.ads) {\n        loadImage(ad.previewImageId);\n    }\n});\n</script>\n\n<style scoped>\n.thumb {\n    width: 100%;\n    height: 200px;\n    /* або будь-яка фіксована висота */\n    margin: 0 auto;\n    overflow: hidden;\n    /* Додаємо обрізання контенту */\n}\n</style>\n",
+      "start": 1713884692609,
+      "end": 1713884692962,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884692962,
+      "end": 1713884692962,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884692962,
+      "end": 1713884692962,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1713884692962,
+      "end": 1713884692962,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1713884692962,
+      "end": 1713884692962,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1713884692962,
+      "end": 1713884692962,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1713884692962,
+      "end": 1713884692962,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1713884692963,
+      "end": 1713884692963,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { createElementVNode as _createElementVNode, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, toDisplayString as _toDisplayString, withModifiers as _withModifiers, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\nimport _imports_0 from '/img/card/location.png'\nimport _imports_1 from '/img/card/category.png'\n\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-97cb30a9\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = { class: \"bg-gray-200 min-h-screen p-8\" }\nconst _hoisted_2 = {\n  key: 0,\n  class: \"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\"\n}\nconst _hoisted_3 = { class: \"flex flex-col sm:flex-row justify-between items-center mb-4\" }\nconst _hoisted_4 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"h1\", { class: \"big-center-text lg:mb-0 lg:mr-4\" }, \"Мої оголошення\", -1))\nconst _hoisted_5 = {\n  key: 0,\n  class: \"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4\"\n}\nconst _hoisted_6 = { class: \"aspect-w-1 aspect-h-1\" }\nconst _hoisted_7 = { key: 0 }\nconst _hoisted_8 = [\"src\"]\nconst _hoisted_9 = { class: \"p-4\" }\nconst _hoisted_10 = { class: \"text-lg font-semibold truncate mb-2\" }\nconst _hoisted_11 = { class: \"flex items-center\" }\nconst _hoisted_12 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"img\", {\n  src: _imports_0,\n  alt: \"Місто\",\n  class: \"mr-2 inline-block h-4 w-4\"\n}, null, -1))\nconst _hoisted_13 = { class: \"flex items-center\" }\nconst _hoisted_14 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"img\", {\n  src: _imports_1,\n  alt: \"Категорія\",\n  class: \"mr-2 inline-block h-4 w-4\"\n}, null, -1))\nconst _hoisted_15 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"hr\", { class: \"my-4 border-t border-gray-300\" }, null, -1))\nconst _hoisted_16 = { class: \"font-bold text-xl my-4\" }\nconst _hoisted_17 = { class: \"mt-4\" }\nconst _hoisted_18 = [\"onClick\"]\nconst _hoisted_19 = [\"onClick\"]\nconst _hoisted_20 = { key: 1 }\nconst _hoisted_21 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"p\", null, \"У Вас все ще немає оголошень, додайте їх.\", -1))\nconst _hoisted_22 = [\n  _hoisted_21\n]\nconst _hoisted_23 = {\n  key: 1,\n  class: \"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center h-full\"\n}\nconst _hoisted_24 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"p\", { class: \"text-lg mb-4\" }, \"Ви не ввійшли в профіль\", -1))\n\nimport { useRouter } from 'vue-router'\nimport { ref } from 'vue';\nimport { onMounted } from 'vue';\nimport { getProfileFromLocalStorage, isAuthenticated, saveProfile, fetchWithToken, setEditObjectInLocalStorage, getEditObjectFromLocalStorage } from '/utils/auth.js';\n\nconst referalImg = 'https://buy-sell-api.onrender.com/api/user/image/';\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\nconst profile = ref(null);\nconst router = useRouter();\nconst loadedImages = ref({});\n\nconst editAd = async (idAd) => {\n    const object = {\n        id: idAd\n    }\n    setEditObjectInLocalStorage(object);\n    console.log(getEditObjectFromLocalStorage().id)\n    router.push('/profile/user/ads/edit');\n}\nconst deleteAd = async (idAd) => {\n    const deleteObject = {\n        id: idAd\n    }\n    const deleteURL = 'https://buy-sell-api.onrender.com/api/user/ads/' + idAd;\n    const response = await fetchWithToken(deleteURL, {\n        method: 'DELETE',\n        body: JSON.stringify(deleteObject)\n    })\n    if (response.ok) {\n        console.log(\"Успішно видалено!!!\")\n\n        await saveProfile();\n        await loadData();\n        router.push('/profile/user/ads');\n    }\n}\n\nconst loadImage = async (imageId) => {\n    try {\n\n        const url = referalImg + imageId;\n        const response = await fetchWithToken(url);\n        if (!response.ok) {\n            throw new Error('Failed to load image');\n        }\n        const blob = await response.blob();\n        const imageUrl = URL.createObjectURL(blob);\n        loadedImages.value[imageId] = imageUrl;\n    } catch (error) {\n        console.error('Error loading image:', error);\n    }\n}\nasync function loadData() {\n    const fetchedProfile = getProfileFromLocalStorage();\n    if (fetchedProfile) {\n        profile.value = fetchedProfile;\n    }\n}\n\n\nonMounted(() => {\n    if (!isAuthenticated()) {\n        router.push('/auth/');\n    }\n    saveProfile();\n    loadData();\n    for (const ad of profile.value.ads) {\n        loadImage(ad.previewImageId);\n    }\n});\n\nreturn (_ctx, _cache) => {\n  const _component_nuxt_link = _resolveComponent(\"nuxt-link\")\n\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    (profile.value)\n      ? (_openBlock(), _createElementBlock(\"div\", _hoisted_2, [\n          _createElementVNode(\"div\", _hoisted_3, [\n            _hoisted_4,\n            _createVNode(_component_nuxt_link, {\n              to: \"/profile/user/ads/add\",\n              class: \"green-button\"\n            }, {\n              default: _withCtx(() => [\n                _createTextVNode(\"Додати оголошення\")\n              ]),\n              _: 1\n            })\n          ]),\n          (profile.value.ads.length > 0)\n            ? (_openBlock(), _createElementBlock(\"div\", _hoisted_5, [\n                (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(profile.value.ads, (ad) => {\n                  return (_openBlock(), _createElementBlock(\"div\", {\n                    key: ad.id,\n                    class: \"bg-white rounded-lg shadow-md overflow-hidden min-w-0 min-h-0\"\n                  }, [\n                    _createElementVNode(\"div\", _hoisted_6, [\n                      (ad.previewImageId)\n                        ? (_openBlock(), _createElementBlock(\"div\", _hoisted_7, [\n                            (loadedImages.value[ad.previewImageId])\n                              ? (_openBlock(), _createElementBlock(\"img\", {\n                                  key: 0,\n                                  class: \"thumb\",\n                                  src: loadedImages.value[ad.previewImageId],\n                                  alt: \"Image\"\n                                }, null, 8, _hoisted_8))\n                              : _createCommentVNode(\"\", true)\n                          ]))\n                        : _createCommentVNode(\"\", true)\n                    ]),\n                    _createElementVNode(\"div\", _hoisted_9, [\n                      _createElementVNode(\"h3\", _hoisted_10, _toDisplayString(ad.name), 1),\n                      _createElementVNode(\"div\", _hoisted_11, [\n                        _hoisted_12,\n                        _createElementVNode(\"p\", null, _toDisplayString(ad.city.name), 1)\n                      ]),\n                      _createElementVNode(\"div\", _hoisted_13, [\n                        _hoisted_14,\n                        _createElementVNode(\"p\", null, _toDisplayString(ad.category.name), 1)\n                      ]),\n                      _hoisted_15,\n                      _createElementVNode(\"p\", _hoisted_16, _toDisplayString(ad.price) + \" грн\", 1),\n                      _createElementVNode(\"div\", _hoisted_17, [\n                        _createElementVNode(\"button\", {\n                          onClick: _withModifiers($event => (editAd(ad.id)), [\"prevent\"]),\n                          class: \"orange-button w-full mb-2\"\n                        }, \"Редагувати\", 8, _hoisted_18),\n                        _createElementVNode(\"button\", {\n                          onClick: _withModifiers($event => (deleteAd(ad.id)), [\"prevent\"]),\n                          class: \"red-button w-full\"\n                        }, \"Видалити\", 8, _hoisted_19)\n                      ])\n                    ])\n                  ]))\n                }), 128))\n              ]))\n            : (_openBlock(), _createElementBlock(\"div\", _hoisted_20, _hoisted_22))\n        ]))\n      : (_openBlock(), _createElementBlock(\"div\", _hoisted_23, [\n          _hoisted_24,\n          _createVNode(_component_nuxt_link, {\n            to: \"/auth/\",\n            class: \"btn-admin\"\n          }, {\n            default: _withCtx(() => [\n              _createTextVNode(\"Ввійти\")\n            ]),\n            _: 1\n          })\n        ]))\n  ]))\n}\n}\n\n}\n\n\nimport \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/user/ads/index.vue?vue&type=style&index=0&scoped=97cb30a9&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['__scopeId',\"data-v-97cb30a9\"]])",
+      "start": 1713884692963,
+      "end": 1713884692963,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1713884692963,
+      "end": 1713884692963,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884692963,
+      "end": 1713884692963,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884692964,
+      "end": 1713884692964,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1713884692964,
+      "end": 1713884692964,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1713884692964,
+      "end": 1713884692964,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884692964,
+      "end": 1713884692964,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1713884692964,
+      "end": 1713884692964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1713884692964,
+      "end": 1713884692964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1713884692964,
+      "end": 1713884692964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1713884692964,
+      "end": 1713884692964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1713884692964,
+      "end": 1713884692964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1713884692964,
+      "end": 1713884692964,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1713884692964,
+      "end": 1713884692964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1713884692964,
+      "end": 1713884692964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1713884692964,
+      "end": 1713884692964,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884692964,
+      "end": 1713884692964,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884692964,
+      "end": 1713884692967,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884692967,
+      "end": 1713884692967,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884692967,
+      "end": 1713884692967,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1713884692967,
+      "end": 1713884692967,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1713884692967,
+      "end": 1713884692967,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "result": "import { default as __nuxt_component_0 } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/node_modules/nuxt/dist/app/components/nuxt-link\";\nimport { createElementVNode as _createElementVNode, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, toDisplayString as _toDisplayString, withModifiers as _withModifiers, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\nimport _imports_0 from '/img/card/location.png'\nimport _imports_1 from '/img/card/category.png'\n\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-97cb30a9\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = { class: \"bg-gray-200 min-h-screen p-8\" }\nconst _hoisted_2 = {\n  key: 0,\n  class: \"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\"\n}\nconst _hoisted_3 = { class: \"flex flex-col sm:flex-row justify-between items-center mb-4\" }\nconst _hoisted_4 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"h1\", { class: \"big-center-text lg:mb-0 lg:mr-4\" }, \"Мої оголошення\", -1))\nconst _hoisted_5 = {\n  key: 0,\n  class: \"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4\"\n}\nconst _hoisted_6 = { class: \"aspect-w-1 aspect-h-1\" }\nconst _hoisted_7 = { key: 0 }\nconst _hoisted_8 = [\"src\"]\nconst _hoisted_9 = { class: \"p-4\" }\nconst _hoisted_10 = { class: \"text-lg font-semibold truncate mb-2\" }\nconst _hoisted_11 = { class: \"flex items-center\" }\nconst _hoisted_12 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"img\", {\n  src: _imports_0,\n  alt: \"Місто\",\n  class: \"mr-2 inline-block h-4 w-4\"\n}, null, -1))\nconst _hoisted_13 = { class: \"flex items-center\" }\nconst _hoisted_14 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"img\", {\n  src: _imports_1,\n  alt: \"Категорія\",\n  class: \"mr-2 inline-block h-4 w-4\"\n}, null, -1))\nconst _hoisted_15 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"hr\", { class: \"my-4 border-t border-gray-300\" }, null, -1))\nconst _hoisted_16 = { class: \"font-bold text-xl my-4\" }\nconst _hoisted_17 = { class: \"mt-4\" }\nconst _hoisted_18 = [\"onClick\"]\nconst _hoisted_19 = [\"onClick\"]\nconst _hoisted_20 = { key: 1 }\nconst _hoisted_21 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"p\", null, \"У Вас все ще немає оголошень, додайте їх.\", -1))\nconst _hoisted_22 = [\n  _hoisted_21\n]\nconst _hoisted_23 = {\n  key: 1,\n  class: \"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center h-full\"\n}\nconst _hoisted_24 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"p\", { class: \"text-lg mb-4\" }, \"Ви не ввійшли в профіль\", -1))\n\nimport { useRouter } from 'vue-router'\nimport { ref } from 'vue';\nimport { onMounted } from 'vue';\nimport { getProfileFromLocalStorage, isAuthenticated, saveProfile, fetchWithToken, setEditObjectInLocalStorage, getEditObjectFromLocalStorage } from '/utils/auth.js';\n\nconst referalImg = 'https://buy-sell-api.onrender.com/api/user/image/';\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\nconst profile = ref(null);\nconst router = useRouter();\nconst loadedImages = ref({});\n\nconst editAd = async (idAd) => {\n    const object = {\n        id: idAd\n    }\n    setEditObjectInLocalStorage(object);\n    console.log(getEditObjectFromLocalStorage().id)\n    router.push('/profile/user/ads/edit');\n}\nconst deleteAd = async (idAd) => {\n    const deleteObject = {\n        id: idAd\n    }\n    const deleteURL = 'https://buy-sell-api.onrender.com/api/user/ads/' + idAd;\n    const response = await fetchWithToken(deleteURL, {\n        method: 'DELETE',\n        body: JSON.stringify(deleteObject)\n    })\n    if (response.ok) {\n        console.log(\"Успішно видалено!!!\")\n\n        await saveProfile();\n        await loadData();\n        router.push('/profile/user/ads');\n    }\n}\n\nconst loadImage = async (imageId) => {\n    try {\n\n        const url = referalImg + imageId;\n        const response = await fetchWithToken(url);\n        if (!response.ok) {\n            throw new Error('Failed to load image');\n        }\n        const blob = await response.blob();\n        const imageUrl = URL.createObjectURL(blob);\n        loadedImages.value[imageId] = imageUrl;\n    } catch (error) {\n        console.error('Error loading image:', error);\n    }\n}\nasync function loadData() {\n    const fetchedProfile = getProfileFromLocalStorage();\n    if (fetchedProfile) {\n        profile.value = fetchedProfile;\n    }\n}\n\n\nonMounted(() => {\n    if (!isAuthenticated()) {\n        router.push('/auth/');\n    }\n    saveProfile();\n    loadData();\n    for (const ad of profile.value.ads) {\n        loadImage(ad.previewImageId);\n    }\n});\n\nreturn (_ctx, _cache) => {\n  const _component_nuxt_link = __nuxt_component_0\n\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    (profile.value)\n      ? (_openBlock(), _createElementBlock(\"div\", _hoisted_2, [\n          _createElementVNode(\"div\", _hoisted_3, [\n            _hoisted_4,\n            _createVNode(_component_nuxt_link, {\n              to: \"/profile/user/ads/add\",\n              class: \"green-button\"\n            }, {\n              default: _withCtx(() => [\n                _createTextVNode(\"Додати оголошення\")\n              ]),\n              _: 1\n            })\n          ]),\n          (profile.value.ads.length > 0)\n            ? (_openBlock(), _createElementBlock(\"div\", _hoisted_5, [\n                (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(profile.value.ads, (ad) => {\n                  return (_openBlock(), _createElementBlock(\"div\", {\n                    key: ad.id,\n                    class: \"bg-white rounded-lg shadow-md overflow-hidden min-w-0 min-h-0\"\n                  }, [\n                    _createElementVNode(\"div\", _hoisted_6, [\n                      (ad.previewImageId)\n                        ? (_openBlock(), _createElementBlock(\"div\", _hoisted_7, [\n                            (loadedImages.value[ad.previewImageId])\n                              ? (_openBlock(), _createElementBlock(\"img\", {\n                                  key: 0,\n                                  class: \"thumb\",\n                                  src: loadedImages.value[ad.previewImageId],\n                                  alt: \"Image\"\n                                }, null, 8, _hoisted_8))\n                              : _createCommentVNode(\"\", true)\n                          ]))\n                        : _createCommentVNode(\"\", true)\n                    ]),\n                    _createElementVNode(\"div\", _hoisted_9, [\n                      _createElementVNode(\"h3\", _hoisted_10, _toDisplayString(ad.name), 1),\n                      _createElementVNode(\"div\", _hoisted_11, [\n                        _hoisted_12,\n                        _createElementVNode(\"p\", null, _toDisplayString(ad.city.name), 1)\n                      ]),\n                      _createElementVNode(\"div\", _hoisted_13, [\n                        _hoisted_14,\n                        _createElementVNode(\"p\", null, _toDisplayString(ad.category.name), 1)\n                      ]),\n                      _hoisted_15,\n                      _createElementVNode(\"p\", _hoisted_16, _toDisplayString(ad.price) + \" грн\", 1),\n                      _createElementVNode(\"div\", _hoisted_17, [\n                        _createElementVNode(\"button\", {\n                          onClick: _withModifiers($event => (editAd(ad.id)), [\"prevent\"]),\n                          class: \"orange-button w-full mb-2\"\n                        }, \"Редагувати\", 8, _hoisted_18),\n                        _createElementVNode(\"button\", {\n                          onClick: _withModifiers($event => (deleteAd(ad.id)), [\"prevent\"]),\n                          class: \"red-button w-full\"\n                        }, \"Видалити\", 8, _hoisted_19)\n                      ])\n                    ])\n                  ]))\n                }), 128))\n              ]))\n            : (_openBlock(), _createElementBlock(\"div\", _hoisted_20, _hoisted_22))\n        ]))\n      : (_openBlock(), _createElementBlock(\"div\", _hoisted_23, [\n          _hoisted_24,\n          _createVNode(_component_nuxt_link, {\n            to: \"/auth/\",\n            class: \"btn-admin\"\n          }, {\n            default: _withCtx(() => [\n              _createTextVNode(\"Ввійти\")\n            ]),\n            _: 1\n          })\n        ]))\n  ]))\n}\n}\n\n}\n\n\nimport \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/user/ads/index.vue?vue&type=style&index=0&scoped=97cb30a9&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['__scopeId',\"data-v-97cb30a9\"]])",
+      "start": 1713884692967,
+      "end": 1713884692967,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1713884692967,
+      "end": 1713884692967,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1713884692967,
+      "end": 1713884692967,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1713884692967,
+      "end": 1713884692967,
+      "order": "normal"
+    }
+  ]
+}

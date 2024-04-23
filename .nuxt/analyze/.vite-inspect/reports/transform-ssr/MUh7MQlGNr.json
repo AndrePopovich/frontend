@@ -1,0 +1,252 @@
+{
+  "resolvedId": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/utils/auth.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "export const setTokenInLocalStorage = (token) => {\n    localStorage.setItem('jwtToken', token);\n};\n\nexport const getTokenFromLocalStorage = () => {\n    return localStorage.getItem('jwtToken');\n};\nexport const isAuthenticated = () => {\n    if (localStorage.getItem('jwtToken')) {\n        return true;\n    } else {\n        false;\n    }\n};\nexport async function saveProfile() {\n    const response = await fetchWithToken('https://buy-sell-api.onrender.com/api/user/profile');\n    if (response.ok) {\n        const profile = await response.json();\n        setProfileInLocalStorage(profile);\n        console.log('Успішно збережено профіль:', profile);\n    } else {\n        console.error('Помилка при збережені акаунта:', response.statusText);\n    }\n}\n\n// Збереження об'єкта профілю в локальному сховищі\nexport const setProfileInLocalStorage = (profile) => {\n    localStorage.setItem('profile', JSON.stringify(profile));\n}\n\n// Отримання об'єкта профілю з локального сховища\nexport const getProfileFromLocalStorage = () => {\n    const profileString = localStorage.getItem('profile');\n    return JSON.parse(profileString);\n}\nexport const getMyId = () => {\n    const profile = getProfileFromLocalStorage();\n    return profile.id;\n}\n\nexport const setEditObjectInLocalStorage = (editObject) => {\n    localStorage.setItem('editObject', JSON.stringify(editObject));\n}\n\nexport const getEditObjectFromLocalStorage = () => {\n    const editObjectString = localStorage.getItem('editObject');\n    return JSON.parse(editObjectString);\n}\n\nexport const fetchWithToken = async (url, options = {}) => {\n    const token = getTokenFromLocalStorage();\n    if (token) {\n        options.headers = {\n            ...options.headers,\n            Authorization: `Bearer ${token}`,\n        };\n    } else {\n        console.log('Ввійдіть в акаунт')\n    }\n    if (options.method === 'POST' || options.method === 'PUT') {\n        options.headers = {\n            ...options.headers,\n            'Content-Type': 'application/json', // Встановлюємо заголовок Content-Type\n\n        };\n        //options.body = JSON.stringify(options.body); // Конвертуємо тіло запиту в JSON\n    } else if (options.method === 'DELETE') {\n        options.method = 'DELETE'; // Встановлюємо метод DELETE\n    }\n    return await fetch(url, options);\n};\n\n\n",
+      "start": 1713884695901,
+      "end": 1713884696164,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "pre"
+    },
+    {
+      "name": "server-only-component-transform",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1713884696164,
+      "end": 1713884696164,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1713884696165,
+      "end": 1713884696165,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1713884696165,
+      "end": 1713884696165,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1713884696165,
+      "end": 1713884696165,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1713884696165,
+      "end": 1713884696165,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884696165,
+      "end": 1713884696165,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884696165,
+      "end": 1713884696165,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884696165,
+      "end": 1713884696165,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884696165,
+      "end": 1713884696165,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884696165,
+      "end": 1713884696165,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884696165,
+      "end": 1713884696165,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884696165,
+      "end": 1713884696165,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884696165,
+      "end": 1713884696165,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1713884696165,
+      "end": 1713884696165,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1713884696165,
+      "end": 1713884696165,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1713884696165,
+      "end": 1713884696165,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1713884696165,
+      "end": 1713884696165,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1713884696165,
+      "end": 1713884696165,
+      "order": "normal"
+    }
+  ]
+}

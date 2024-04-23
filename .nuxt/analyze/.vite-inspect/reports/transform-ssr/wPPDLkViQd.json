@@ -1,0 +1,294 @@
+{
+  "resolvedId": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/auth/registration.vue?vue&type=style&index=0&scoped=44f3d446&lang.css",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.input {\n    border: 1px solid #ced4da;\n    border-radius: 0.25rem;\n    padding: 0.5rem;\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\n\n.btn {\n    background-color: #c222ac;\n    color: #fff;\n    padding: 0.5rem 1rem;\n    border-radius: 0.25rem;\n    transition: background-color 0.15s ease-in-out;\n}\n\n.btn:hover {\n    background-color: #6c1d6c;\n}\n",
+      "start": 1713884695910,
+      "end": 1713884695910,
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/auth/registration.vue"
+        ],
+        "names": [],
+        "mappings": ";AAqKA,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;IACH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;IACzB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;IACtB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;IACf,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5E;;AAEA,CAAC,CAAC,CAAC,EAAE;IACD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;IACzB,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;IACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;IACpB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;IACtB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClD;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;IACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B",
+        "file": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/auth/registration.vue",
+        "sourceRoot": "",
+        "sourcesContent": [
+          "<template>\n    <div\n        class=\"bg-gradient-to-b from-purple-900 to-purple-700 min-h-screen flex flex-col justify-center items-center px-4\">\n        <h1 class=\"text-4xl font-bold text-white mb-8\">Вітаємо Вас в BuySell</h1>\n        <div class=\"bg-white p-8 rounded-lg shadow-lg w-full max-w-md\">\n            <form @submit.prevent=\"registerUser\" class=\"space-y-4\">\n                <div class=\"flex flex-col\">\n                    <input type=\"text\" v-model=\"firstname\" placeholder=\"Введіть ім'я\" required class=\"input\">\n                    <span v-if=\"firstNameError\" class=\"text-red-500 text-xs\">{{ firstNameError }}</span>\n                </div>\n                <div class=\"flex flex-col\">\n                    <input type=\"text\" v-model=\"lastname\" placeholder=\"Введіть Фамілію\" required class=\"input\">\n                    <span v-if=\"lastNameError\" class=\"text-red-500 text-xs\">{{ lastNameError }}</span>\n                </div>\n                <div class=\"flex flex-col\">\n                    <input type=\"text\" v-model=\"email\" autocomplete=\"email\" placeholder=\"Введіть електронну пошту\"\n                        required class=\"input\">\n                    <span v-if=\"emailError\" class=\"text-red-500 text-xs\">{{ emailError }}</span>\n                </div>\n                <div class=\"flex flex-col\">\n                    <input type=\"text\" v-model=\"phone\" placeholder=\"Введіть номер телефону\" required class=\"input\">\n                    <span v-if=\"phoneError\" class=\"text-red-500 text-xs\">{{ phoneError }}</span>\n                </div>\n                <div class=\"flex flex-col\">\n                    <input type=\"password\" v-model=\"password\" placeholder=\"Введіть пароль\" required class=\"input\">\n                    <span v-if=\"passwordError\" class=\"text-red-500 text-xs\">{{ passwordError }}</span>\n                </div>\n                <div class=\"flex flex-col\">\n                    <input type=\"password\" v-model=\"repeatPassword\" placeholder=\"Повторіть пароль\" required\n                        class=\"input\">\n                    <span v-if=\"repeatPasswordError\" class=\"text-red-500 text-xs\">{{ repeatPasswordError }}</span>\n                </div>\n                <button type=\"submit\" class=\"btn bg-purple-500 text-white hover:bg-purple-600 w-full\">Створити новий\n                    акаунт</button>\n\n            </form>\n            <nuxt-link to=\"/auth/\" class=\"text-center block mt-4 text-blue-600\">Ввійти</nuxt-link>\n        </div>\n    </div>\n</template>\n\n\n\n\n\n<script setup>\nimport { ref } from 'vue';\nimport { useRouter } from 'vue-router';\n\nconst firstname = ref('');\nconst lastname = ref('');\nconst email = ref('');\nconst phone = ref('');\nconst password = ref('');\nconst repeatPassword = ref('');\nconst router = useRouter();\nconst referal = 'https://buy-sell-api.onrender.com/api/auth/register'\nconst firstNameError = ref('');\nconst lastNameError = ref('');\nconst emailError = ref('');\nconst phoneError = ref('');\nconst passwordError = ref('');\nconst repeatPasswordError = ref('');\n\nconst registerUser = async () => {\n    const isValid = await validationData();\n    const isExist = await isExistUser(email.value);\n    console.log(\"isValid: \", isValid)\n    console.log(\"isExist: \", !isExist)\n    if (isValid) {\n        if (!isExist) {\n            try {\n                const token = useCookie('XSRF-TOKEN');\n                const formBody = {\n                    firstname: firstname.value,\n                    lastname: lastname.value,\n                    email: email.value,\n                    password: password.value,\n                    phone: phone.value,\n                };\n                const headers = new Headers({\n                    'X-XSRF-TOKEN': token.value\n                });\n                const tokenJWT = await useFetch(referal, {\n                    credentials: 'include',\n                    method: 'POST',\n                    body: JSON.stringify(formBody),\n                    headers\n                });\n                console.log(tokenJWT)\n                router.push('/auth/');\n            } catch (error) {\n                console.error('Помилка при реєстрації користувача:', error.message);\n            }\n        } else {\n            emailError.value = \"Така пошта вже існує!!!\"\n        }\n\n    } else {\n        console.log(\"Невірні дані!\")\n    }\n}\n\nasync function validationData() {\n    clearErrors();\n    let isValid = true;\n    if (firstname.value.length < 3 || firstname.value.length > 20) {\n        firstNameError.value = 'Ім\\'я повинно містити від 3 до 20 символів';\n        isValid = false;\n    }\n    if (lastname.value.length < 3 || lastname.value.length > 20) {\n        lastNameError.value = 'Фамілія повинна містити від 3 до 20 символів';\n        isValid = false;\n    }\n    if (!email.value.includes('@')) {\n        emailError.value = 'Введіть коректну електронну адресу';\n        isValid = false;\n    }\n    if (phone.value.length !== 10) {\n        phoneError.value = 'Номер телефону повинен містити 10 символів';\n        isValid = false;\n    }\n    if (password.value.length < 3 || password.value.length > 20) {\n        passwordError.value = 'Пароль повинен містити від 3 до 20 символів';\n        isValid = false;\n    }\n    if (password.value !== repeatPassword.value) {\n        repeatPasswordError.value = 'Паролі не співпадають';\n        isValid = false;\n    }\n    return isValid;\n}\nasync function isExistUser(userEmail) {\n    const isExistUserUrl = 'https://buy-sell-api.onrender.com/api/auth/is-exist/' + userEmail;\n    try {\n        const response = await fetch(isExistUserUrl);\n\n        if (!response.ok) {\n            throw new Error('Network response was not ok');\n        }\n\n        const data = await response.json();\n        return data; // Ось тут змінено\n    } catch (error) {\n        console.error('Error:', error);\n        return true;\n    }\n}\n\n\n\nfunction clearErrors() {\n    firstNameError.value = '';\n    lastNameError.value = '';\n    emailError.value = '';\n    phoneError.value = '';\n    passwordError.value = '';\n    repeatPasswordError.value = '';\n}\ndefinePageMeta({\n    layout: 'login'\n})\n</script>\n\n<style scoped>\n.input {\n    border: 1px solid #ced4da;\n    border-radius: 0.25rem;\n    padding: 0.5rem;\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\n\n.btn {\n    background-color: #c222ac;\n    color: #fff;\n    padding: 0.5rem 1rem;\n    border-radius: 0.25rem;\n    transition: background-color 0.15s ease-in-out;\n}\n\n.btn:hover {\n    background-color: #6c1d6c;\n}\n</style>\n"
+        ]
+      }
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884695910,
+      "end": 1713884695910,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884695910,
+      "end": 1713884695910,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884695910,
+      "end": 1713884695910,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884695910,
+      "end": 1713884695910,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1713884695910,
+      "end": 1713884695910,
+      "order": "pre"
+    },
+    {
+      "name": "server-only-component-transform",
+      "start": 1713884695911,
+      "end": 1713884695911,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".input{border:1px solid #ced4da;padding:.5rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out}.btn,.input{border-radius:.25rem}.btn{background-color:#c222ac;color:#fff;padding:.5rem 1rem;transition:background-color .15s ease-in-out}.btn:hover{background-color:#6c1d6c}",
+      "start": 1713884695911,
+      "end": 1713884695934,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/auth/registration.vue",
+        "mappings": "AACA,OACI,wBAAyB,CAEzB,aAAe,CACf,oEACJ,CAEA,YALI,oBAWJ,CANA,KACI,wBAAyB,CACzB,UAAW,CACX,kBAAoB,CAEpB,4CACJ,CAEA,WACI,wBACJ",
+        "names": [],
+        "sources": [
+          "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/auth/registration.vue"
+        ],
+        "sourcesContent": [
+          "\n.input {\n    border: 1px solid #ced4da;\n    border-radius: 0.25rem;\n    padding: 0.5rem;\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\n\n.btn {\n    background-color: #c222ac;\n    color: #fff;\n    padding: 0.5rem 1rem;\n    border-radius: 0.25rem;\n    transition: background-color 0.15s ease-in-out;\n}\n\n.btn:hover {\n    background-color: #6c1d6c;\n}\n"
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1713884695934,
+      "end": 1713884695934,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1713884695934,
+      "end": 1713884695934,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1713884695934,
+      "end": 1713884695934,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": ".input[data-v-44f3d446]{border:1px solid #ced4da;padding:.5rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out}.btn[data-v-44f3d446],.input[data-v-44f3d446]{border-radius:.25rem}.btn[data-v-44f3d446]{background-color:#c222ac;color:#fff;padding:.5rem 1rem;transition:background-color .15s ease-in-out}.btn[data-v-44f3d446]:hover{background-color:#6c1d6c}",
+      "start": 1713884695934,
+      "end": 1713884695934,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/auth/registration.vue",
+        "mappings": "AAAA,wBAAO,wBAAwB,CAAC,aAAa,CAAC,oEAAoE,CAAC,8CAAY,oBAAoB,CAAC,sBAAK,wBAAwB,CAAC,UAAU,CAAC,kBAAkB,CAAC,4CAA4C,CAAC,4BAAW,wBAAwB",
+        "names": [],
+        "sources": [
+          "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/auth/registration.vue"
+        ],
+        "sourcesContent": [
+          null
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1713884695934,
+      "end": 1713884695934,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884695934,
+      "end": 1713884695934,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884695934,
+      "end": 1713884695934,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884695934,
+      "end": 1713884695934,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884695934,
+      "end": 1713884695934,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1713884695934,
+      "end": 1713884695935,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884695935,
+      "end": 1713884695935,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1713884695935,
+      "end": 1713884695936,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1713884695936,
+      "end": 1713884695936,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+{
+  "resolvedId": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/components/admin/EditData.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n    <div class=\"bg-white p-8 rounded-lg shadow-lg mx-4\">\n        <div v-if=\"object\">\n            <h2 class=\"text-center text-xl font-semibold mb-4\">Редагувати {{ objectName }}</h2>\n            <input type=\"text\" v-model=\"nameObject\" placeholder=\"Введіть назву\"\n                class=\"block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500\">\n            <button @click.prevent=\"editData\" class=\"green-button block mx-auto mt-4\">Змінити назву {{ objectName\n                }}</button>\n            <nuxt-link :to=\"backUrl\" class=\"block btn-admin mt-4\">\n                Назад\n            </nuxt-link>\n        </div>\n        <div v-else>\n            <p>Помилка!!!</p>\n            <nuxt-link :to=\"backUrl\" class=\"btn-admin mt-4\">Повернутись назад</nuxt-link>\n        </div>\n    </div>\n</template>\n\n\n<script setup>\nimport { ref } from 'vue';\nimport { fetchWithToken } from '/utils/auth.js';\nimport { useRouter } from 'vue-router';\nconst router = useRouter();\nconst props = defineProps({\n    object: {\n        type: Object,\n        required: true\n    },\n    apiUrlEdit: {\n        type: String,\n        required: true\n    },\n    backUrl: {\n        type: String,\n        required: true\n    },\n    objectName: {\n        type: String,\n        required: true\n    }\n})\nconst nameObject = ref(props.object.name)\n\nconst editData = async (object) => {\n    const requestData = {\n        id: props.object.id,\n        name: nameObject.value,\n    }\n    console.log('REQUEST: ', JSON.stringify(requestData))\n    fetchWithToken(props.apiUrlEdit, {\n        method: 'PUT',\n        body: JSON.stringify(requestData)\n    });\n    await localStorage.removeItem('editObject');\n    router.push(props.backUrl);\n}\n</script>\n\n<style scoped></style>\n",
+      "start": 1713884693136,
+      "end": 1713884693415,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884693415,
+      "end": 1713884693415,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884693415,
+      "end": 1713884693415,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1713884693415,
+      "end": 1713884693415,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1713884693415,
+      "end": 1713884693415,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1713884693415,
+      "end": 1713884693415,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1713884693415,
+      "end": 1713884693415,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1713884693415,
+      "end": 1713884693415,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, vModelText as _vModelText, withDirectives as _withDirectives, withModifiers as _withModifiers, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\"\n\nconst _hoisted_1 = { class: \"bg-white p-8 rounded-lg shadow-lg mx-4\" }\nconst _hoisted_2 = { key: 0 }\nconst _hoisted_3 = { class: \"text-center text-xl font-semibold mb-4\" }\nconst _hoisted_4 = { key: 1 }\nconst _hoisted_5 = /*#__PURE__*/_createElementVNode(\"p\", null, \"Помилка!!!\", -1)\n\nimport { ref } from 'vue';\nimport { fetchWithToken } from '/utils/auth.js';\nimport { useRouter } from 'vue-router';\n\nconst _sfc_main = {\n  __name: 'EditData',\n  props: {\n    object: {\n        type: Object,\n        required: true\n    },\n    apiUrlEdit: {\n        type: String,\n        required: true\n    },\n    backUrl: {\n        type: String,\n        required: true\n    },\n    objectName: {\n        type: String,\n        required: true\n    }\n},\n  setup(__props) {\n\nconst router = useRouter();\nconst props = __props\nconst nameObject = ref(props.object.name)\n\nconst editData = async (object) => {\n    const requestData = {\n        id: props.object.id,\n        name: nameObject.value,\n    }\n    console.log('REQUEST: ', JSON.stringify(requestData))\n    fetchWithToken(props.apiUrlEdit, {\n        method: 'PUT',\n        body: JSON.stringify(requestData)\n    });\n    await localStorage.removeItem('editObject');\n    router.push(props.backUrl);\n}\n\nreturn (_ctx, _cache) => {\n  const _component_nuxt_link = _resolveComponent(\"nuxt-link\")\n\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    (__props.object)\n      ? (_openBlock(), _createElementBlock(\"div\", _hoisted_2, [\n          _createElementVNode(\"h2\", _hoisted_3, \"Редагувати \" + _toDisplayString(__props.objectName), 1),\n          _withDirectives(_createElementVNode(\"input\", {\n            type: \"text\",\n            \"onUpdate:modelValue\": _cache[0] || (_cache[0] = $event => ((nameObject).value = $event)),\n            placeholder: \"Введіть назву\",\n            class: \"block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500\"\n          }, null, 512), [\n            [_vModelText, nameObject.value]\n          ]),\n          _createElementVNode(\"button\", {\n            onClick: _withModifiers(editData, [\"prevent\"]),\n            class: \"green-button block mx-auto mt-4\"\n          }, \"Змінити назву \" + _toDisplayString(__props.objectName), 1),\n          _createVNode(_component_nuxt_link, {\n            to: __props.backUrl,\n            class: \"block btn-admin mt-4\"\n          }, {\n            default: _withCtx(() => [\n              _createTextVNode(\" Назад \")\n            ]),\n            _: 1\n          }, 8, [\"to\"])\n        ]))\n      : (_openBlock(), _createElementBlock(\"div\", _hoisted_4, [\n          _hoisted_5,\n          _createVNode(_component_nuxt_link, {\n            to: __props.backUrl,\n            class: \"btn-admin mt-4\"\n          }, {\n            default: _withCtx(() => [\n              _createTextVNode(\"Повернутись назад\")\n            ]),\n            _: 1\n          }, 8, [\"to\"])\n        ]))\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1713884693415,
+      "end": 1713884693417,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1713884693417,
+      "end": 1713884693417,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884693417,
+      "end": 1713884693417,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884693417,
+      "end": 1713884693417,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1713884693417,
+      "end": 1713884693417,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1713884693417,
+      "end": 1713884693417,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884693417,
+      "end": 1713884693418,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1713884693418,
+      "end": 1713884693418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1713884693418,
+      "end": 1713884693418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1713884693418,
+      "end": 1713884693418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1713884693418,
+      "end": 1713884693418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1713884693418,
+      "end": 1713884693418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1713884693418,
+      "end": 1713884693418,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1713884693418,
+      "end": 1713884693418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1713884693418,
+      "end": 1713884693418,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1713884693418,
+      "end": 1713884693418,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884693418,
+      "end": 1713884693418,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884693418,
+      "end": 1713884693419,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884693419,
+      "end": 1713884693419,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884693419,
+      "end": 1713884693419,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1713884693419,
+      "end": 1713884693419,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1713884693419,
+      "end": 1713884693419,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "result": "import { default as __nuxt_component_0 } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/node_modules/nuxt/dist/app/components/nuxt-link\";\nimport { toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, vModelText as _vModelText, withDirectives as _withDirectives, withModifiers as _withModifiers, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\"\n\nconst _hoisted_1 = { class: \"bg-white p-8 rounded-lg shadow-lg mx-4\" }\nconst _hoisted_2 = { key: 0 }\nconst _hoisted_3 = { class: \"text-center text-xl font-semibold mb-4\" }\nconst _hoisted_4 = { key: 1 }\nconst _hoisted_5 = /*#__PURE__*/_createElementVNode(\"p\", null, \"Помилка!!!\", -1)\n\nimport { ref } from 'vue';\nimport { fetchWithToken } from '/utils/auth.js';\nimport { useRouter } from 'vue-router';\n\nconst _sfc_main = {\n  __name: 'EditData',\n  props: {\n    object: {\n        type: Object,\n        required: true\n    },\n    apiUrlEdit: {\n        type: String,\n        required: true\n    },\n    backUrl: {\n        type: String,\n        required: true\n    },\n    objectName: {\n        type: String,\n        required: true\n    }\n},\n  setup(__props) {\n\nconst router = useRouter();\nconst props = __props\nconst nameObject = ref(props.object.name)\n\nconst editData = async (object) => {\n    const requestData = {\n        id: props.object.id,\n        name: nameObject.value,\n    }\n    console.log('REQUEST: ', JSON.stringify(requestData))\n    fetchWithToken(props.apiUrlEdit, {\n        method: 'PUT',\n        body: JSON.stringify(requestData)\n    });\n    await localStorage.removeItem('editObject');\n    router.push(props.backUrl);\n}\n\nreturn (_ctx, _cache) => {\n  const _component_nuxt_link = __nuxt_component_0\n\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    (__props.object)\n      ? (_openBlock(), _createElementBlock(\"div\", _hoisted_2, [\n          _createElementVNode(\"h2\", _hoisted_3, \"Редагувати \" + _toDisplayString(__props.objectName), 1),\n          _withDirectives(_createElementVNode(\"input\", {\n            type: \"text\",\n            \"onUpdate:modelValue\": _cache[0] || (_cache[0] = $event => ((nameObject).value = $event)),\n            placeholder: \"Введіть назву\",\n            class: \"block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500\"\n          }, null, 512), [\n            [_vModelText, nameObject.value]\n          ]),\n          _createElementVNode(\"button\", {\n            onClick: _withModifiers(editData, [\"prevent\"]),\n            class: \"green-button block mx-auto mt-4\"\n          }, \"Змінити назву \" + _toDisplayString(__props.objectName), 1),\n          _createVNode(_component_nuxt_link, {\n            to: __props.backUrl,\n            class: \"block btn-admin mt-4\"\n          }, {\n            default: _withCtx(() => [\n              _createTextVNode(\" Назад \")\n            ]),\n            _: 1\n          }, 8, [\"to\"])\n        ]))\n      : (_openBlock(), _createElementBlock(\"div\", _hoisted_4, [\n          _hoisted_5,\n          _createVNode(_component_nuxt_link, {\n            to: __props.backUrl,\n            class: \"btn-admin mt-4\"\n          }, {\n            default: _withCtx(() => [\n              _createTextVNode(\"Повернутись назад\")\n            ]),\n            _: 1\n          }, 8, [\"to\"])\n        ]))\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1713884693419,
+      "end": 1713884693419,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1713884693419,
+      "end": 1713884693419,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1713884693419,
+      "end": 1713884693419,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1713884693419,
+      "end": 1713884693419,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "resolvedId": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/search/[id].vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n    <div class=\"bg-gray-400 min-h-screen\">\n        <div class=\"w-full bg-white\">\n            <div class=\"container mx-auto p-4 pt-6\">\n                <button @click=\"goBack\" class=\"btn-admin\">Повернутись назад</button>\n            </div>\n        </div>\n\n        <div class=\"bg-gray-200 container mx-auto p-4 py-8\">\n            <div v-if=\"ad\">\n                <hr class=\"my-4 border-t border-gray-400\">\n                <div class=\"mt-4 flex flex-col lg:flex-row lg:justify-between items-center\">\n                    <!-- Фотографія зліва -->\n                    <div class=\"flex-shrink-0 mb-4 lg:mb-0 mx-auto\">\n                        <img :src=\"imageUrls[currentIndex]\" :alt=\"`Image ${currentIndex + 1}`\" class=\"thumb \">\n                        <div class=\"flex justify-center mt-4\">\n                            <button @click=\"prevImage\" :disabled=\"currentIndex === 0\"\n                                :class=\"{ 'opacity-50': currentIndex === 0 }\"\n                                class=\"mr-2 p-2 bg-gray-100 rounded dark:bg-gray-800 dark:text-gray-400 w-16\"><b>&lt;</b></button>\n                            <button @click=\"nextImage\" :disabled=\"currentIndex === imageUrls.length - 1\"\n                                :class=\"{ 'opacity-50': currentIndex === imageUrls.length - 1 }\"\n                                class=\"p-2 bg-gray-100 rounded dark:bg-gray-800 dark:text-gray-400 w-16\"><b>&gt;</b></button>\n                        </div>\n                    </div>\n                    <!-- Інформаційна панель справа -->\n                    <div class=\"text-lg w-full lg:w-2/5 lg:mx-10 bg-white rounded-lg shadow-md p-8\">\n                        <p class=\"font-bold text-2xl\" style=\"word-wrap: break-word;\">{{ ad.name }}</p>\n                        <p class=\"text-gray-700 font-bold text-2xl mt-2\" style=\"word-wrap: break-word;\">{{ ad.price }}\n                            грн</p>\n                        <hr class=\"my-4 border-t border-gray-300\">\n                        <div class=\"flex items-center mt-4\">\n                            <img src=\"/img/card/location.png\" alt=\"Location\" class=\"w-4 h-4 mr-1\">\n                            <p class=\"text-gray-700\">{{ ad.city.name }}</p>\n                        </div>\n                        <div class=\"flex items-center mt-1\">\n                            <img src=\"/img/card/category.png\" alt=\"Category\" class=\"w-4 h-4 mr-1\">\n                            <p class=\"text-gray-700\">{{ ad.category.name }}</p>\n                        </div>\n                        <p class=\"text-purple-900 mt-2\">Автор: {{ ad.user.firstName }} {{ ad.user.lastName }}</p>\n\n                        <div class=\"text-center mt-8\">\n                            <button @click=\"showPhoneNumber\" class=\"btn-admin rounded mt-2 w-full lg:block\">{{\n                    numberPhone }}</button>\n                            <hr class=\"my-4 border-t border-gray-300\">\n                            <p class=\"text-sm text-gray-500 mt-4\">Дата створення: {{ date }}</p>\n                        </div>\n\n\n\n                    </div>\n\n\n\n                </div>\n                <hr class=\"my-4 border-t border-gray-400\">\n                <div class=\"bg-white rounded-lg shadow-md p-4 pt-8 block-size\">\n                    <p class=\"font-bold text-xl text-center\">Опис</p>\n                    <hr class=\"my-4 border-t border-gray-400\">\n                    <p style=\"word-wrap: break-word;\">{{ ad.description }}</p>\n                </div>\n\n\n\n            </div>\n            <div v-else>\n                <p>Завантаження даних...</p>\n            </div>\n        </div>\n    </div>\n</template>\n\n\n\n\n\n<script setup>\nimport { ref, onMounted } from 'vue';\nimport { useRoute } from 'vue-router';\n\nconst { id } = useRoute().params;\nconst ad = ref(null);\nconst date = ref('');\nconst imageUrls = ref([]);\nconst currentIndex = ref(0);\nconst showPhone = ref(false);\nconst numberPhone = ref('Показати номер');\n\nasync function loadData() {\n    const getAdByIdURL = 'https://buy-sell-api.onrender.com/api/search/ad/' + id;\n    try {\n        const response = await fetch(getAdByIdURL);\n        if (response.ok) {\n            const data = await response.json();\n            ad.value = data;\n            date.value = await dataFormater(ad.value.dateOfCreated);;\n            await getPhotos(id, 'https://buy-sell-api.onrender.com/api/search/ads-images/');\n        } else {\n            console.error('Помилка при отриманні даних');\n        }\n    } catch (error) {\n        console.error('Помилка при виконанні запиту:', error);\n    }\n}\n\nasync function getPhotos(idAd, referalURL) {\n    try {\n        referalURL = referalURL + idAd;\n        const response = await fetch(referalURL);\n        const images = await response.json();\n        for (const image of images) {\n            const imageUrl = 'https://buy-sell-api.onrender.com/api/search/image/' + image.id;\n            const responseImage = await fetch(imageUrl);\n            const blob = await responseImage.blob();\n            const imageUrlObject = URL.createObjectURL(blob);\n            imageUrls.value.push(imageUrlObject);\n        }\n    } catch (error) {\n        console.error('Error fetching photo:', error);\n    }\n}\nasync function dataFormater() {\n    // Вхідна дата\n    const dateString = '2024-04-18T17:18:06.704567';\n\n    // Створення об'єкта Date з рядка\n    const dateObject = new Date(dateString);\n\n    // Форматування дати за допомогою методів Date\n    const formattedDate = `${dateObject.getDate()}.${dateObject.getMonth() + 1}.${dateObject.getFullYear()}`;\n\n    // Форматування часу за допомогою методів Date\n    const formattedTime = `${dateObject.getHours()}:${dateObject.getMinutes()}`;\n\n    // Кінцеве форматоване значення\n    const formattedDateTime = `${formattedDate} ${formattedTime}`;\n\n    return formattedDateTime; // Виведе: Дата створення: 18.4.2024 17:18\n}\n// Функція для перегортування фото\nfunction nextImage() {\n    currentIndex.value = (currentIndex.value + 1);\n}\n\nfunction prevImage() {\n    currentIndex.value = (currentIndex.value - 1);\n}\n\n// Функція для показу номера телефону\nfunction showPhoneNumber() {\n    showPhone.value = true;\n    numberPhone.value = '+38' + ad.value.user.phone;\n}\nfunction goBack() {\n    window.history.back();\n}\nonMounted(() => {\n    loadData();\n});\n</script>\n\n<style scoped>\n.thumb {\n    max-width: 500px;\n    max-height: 400px;\n}\n\n.block-size {\n    min-height: 150px;\n}\n</style>\n",
+      "start": 1713884692648,
+      "end": 1713884692970,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884692970,
+      "end": 1713884692970,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884692970,
+      "end": 1713884692970,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1713884692970,
+      "end": 1713884692970,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1713884692970,
+      "end": 1713884692970,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1713884692970,
+      "end": 1713884692970,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1713884692970,
+      "end": 1713884692970,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1713884692970,
+      "end": 1713884692970,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { createElementVNode as _createElementVNode, normalizeClass as _normalizeClass, toDisplayString as _toDisplayString, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\nimport _imports_0 from '/img/card/location.png'\nimport _imports_1 from '/img/card/category.png'\n\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-7f9fb389\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = { class: \"bg-gray-400 min-h-screen\" }\nconst _hoisted_2 = { class: \"bg-gray-200 container mx-auto p-4 py-8\" }\nconst _hoisted_3 = { key: 0 }\nconst _hoisted_4 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"hr\", { class: \"my-4 border-t border-gray-400\" }, null, -1))\nconst _hoisted_5 = { class: \"mt-4 flex flex-col lg:flex-row lg:justify-between items-center\" }\nconst _hoisted_6 = { class: \"flex-shrink-0 mb-4 lg:mb-0 mx-auto\" }\nconst _hoisted_7 = [\"src\", \"alt\"]\nconst _hoisted_8 = { class: \"flex justify-center mt-4\" }\nconst _hoisted_9 = [\"disabled\"]\nconst _hoisted_10 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"b\", null, \"<\", -1))\nconst _hoisted_11 = [\n  _hoisted_10\n]\nconst _hoisted_12 = [\"disabled\"]\nconst _hoisted_13 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"b\", null, \">\", -1))\nconst _hoisted_14 = [\n  _hoisted_13\n]\nconst _hoisted_15 = { class: \"text-lg w-full lg:w-2/5 lg:mx-10 bg-white rounded-lg shadow-md p-8\" }\nconst _hoisted_16 = {\n  class: \"font-bold text-2xl\",\n  style: {\"word-wrap\":\"break-word\"}\n}\nconst _hoisted_17 = {\n  class: \"text-gray-700 font-bold text-2xl mt-2\",\n  style: {\"word-wrap\":\"break-word\"}\n}\nconst _hoisted_18 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"hr\", { class: \"my-4 border-t border-gray-300\" }, null, -1))\nconst _hoisted_19 = { class: \"flex items-center mt-4\" }\nconst _hoisted_20 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"img\", {\n  src: _imports_0,\n  alt: \"Location\",\n  class: \"w-4 h-4 mr-1\"\n}, null, -1))\nconst _hoisted_21 = { class: \"text-gray-700\" }\nconst _hoisted_22 = { class: \"flex items-center mt-1\" }\nconst _hoisted_23 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"img\", {\n  src: _imports_1,\n  alt: \"Category\",\n  class: \"w-4 h-4 mr-1\"\n}, null, -1))\nconst _hoisted_24 = { class: \"text-gray-700\" }\nconst _hoisted_25 = { class: \"text-purple-900 mt-2\" }\nconst _hoisted_26 = { class: \"text-center mt-8\" }\nconst _hoisted_27 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"hr\", { class: \"my-4 border-t border-gray-300\" }, null, -1))\nconst _hoisted_28 = { class: \"text-sm text-gray-500 mt-4\" }\nconst _hoisted_29 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"hr\", { class: \"my-4 border-t border-gray-400\" }, null, -1))\nconst _hoisted_30 = { class: \"bg-white rounded-lg shadow-md p-4 pt-8 block-size\" }\nconst _hoisted_31 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"p\", { class: \"font-bold text-xl text-center\" }, \"Опис\", -1))\nconst _hoisted_32 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"hr\", { class: \"my-4 border-t border-gray-400\" }, null, -1))\nconst _hoisted_33 = { style: {\"word-wrap\":\"break-word\"} }\nconst _hoisted_34 = { key: 1 }\nconst _hoisted_35 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"p\", null, \"Завантаження даних...\", -1))\nconst _hoisted_36 = [\n  _hoisted_35\n]\n\nimport { ref, onMounted } from 'vue';\nimport { useRoute } from 'vue-router';\n\n\nconst _sfc_main = {\n  __name: '[id]',\n  setup(__props) {\n\nconst { id } = useRoute().params;\nconst ad = ref(null);\nconst date = ref('');\nconst imageUrls = ref([]);\nconst currentIndex = ref(0);\nconst showPhone = ref(false);\nconst numberPhone = ref('Показати номер');\n\nasync function loadData() {\n    const getAdByIdURL = 'https://buy-sell-api.onrender.com/api/search/ad/' + id;\n    try {\n        const response = await fetch(getAdByIdURL);\n        if (response.ok) {\n            const data = await response.json();\n            ad.value = data;\n            date.value = await dataFormater(ad.value.dateOfCreated);;\n            await getPhotos(id, 'https://buy-sell-api.onrender.com/api/search/ads-images/');\n        } else {\n            console.error('Помилка при отриманні даних');\n        }\n    } catch (error) {\n        console.error('Помилка при виконанні запиту:', error);\n    }\n}\n\nasync function getPhotos(idAd, referalURL) {\n    try {\n        referalURL = referalURL + idAd;\n        const response = await fetch(referalURL);\n        const images = await response.json();\n        for (const image of images) {\n            const imageUrl = 'https://buy-sell-api.onrender.com/api/search/image/' + image.id;\n            const responseImage = await fetch(imageUrl);\n            const blob = await responseImage.blob();\n            const imageUrlObject = URL.createObjectURL(blob);\n            imageUrls.value.push(imageUrlObject);\n        }\n    } catch (error) {\n        console.error('Error fetching photo:', error);\n    }\n}\nasync function dataFormater() {\n    // Вхідна дата\n    const dateString = '2024-04-18T17:18:06.704567';\n\n    // Створення об'єкта Date з рядка\n    const dateObject = new Date(dateString);\n\n    // Форматування дати за допомогою методів Date\n    const formattedDate = `${dateObject.getDate()}.${dateObject.getMonth() + 1}.${dateObject.getFullYear()}`;\n\n    // Форматування часу за допомогою методів Date\n    const formattedTime = `${dateObject.getHours()}:${dateObject.getMinutes()}`;\n\n    // Кінцеве форматоване значення\n    const formattedDateTime = `${formattedDate} ${formattedTime}`;\n\n    return formattedDateTime; // Виведе: Дата створення: 18.4.2024 17:18\n}\n// Функція для перегортування фото\nfunction nextImage() {\n    currentIndex.value = (currentIndex.value + 1);\n}\n\nfunction prevImage() {\n    currentIndex.value = (currentIndex.value - 1);\n}\n\n// Функція для показу номера телефону\nfunction showPhoneNumber() {\n    showPhone.value = true;\n    numberPhone.value = '+38' + ad.value.user.phone;\n}\nfunction goBack() {\n    window.history.back();\n}\nonMounted(() => {\n    loadData();\n});\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createElementVNode(\"div\", { class: \"w-full bg-white\" }, [\n      _createElementVNode(\"div\", { class: \"container mx-auto p-4 pt-6\" }, [\n        _createElementVNode(\"button\", {\n          onClick: goBack,\n          class: \"btn-admin\"\n        }, \"Повернутись назад\")\n      ])\n    ]),\n    _createElementVNode(\"div\", _hoisted_2, [\n      (ad.value)\n        ? (_openBlock(), _createElementBlock(\"div\", _hoisted_3, [\n            _hoisted_4,\n            _createElementVNode(\"div\", _hoisted_5, [\n              _createElementVNode(\"div\", _hoisted_6, [\n                _createElementVNode(\"img\", {\n                  src: imageUrls.value[currentIndex.value],\n                  alt: `Image ${currentIndex.value + 1}`,\n                  class: \"thumb\"\n                }, null, 8, _hoisted_7),\n                _createElementVNode(\"div\", _hoisted_8, [\n                  _createElementVNode(\"button\", {\n                    onClick: prevImage,\n                    disabled: currentIndex.value === 0,\n                    class: _normalizeClass([{ 'opacity-50': currentIndex.value === 0 }, \"mr-2 p-2 bg-gray-100 rounded dark:bg-gray-800 dark:text-gray-400 w-16\"])\n                  }, _hoisted_11, 10, _hoisted_9),\n                  _createElementVNode(\"button\", {\n                    onClick: nextImage,\n                    disabled: currentIndex.value === imageUrls.value.length - 1,\n                    class: _normalizeClass([{ 'opacity-50': currentIndex.value === imageUrls.value.length - 1 }, \"p-2 bg-gray-100 rounded dark:bg-gray-800 dark:text-gray-400 w-16\"])\n                  }, _hoisted_14, 10, _hoisted_12)\n                ])\n              ]),\n              _createElementVNode(\"div\", _hoisted_15, [\n                _createElementVNode(\"p\", _hoisted_16, _toDisplayString(ad.value.name), 1),\n                _createElementVNode(\"p\", _hoisted_17, _toDisplayString(ad.value.price) + \" грн\", 1),\n                _hoisted_18,\n                _createElementVNode(\"div\", _hoisted_19, [\n                  _hoisted_20,\n                  _createElementVNode(\"p\", _hoisted_21, _toDisplayString(ad.value.city.name), 1)\n                ]),\n                _createElementVNode(\"div\", _hoisted_22, [\n                  _hoisted_23,\n                  _createElementVNode(\"p\", _hoisted_24, _toDisplayString(ad.value.category.name), 1)\n                ]),\n                _createElementVNode(\"p\", _hoisted_25, \"Автор: \" + _toDisplayString(ad.value.user.firstName) + \" \" + _toDisplayString(ad.value.user.lastName), 1),\n                _createElementVNode(\"div\", _hoisted_26, [\n                  _createElementVNode(\"button\", {\n                    onClick: showPhoneNumber,\n                    class: \"btn-admin rounded mt-2 w-full lg:block\"\n                  }, _toDisplayString(numberPhone.value), 1),\n                  _hoisted_27,\n                  _createElementVNode(\"p\", _hoisted_28, \"Дата створення: \" + _toDisplayString(date.value), 1)\n                ])\n              ])\n            ]),\n            _hoisted_29,\n            _createElementVNode(\"div\", _hoisted_30, [\n              _hoisted_31,\n              _hoisted_32,\n              _createElementVNode(\"p\", _hoisted_33, _toDisplayString(ad.value.description), 1)\n            ])\n          ]))\n        : (_openBlock(), _createElementBlock(\"div\", _hoisted_34, _hoisted_36))\n    ])\n  ]))\n}\n}\n\n}\n\n\nimport \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/search/[id].vue?vue&type=style&index=0&scoped=7f9fb389&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['__scopeId',\"data-v-7f9fb389\"]])",
+      "start": 1713884692970,
+      "end": 1713884692971,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1713884692971,
+      "end": 1713884692971,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884692971,
+      "end": 1713884692971,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884692971,
+      "end": 1713884692971,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1713884692971,
+      "end": 1713884692971,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1713884692971,
+      "end": 1713884692971,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884692971,
+      "end": 1713884692971,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1713884692971,
+      "end": 1713884692971,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1713884692971,
+      "end": 1713884692971,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1713884692971,
+      "end": 1713884692971,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1713884692971,
+      "end": 1713884692971,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1713884692971,
+      "end": 1713884692971,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1713884692971,
+      "end": 1713884692971,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1713884692971,
+      "end": 1713884692971,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1713884692971,
+      "end": 1713884692971,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1713884692971,
+      "end": 1713884692971,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884692971,
+      "end": 1713884692971,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884692971,
+      "end": 1713884692973,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884692973,
+      "end": 1713884692973,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884692973,
+      "end": 1713884692973,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1713884692973,
+      "end": 1713884692973,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1713884692973,
+      "end": 1713884692973,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1713884692973,
+      "end": 1713884692973,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1713884692973,
+      "end": 1713884692973,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1713884692973,
+      "end": 1713884692973,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1713884692973,
+      "end": 1713884692973,
+      "order": "normal"
+    }
+  ]
+}

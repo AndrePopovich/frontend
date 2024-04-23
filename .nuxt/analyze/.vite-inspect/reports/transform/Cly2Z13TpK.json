@@ -1,0 +1,215 @@
+{
+  "resolvedId": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/search/index.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n    <div class=\"bg-gray-200 min-h-screen p-8\">\n        <SearchData />\n        <div v-if=\"ads.length > 0\" class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\">\n            <h2 class=\"big-center-text mb-4\">Результати пошуку:</h2>\n            <ul class=\"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4\">\n                <li v-for=\"ad in ads\" :key=\"ad.id\"\n                    class=\"bg-white rounded-lg shadow-md overflow-hidden min-w-0 min-h-0\">\n                    <NuxtLink :to=\"`/search/${ad.id}`\" class=\"block\">\n                        <div class=\"aspect-w-1 aspect-h-1\">\n                            <img v-if=\"loadedImages[ad.id]\" :src=\"loadedImages[ad.id]\" class=\"thumb\" alt=\"Image\">\n                            <div v-else class=\"bg-gray-300 flex items-center justify-center text-gray-600\">Завантаження\n                                зображення...</div>\n                        </div>\n                        <div class=\"p-4\">\n                            <h3 class=\"text-lg font-semibold truncate mb-2\">{{ ad.name }}</h3>\n                            <div class=\"flex items-center\">\n                                <img src=\"/img/card/location.png\" alt=\"Місто\" class=\"mr-2 inline-block h-4 w-4\">\n                                <p>{{ ad.city.name }}</p>\n                            </div>\n                            <div class=\"flex items-center\">\n                                <img src=\"/img/card/category.png\" alt=\"Категорія\" class=\"mr-2 inline-block h-4 w-4\">\n                                <p>{{ ad.category.name }}</p>\n                            </div>\n                            <hr class=\"my-4 border-t border-gray-300\">\n                            <p class=\"font-bold text-xl my-4\">{{ ad.price }} грн</p>\n                        </div>\n\n\n                    </NuxtLink>\n                </li>\n            </ul>\n        </div>\n        <p v-else class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-4xl font-bold my-4\">Немає результатів\n            пошуку</p>\n\n\n    </div>\n</template>\n\n<script setup>\nimport { ref, onMounted, watch } from 'vue';\nimport { useRoute } from 'vue-router';\n\nimport SearchData from '/components/search/SearchData';\nconst route = useRoute();\nconst ads = ref([]);\nconst loadedImages = ref({});\n\nasync function loadData() {\n    const getAdsURL = 'https://buy-sell-api.onrender.com/api/search';\n    const adName = route.query.adName || '';\n    const categoryName = route.query.categoryName || '';\n    const cityName = route.query.cityName || '';\n    const minPrice = route.query.minPrice || '';\n    const maxPrice = route.query.maxPrice || '';\n    const sortBy = route.query.sortBy || 'default';\n\n    // Побудова URL-адреси з параметрами запиту\n    const url = new URL(getAdsURL);\n    url.searchParams.append('adName', adName);\n    url.searchParams.append('categoryName', categoryName);\n    url.searchParams.append('cityName', cityName);\n    url.searchParams.append('minPrice', minPrice);\n    url.searchParams.append('maxPrice', maxPrice);\n    url.searchParams.append('sortBy', sortBy);\n\n    try {\n        const response = await fetch(url);\n        if (response.ok) {\n            const data = await response.json();\n            ads.value = data;\n            // Після завантаження даних викликаємо loadImage для кожного оголошення\n            for (const ad of ads.value) {\n                loadImage(ad.id);\n            }\n        } else {\n            console.error('Помилка при отриманні даних');\n        }\n    } catch (error) {\n        console.error('Помилка при виконанні запиту:', error);\n    }\n}\n\n// Функція завантаження зображення для конкретного оголошення\nasync function loadImage(idAd) {\n    try {\n        const referalImg = 'https://buy-sell-api.onrender.com/api/search/preview/';\n        const url = referalImg + idAd;\n        const response = await fetch(url);\n        if (!response.ok) {\n            throw new Error('Failed to load image');\n        }\n        const blob = await response.blob();\n        const imageUrl = URL.createObjectURL(blob);\n        loadedImages.value[idAd] = imageUrl;\n    } catch (error) {\n        console.error('Error loading image:', error);\n    }\n}\n\n// Викликаємо loadData при старті компонента та при зміні параметрів запиту\nonMounted(() => {\n    loadData();\n    for (const ad of ads.value) {\n        loadImage(ad.id);\n    }\n});\nwatch(\n    () => route.query,\n    () => {\n        loadData();\n    }\n);\n\n</script>\n\n<style scoped>\n.thumb {\n    width: 100%;\n    height: 200px;\n    /* або будь-яка фіксована висота */\n    margin: 0 auto;\n    overflow: hidden;\n    /* Додаємо обрізання контенту */\n}\n</style>\n",
+      "start": 1713884692664,
+      "end": 1713884692975,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884692975,
+      "end": 1713884692975,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884692975,
+      "end": 1713884692976,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { unref as _unref, createVNode as _createVNode, createElementVNode as _createElementVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, toDisplayString as _toDisplayString, resolveComponent as _resolveComponent, withCtx as _withCtx, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\nimport _imports_0 from '/img/card/location.png'\nimport _imports_1 from '/img/card/category.png'\n\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-57106c34\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = { class: \"bg-gray-200 min-h-screen p-8\" }\nconst _hoisted_2 = {\n  key: 0,\n  class: \"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\"\n}\nconst _hoisted_3 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"h2\", { class: \"big-center-text mb-4\" }, \"Результати пошуку:\", -1))\nconst _hoisted_4 = { class: \"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4\" }\nconst _hoisted_5 = { class: \"aspect-w-1 aspect-h-1\" }\nconst _hoisted_6 = [\"src\"]\nconst _hoisted_7 = {\n  key: 1,\n  class: \"bg-gray-300 flex items-center justify-center text-gray-600\"\n}\nconst _hoisted_8 = { class: \"p-4\" }\nconst _hoisted_9 = { class: \"text-lg font-semibold truncate mb-2\" }\nconst _hoisted_10 = { class: \"flex items-center\" }\nconst _hoisted_11 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"img\", {\n  src: _imports_0,\n  alt: \"Місто\",\n  class: \"mr-2 inline-block h-4 w-4\"\n}, null, -1))\nconst _hoisted_12 = { class: \"flex items-center\" }\nconst _hoisted_13 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"img\", {\n  src: _imports_1,\n  alt: \"Категорія\",\n  class: \"mr-2 inline-block h-4 w-4\"\n}, null, -1))\nconst _hoisted_14 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"hr\", { class: \"my-4 border-t border-gray-300\" }, null, -1))\nconst _hoisted_15 = { class: \"font-bold text-xl my-4\" }\nconst _hoisted_16 = {\n  key: 1,\n  class: \"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-4xl font-bold my-4\"\n}\n\nimport { ref, onMounted, watch } from 'vue';\nimport { useRoute } from 'vue-router';\n\nimport SearchData from '/components/search/SearchData';\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\nconst route = useRoute();\nconst ads = ref([]);\nconst loadedImages = ref({});\n\nasync function loadData() {\n    const getAdsURL = 'https://buy-sell-api.onrender.com/api/search';\n    const adName = route.query.adName || '';\n    const categoryName = route.query.categoryName || '';\n    const cityName = route.query.cityName || '';\n    const minPrice = route.query.minPrice || '';\n    const maxPrice = route.query.maxPrice || '';\n    const sortBy = route.query.sortBy || 'default';\n\n    // Побудова URL-адреси з параметрами запиту\n    const url = new URL(getAdsURL);\n    url.searchParams.append('adName', adName);\n    url.searchParams.append('categoryName', categoryName);\n    url.searchParams.append('cityName', cityName);\n    url.searchParams.append('minPrice', minPrice);\n    url.searchParams.append('maxPrice', maxPrice);\n    url.searchParams.append('sortBy', sortBy);\n\n    try {\n        const response = await fetch(url);\n        if (response.ok) {\n            const data = await response.json();\n            ads.value = data;\n            // Після завантаження даних викликаємо loadImage для кожного оголошення\n            for (const ad of ads.value) {\n                loadImage(ad.id);\n            }\n        } else {\n            console.error('Помилка при отриманні даних');\n        }\n    } catch (error) {\n        console.error('Помилка при виконанні запиту:', error);\n    }\n}\n\n// Функція завантаження зображення для конкретного оголошення\nasync function loadImage(idAd) {\n    try {\n        const referalImg = 'https://buy-sell-api.onrender.com/api/search/preview/';\n        const url = referalImg + idAd;\n        const response = await fetch(url);\n        if (!response.ok) {\n            throw new Error('Failed to load image');\n        }\n        const blob = await response.blob();\n        const imageUrl = URL.createObjectURL(blob);\n        loadedImages.value[idAd] = imageUrl;\n    } catch (error) {\n        console.error('Error loading image:', error);\n    }\n}\n\n// Викликаємо loadData при старті компонента та при зміні параметрів запиту\nonMounted(() => {\n    loadData();\n    for (const ad of ads.value) {\n        loadImage(ad.id);\n    }\n});\nwatch(\n    () => route.query,\n    () => {\n        loadData();\n    }\n);\n\n\nreturn (_ctx, _cache) => {\n  const _component_NuxtLink = _resolveComponent(\"NuxtLink\")\n\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createVNode(_unref(SearchData)),\n    (ads.value.length > 0)\n      ? (_openBlock(), _createElementBlock(\"div\", _hoisted_2, [\n          _hoisted_3,\n          _createElementVNode(\"ul\", _hoisted_4, [\n            (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(ads.value, (ad) => {\n              return (_openBlock(), _createElementBlock(\"li\", {\n                key: ad.id,\n                class: \"bg-white rounded-lg shadow-md overflow-hidden min-w-0 min-h-0\"\n              }, [\n                _createVNode(_component_NuxtLink, {\n                  to: `/search/${ad.id}`,\n                  class: \"block\"\n                }, {\n                  default: _withCtx(() => [\n                    _createElementVNode(\"div\", _hoisted_5, [\n                      (loadedImages.value[ad.id])\n                        ? (_openBlock(), _createElementBlock(\"img\", {\n                            key: 0,\n                            src: loadedImages.value[ad.id],\n                            class: \"thumb\",\n                            alt: \"Image\"\n                          }, null, 8, _hoisted_6))\n                        : (_openBlock(), _createElementBlock(\"div\", _hoisted_7, \"Завантаження зображення...\"))\n                    ]),\n                    _createElementVNode(\"div\", _hoisted_8, [\n                      _createElementVNode(\"h3\", _hoisted_9, _toDisplayString(ad.name), 1),\n                      _createElementVNode(\"div\", _hoisted_10, [\n                        _hoisted_11,\n                        _createElementVNode(\"p\", null, _toDisplayString(ad.city.name), 1)\n                      ]),\n                      _createElementVNode(\"div\", _hoisted_12, [\n                        _hoisted_13,\n                        _createElementVNode(\"p\", null, _toDisplayString(ad.category.name), 1)\n                      ]),\n                      _hoisted_14,\n                      _createElementVNode(\"p\", _hoisted_15, _toDisplayString(ad.price) + \" грн\", 1)\n                    ])\n                  ]),\n                  _: 2\n                }, 1032, [\"to\"])\n              ]))\n            }), 128))\n          ])\n        ]))\n      : (_openBlock(), _createElementBlock(\"p\", _hoisted_16, \"Немає результатів пошуку\"))\n  ]))\n}\n}\n\n}\n\n\nimport \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/search/index.vue?vue&type=style&index=0&scoped=57106c34&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['__scopeId',\"data-v-57106c34\"]])",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884692976,
+      "end": 1713884692976,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884692976,
+      "end": 1713884692978,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884692978,
+      "end": 1713884692978,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884692978,
+      "end": 1713884692978,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1713884692978,
+      "end": 1713884692978,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1713884692978,
+      "end": 1713884692978,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "result": "import { default as __nuxt_component_0 } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/node_modules/nuxt/dist/app/components/nuxt-link\";\nimport { unref as _unref, createVNode as _createVNode, createElementVNode as _createElementVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, toDisplayString as _toDisplayString, resolveComponent as _resolveComponent, withCtx as _withCtx, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\nimport _imports_0 from '/img/card/location.png'\nimport _imports_1 from '/img/card/category.png'\n\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-57106c34\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = { class: \"bg-gray-200 min-h-screen p-8\" }\nconst _hoisted_2 = {\n  key: 0,\n  class: \"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\"\n}\nconst _hoisted_3 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"h2\", { class: \"big-center-text mb-4\" }, \"Результати пошуку:\", -1))\nconst _hoisted_4 = { class: \"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4\" }\nconst _hoisted_5 = { class: \"aspect-w-1 aspect-h-1\" }\nconst _hoisted_6 = [\"src\"]\nconst _hoisted_7 = {\n  key: 1,\n  class: \"bg-gray-300 flex items-center justify-center text-gray-600\"\n}\nconst _hoisted_8 = { class: \"p-4\" }\nconst _hoisted_9 = { class: \"text-lg font-semibold truncate mb-2\" }\nconst _hoisted_10 = { class: \"flex items-center\" }\nconst _hoisted_11 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"img\", {\n  src: _imports_0,\n  alt: \"Місто\",\n  class: \"mr-2 inline-block h-4 w-4\"\n}, null, -1))\nconst _hoisted_12 = { class: \"flex items-center\" }\nconst _hoisted_13 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"img\", {\n  src: _imports_1,\n  alt: \"Категорія\",\n  class: \"mr-2 inline-block h-4 w-4\"\n}, null, -1))\nconst _hoisted_14 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"hr\", { class: \"my-4 border-t border-gray-300\" }, null, -1))\nconst _hoisted_15 = { class: \"font-bold text-xl my-4\" }\nconst _hoisted_16 = {\n  key: 1,\n  class: \"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-4xl font-bold my-4\"\n}\n\nimport { ref, onMounted, watch } from 'vue';\nimport { useRoute } from 'vue-router';\n\nimport SearchData from '/components/search/SearchData';\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\nconst route = useRoute();\nconst ads = ref([]);\nconst loadedImages = ref({});\n\nasync function loadData() {\n    const getAdsURL = 'https://buy-sell-api.onrender.com/api/search';\n    const adName = route.query.adName || '';\n    const categoryName = route.query.categoryName || '';\n    const cityName = route.query.cityName || '';\n    const minPrice = route.query.minPrice || '';\n    const maxPrice = route.query.maxPrice || '';\n    const sortBy = route.query.sortBy || 'default';\n\n    // Побудова URL-адреси з параметрами запиту\n    const url = new URL(getAdsURL);\n    url.searchParams.append('adName', adName);\n    url.searchParams.append('categoryName', categoryName);\n    url.searchParams.append('cityName', cityName);\n    url.searchParams.append('minPrice', minPrice);\n    url.searchParams.append('maxPrice', maxPrice);\n    url.searchParams.append('sortBy', sortBy);\n\n    try {\n        const response = await fetch(url);\n        if (response.ok) {\n            const data = await response.json();\n            ads.value = data;\n            // Після завантаження даних викликаємо loadImage для кожного оголошення\n            for (const ad of ads.value) {\n                loadImage(ad.id);\n            }\n        } else {\n            console.error('Помилка при отриманні даних');\n        }\n    } catch (error) {\n        console.error('Помилка при виконанні запиту:', error);\n    }\n}\n\n// Функція завантаження зображення для конкретного оголошення\nasync function loadImage(idAd) {\n    try {\n        const referalImg = 'https://buy-sell-api.onrender.com/api/search/preview/';\n        const url = referalImg + idAd;\n        const response = await fetch(url);\n        if (!response.ok) {\n            throw new Error('Failed to load image');\n        }\n        const blob = await response.blob();\n        const imageUrl = URL.createObjectURL(blob);\n        loadedImages.value[idAd] = imageUrl;\n    } catch (error) {\n        console.error('Error loading image:', error);\n    }\n}\n\n// Викликаємо loadData при старті компонента та при зміні параметрів запиту\nonMounted(() => {\n    loadData();\n    for (const ad of ads.value) {\n        loadImage(ad.id);\n    }\n});\nwatch(\n    () => route.query,\n    () => {\n        loadData();\n    }\n);\n\n\nreturn (_ctx, _cache) => {\n  const _component_NuxtLink = __nuxt_component_0\n\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createVNode(_unref(SearchData)),\n    (ads.value.length > 0)\n      ? (_openBlock(), _createElementBlock(\"div\", _hoisted_2, [\n          _hoisted_3,\n          _createElementVNode(\"ul\", _hoisted_4, [\n            (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(ads.value, (ad) => {\n              return (_openBlock(), _createElementBlock(\"li\", {\n                key: ad.id,\n                class: \"bg-white rounded-lg shadow-md overflow-hidden min-w-0 min-h-0\"\n              }, [\n                _createVNode(_component_NuxtLink, {\n                  to: `/search/${ad.id}`,\n                  class: \"block\"\n                }, {\n                  default: _withCtx(() => [\n                    _createElementVNode(\"div\", _hoisted_5, [\n                      (loadedImages.value[ad.id])\n                        ? (_openBlock(), _createElementBlock(\"img\", {\n                            key: 0,\n                            src: loadedImages.value[ad.id],\n                            class: \"thumb\",\n                            alt: \"Image\"\n                          }, null, 8, _hoisted_6))\n                        : (_openBlock(), _createElementBlock(\"div\", _hoisted_7, \"Завантаження зображення...\"))\n                    ]),\n                    _createElementVNode(\"div\", _hoisted_8, [\n                      _createElementVNode(\"h3\", _hoisted_9, _toDisplayString(ad.name), 1),\n                      _createElementVNode(\"div\", _hoisted_10, [\n                        _hoisted_11,\n                        _createElementVNode(\"p\", null, _toDisplayString(ad.city.name), 1)\n                      ]),\n                      _createElementVNode(\"div\", _hoisted_12, [\n                        _hoisted_13,\n                        _createElementVNode(\"p\", null, _toDisplayString(ad.category.name), 1)\n                      ]),\n                      _hoisted_14,\n                      _createElementVNode(\"p\", _hoisted_15, _toDisplayString(ad.price) + \" грн\", 1)\n                    ])\n                  ]),\n                  _: 2\n                }, 1032, [\"to\"])\n              ]))\n            }), 128))\n          ])\n        ]))\n      : (_openBlock(), _createElementBlock(\"p\", _hoisted_16, \"Немає результатів пошуку\"))\n  ]))\n}\n}\n\n}\n\n\nimport \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/search/index.vue?vue&type=style&index=0&scoped=57106c34&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['__scopeId',\"data-v-57106c34\"]])",
+      "start": 1713884692978,
+      "end": 1713884692978,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1713884692978,
+      "end": 1713884692978,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1713884692978,
+      "end": 1713884692978,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1713884692978,
+      "end": 1713884692978,
+      "order": "normal"
+    }
+  ]
+}

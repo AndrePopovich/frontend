@@ -1,0 +1,294 @@
+{
+  "resolvedId": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/search/[id].vue?vue&type=style&index=0&scoped=7f9fb389&lang.css?inline&used",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.thumb {\n    max-width: 500px;\n    max-height: 400px;\n}\n\n.block-size {\n    min-height: 150px;\n}\n",
+      "start": 1713884696047,
+      "end": 1713884696047,
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/search/[id].vue"
+        ],
+        "names": [],
+        "mappings": ";AAiKA,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;IACH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC;IAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC;AACrB;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;IACR,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC;AACrB",
+        "file": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/search/[id].vue",
+        "sourceRoot": "",
+        "sourcesContent": [
+          "<template>\n    <div class=\"bg-gray-400 min-h-screen\">\n        <div class=\"w-full bg-white\">\n            <div class=\"container mx-auto p-4 pt-6\">\n                <button @click=\"goBack\" class=\"btn-admin\">Повернутись назад</button>\n            </div>\n        </div>\n\n        <div class=\"bg-gray-200 container mx-auto p-4 py-8\">\n            <div v-if=\"ad\">\n                <hr class=\"my-4 border-t border-gray-400\">\n                <div class=\"mt-4 flex flex-col lg:flex-row lg:justify-between items-center\">\n                    <!-- Фотографія зліва -->\n                    <div class=\"flex-shrink-0 mb-4 lg:mb-0 mx-auto\">\n                        <img :src=\"imageUrls[currentIndex]\" :alt=\"`Image ${currentIndex + 1}`\" class=\"thumb \">\n                        <div class=\"flex justify-center mt-4\">\n                            <button @click=\"prevImage\" :disabled=\"currentIndex === 0\"\n                                :class=\"{ 'opacity-50': currentIndex === 0 }\"\n                                class=\"mr-2 p-2 bg-gray-100 rounded dark:bg-gray-800 dark:text-gray-400 w-16\"><b>&lt;</b></button>\n                            <button @click=\"nextImage\" :disabled=\"currentIndex === imageUrls.length - 1\"\n                                :class=\"{ 'opacity-50': currentIndex === imageUrls.length - 1 }\"\n                                class=\"p-2 bg-gray-100 rounded dark:bg-gray-800 dark:text-gray-400 w-16\"><b>&gt;</b></button>\n                        </div>\n                    </div>\n                    <!-- Інформаційна панель справа -->\n                    <div class=\"text-lg w-full lg:w-2/5 lg:mx-10 bg-white rounded-lg shadow-md p-8\">\n                        <p class=\"font-bold text-2xl\" style=\"word-wrap: break-word;\">{{ ad.name }}</p>\n                        <p class=\"text-gray-700 font-bold text-2xl mt-2\" style=\"word-wrap: break-word;\">{{ ad.price }}\n                            грн</p>\n                        <hr class=\"my-4 border-t border-gray-300\">\n                        <div class=\"flex items-center mt-4\">\n                            <img src=\"/img/card/location.png\" alt=\"Location\" class=\"w-4 h-4 mr-1\">\n                            <p class=\"text-gray-700\">{{ ad.city.name }}</p>\n                        </div>\n                        <div class=\"flex items-center mt-1\">\n                            <img src=\"/img/card/category.png\" alt=\"Category\" class=\"w-4 h-4 mr-1\">\n                            <p class=\"text-gray-700\">{{ ad.category.name }}</p>\n                        </div>\n                        <p class=\"text-purple-900 mt-2\">Автор: {{ ad.user.firstName }} {{ ad.user.lastName }}</p>\n\n                        <div class=\"text-center mt-8\">\n                            <button @click=\"showPhoneNumber\" class=\"btn-admin rounded mt-2 w-full lg:block\">{{\n                    numberPhone }}</button>\n                            <hr class=\"my-4 border-t border-gray-300\">\n                            <p class=\"text-sm text-gray-500 mt-4\">Дата створення: {{ date }}</p>\n                        </div>\n\n\n\n                    </div>\n\n\n\n                </div>\n                <hr class=\"my-4 border-t border-gray-400\">\n                <div class=\"bg-white rounded-lg shadow-md p-4 pt-8 block-size\">\n                    <p class=\"font-bold text-xl text-center\">Опис</p>\n                    <hr class=\"my-4 border-t border-gray-400\">\n                    <p style=\"word-wrap: break-word;\">{{ ad.description }}</p>\n                </div>\n\n\n\n            </div>\n            <div v-else>\n                <p>Завантаження даних...</p>\n            </div>\n        </div>\n    </div>\n</template>\n\n\n\n\n\n<script setup>\nimport { ref, onMounted } from 'vue';\nimport { useRoute } from 'vue-router';\n\nconst { id } = useRoute().params;\nconst ad = ref(null);\nconst date = ref('');\nconst imageUrls = ref([]);\nconst currentIndex = ref(0);\nconst showPhone = ref(false);\nconst numberPhone = ref('Показати номер');\n\nasync function loadData() {\n    const getAdByIdURL = 'https://buy-sell-api.onrender.com/api/search/ad/' + id;\n    try {\n        const response = await fetch(getAdByIdURL);\n        if (response.ok) {\n            const data = await response.json();\n            ad.value = data;\n            date.value = await dataFormater(ad.value.dateOfCreated);;\n            await getPhotos(id, 'https://buy-sell-api.onrender.com/api/search/ads-images/');\n        } else {\n            console.error('Помилка при отриманні даних');\n        }\n    } catch (error) {\n        console.error('Помилка при виконанні запиту:', error);\n    }\n}\n\nasync function getPhotos(idAd, referalURL) {\n    try {\n        referalURL = referalURL + idAd;\n        const response = await fetch(referalURL);\n        const images = await response.json();\n        for (const image of images) {\n            const imageUrl = 'https://buy-sell-api.onrender.com/api/search/image/' + image.id;\n            const responseImage = await fetch(imageUrl);\n            const blob = await responseImage.blob();\n            const imageUrlObject = URL.createObjectURL(blob);\n            imageUrls.value.push(imageUrlObject);\n        }\n    } catch (error) {\n        console.error('Error fetching photo:', error);\n    }\n}\nasync function dataFormater() {\n    // Вхідна дата\n    const dateString = '2024-04-18T17:18:06.704567';\n\n    // Створення об'єкта Date з рядка\n    const dateObject = new Date(dateString);\n\n    // Форматування дати за допомогою методів Date\n    const formattedDate = `${dateObject.getDate()}.${dateObject.getMonth() + 1}.${dateObject.getFullYear()}`;\n\n    // Форматування часу за допомогою методів Date\n    const formattedTime = `${dateObject.getHours()}:${dateObject.getMinutes()}`;\n\n    // Кінцеве форматоване значення\n    const formattedDateTime = `${formattedDate} ${formattedTime}`;\n\n    return formattedDateTime; // Виведе: Дата створення: 18.4.2024 17:18\n}\n// Функція для перегортування фото\nfunction nextImage() {\n    currentIndex.value = (currentIndex.value + 1);\n}\n\nfunction prevImage() {\n    currentIndex.value = (currentIndex.value - 1);\n}\n\n// Функція для показу номера телефону\nfunction showPhoneNumber() {\n    showPhone.value = true;\n    numberPhone.value = '+38' + ad.value.user.phone;\n}\nfunction goBack() {\n    window.history.back();\n}\nonMounted(() => {\n    loadData();\n});\n</script>\n\n<style scoped>\n.thumb {\n    max-width: 500px;\n    max-height: 400px;\n}\n\n.block-size {\n    min-height: 150px;\n}\n</style>\n"
+        ]
+      }
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884696047,
+      "end": 1713884696047,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884696047,
+      "end": 1713884696047,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884696047,
+      "end": 1713884696047,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884696047,
+      "end": 1713884696047,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1713884696047,
+      "end": 1713884696047,
+      "order": "pre"
+    },
+    {
+      "name": "server-only-component-transform",
+      "start": 1713884696047,
+      "end": 1713884696048,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".thumb{max-height:400px;max-width:500px}.block-size{min-height:150px}",
+      "start": 1713884696048,
+      "end": 1713884696069,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/search/[id].vue",
+        "mappings": "AACA,OAEI,gBAAiB,CADjB,eAEJ,CAEA,YACI,gBACJ",
+        "names": [],
+        "sources": [
+          "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/search/[id].vue"
+        ],
+        "sourcesContent": [
+          "\n.thumb {\n    max-width: 500px;\n    max-height: 400px;\n}\n\n.block-size {\n    min-height: 150px;\n}\n"
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1713884696069,
+      "end": 1713884696069,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1713884696069,
+      "end": 1713884696069,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1713884696069,
+      "end": 1713884696069,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": ".thumb[data-v-7f9fb389]{max-height:400px;max-width:500px}.block-size[data-v-7f9fb389]{min-height:150px}",
+      "start": 1713884696069,
+      "end": 1713884696070,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/search/[id].vue",
+        "mappings": "AAAA,wBAAO,gBAAgB,CAAC,eAAe,CAAC,6BAAY,gBAAgB",
+        "names": [],
+        "sources": [
+          "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/search/[id].vue"
+        ],
+        "sourcesContent": [
+          null
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "export default \".thumb[data-v-7f9fb389]{max-height:400px;max-width:500px}.block-size[data-v-7f9fb389]{min-height:150px}\"",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1713884696070,
+      "end": 1713884696070,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1713884696071,
+      "end": 1713884696071,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1713884696071,
+      "end": 1713884696071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1713884696071,
+      "end": 1713884696071,
+      "order": "normal"
+    }
+  ]
+}

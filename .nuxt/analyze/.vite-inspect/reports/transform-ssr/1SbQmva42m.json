@@ -1,0 +1,252 @@
+{
+  "resolvedId": "virtual:nuxt:C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/.nuxt/routes.mjs",
+  "transforms": [
+    {
+      "name": "virtual",
+      "result": "import { default as indexHgzRXt8vsMMeta } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/auth/index.vue?macro=true\";\nimport { default as registrationzeunpIB7oiMeta } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/auth/registration.vue?macro=true\";\nimport { default as index3WTgmgNLX3Meta } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/index.vue?macro=true\";\nimport { default as add1Nrh5NY0fcMeta } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/categories/add.vue?macro=true\";\nimport { default as editXiotvXVEIjMeta } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/categories/edit.vue?macro=true\";\nimport { default as indexxO9z7lY8glMeta } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/categories/index.vue?macro=true\";\nimport { default as addMcLGnxeghkMeta } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/cities/add.vue?macro=true\";\nimport { default as editv8yrTwHKRMMeta } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/cities/edit.vue?macro=true\";\nimport { default as index6MA0duw1wtMeta } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/cities/index.vue?macro=true\";\nimport { default as indexhtnLoxAh18Meta } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/index.vue?macro=true\";\nimport { default as indexxt2FThLWn1Meta } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/users/index.vue?macro=true\";\nimport { default as addWFHoBuJpgCMeta } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/user/ads/add.vue?macro=true\";\nimport { default as editPudJ5EgnOtMeta } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/user/ads/edit.vue?macro=true\";\nimport { default as indexMZH1NxSclQMeta } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/user/ads/index.vue?macro=true\";\nimport { default as indexiK54FV57NRMeta } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/user/index.vue?macro=true\";\nimport { default as _91id_93cXtnNiM7WWMeta } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/search/[id].vue?macro=true\";\nimport { default as indexCly2Z13TpKMeta } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/search/index.vue?macro=true\";\nexport default [\n  {\n    name: indexHgzRXt8vsMMeta?.name ?? \"auth\",\n    path: indexHgzRXt8vsMMeta?.path ?? \"/auth\",\n    meta: indexHgzRXt8vsMMeta || {},\n    alias: indexHgzRXt8vsMMeta?.alias || [],\n    redirect: indexHgzRXt8vsMMeta?.redirect,\n    component: () => import(\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/auth/index.vue\").then(m => m.default || m)\n  },\n  {\n    name: registrationzeunpIB7oiMeta?.name ?? \"auth-registration\",\n    path: registrationzeunpIB7oiMeta?.path ?? \"/auth/registration\",\n    meta: registrationzeunpIB7oiMeta || {},\n    alias: registrationzeunpIB7oiMeta?.alias || [],\n    redirect: registrationzeunpIB7oiMeta?.redirect,\n    component: () => import(\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/auth/registration.vue\").then(m => m.default || m)\n  },\n  {\n    name: index3WTgmgNLX3Meta?.name ?? \"index\",\n    path: index3WTgmgNLX3Meta?.path ?? \"/\",\n    meta: index3WTgmgNLX3Meta || {},\n    alias: index3WTgmgNLX3Meta?.alias || [],\n    redirect: index3WTgmgNLX3Meta?.redirect,\n    component: () => import(\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/index.vue\").then(m => m.default || m)\n  },\n  {\n    name: add1Nrh5NY0fcMeta?.name ?? \"profile-admin-categories-add\",\n    path: add1Nrh5NY0fcMeta?.path ?? \"/profile/admin/categories/add\",\n    meta: add1Nrh5NY0fcMeta || {},\n    alias: add1Nrh5NY0fcMeta?.alias || [],\n    redirect: add1Nrh5NY0fcMeta?.redirect,\n    component: () => import(\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/categories/add.vue\").then(m => m.default || m)\n  },\n  {\n    name: editXiotvXVEIjMeta?.name ?? \"profile-admin-categories-edit\",\n    path: editXiotvXVEIjMeta?.path ?? \"/profile/admin/categories/edit\",\n    meta: editXiotvXVEIjMeta || {},\n    alias: editXiotvXVEIjMeta?.alias || [],\n    redirect: editXiotvXVEIjMeta?.redirect,\n    component: () => import(\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/categories/edit.vue\").then(m => m.default || m)\n  },\n  {\n    name: indexxO9z7lY8glMeta?.name ?? \"profile-admin-categories\",\n    path: indexxO9z7lY8glMeta?.path ?? \"/profile/admin/categories\",\n    meta: indexxO9z7lY8glMeta || {},\n    alias: indexxO9z7lY8glMeta?.alias || [],\n    redirect: indexxO9z7lY8glMeta?.redirect,\n    component: () => import(\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/categories/index.vue\").then(m => m.default || m)\n  },\n  {\n    name: addMcLGnxeghkMeta?.name ?? \"profile-admin-cities-add\",\n    path: addMcLGnxeghkMeta?.path ?? \"/profile/admin/cities/add\",\n    meta: addMcLGnxeghkMeta || {},\n    alias: addMcLGnxeghkMeta?.alias || [],\n    redirect: addMcLGnxeghkMeta?.redirect,\n    component: () => import(\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/cities/add.vue\").then(m => m.default || m)\n  },\n  {\n    name: editv8yrTwHKRMMeta?.name ?? \"profile-admin-cities-edit\",\n    path: editv8yrTwHKRMMeta?.path ?? \"/profile/admin/cities/edit\",\n    meta: editv8yrTwHKRMMeta || {},\n    alias: editv8yrTwHKRMMeta?.alias || [],\n    redirect: editv8yrTwHKRMMeta?.redirect,\n    component: () => import(\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/cities/edit.vue\").then(m => m.default || m)\n  },\n  {\n    name: index6MA0duw1wtMeta?.name ?? \"profile-admin-cities\",\n    path: index6MA0duw1wtMeta?.path ?? \"/profile/admin/cities\",\n    meta: index6MA0duw1wtMeta || {},\n    alias: index6MA0duw1wtMeta?.alias || [],\n    redirect: index6MA0duw1wtMeta?.redirect,\n    component: () => import(\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/cities/index.vue\").then(m => m.default || m)\n  },\n  {\n    name: indexhtnLoxAh18Meta?.name ?? \"profile-admin\",\n    path: indexhtnLoxAh18Meta?.path ?? \"/profile/admin\",\n    meta: indexhtnLoxAh18Meta || {},\n    alias: indexhtnLoxAh18Meta?.alias || [],\n    redirect: indexhtnLoxAh18Meta?.redirect,\n    component: () => import(\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/index.vue\").then(m => m.default || m)\n  },\n  {\n    name: indexxt2FThLWn1Meta?.name ?? \"profile-admin-users\",\n    path: indexxt2FThLWn1Meta?.path ?? \"/profile/admin/users\",\n    meta: indexxt2FThLWn1Meta || {},\n    alias: indexxt2FThLWn1Meta?.alias || [],\n    redirect: indexxt2FThLWn1Meta?.redirect,\n    component: () => import(\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/users/index.vue\").then(m => m.default || m)\n  },\n  {\n    name: addWFHoBuJpgCMeta?.name ?? \"profile-user-ads-add\",\n    path: addWFHoBuJpgCMeta?.path ?? \"/profile/user/ads/add\",\n    meta: addWFHoBuJpgCMeta || {},\n    alias: addWFHoBuJpgCMeta?.alias || [],\n    redirect: addWFHoBuJpgCMeta?.redirect,\n    component: () => import(\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/user/ads/add.vue\").then(m => m.default || m)\n  },\n  {\n    name: editPudJ5EgnOtMeta?.name ?? \"profile-user-ads-edit\",\n    path: editPudJ5EgnOtMeta?.path ?? \"/profile/user/ads/edit\",\n    meta: editPudJ5EgnOtMeta || {},\n    alias: editPudJ5EgnOtMeta?.alias || [],\n    redirect: editPudJ5EgnOtMeta?.redirect,\n    component: () => import(\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/user/ads/edit.vue\").then(m => m.default || m)\n  },\n  {\n    name: indexMZH1NxSclQMeta?.name ?? \"profile-user-ads\",\n    path: indexMZH1NxSclQMeta?.path ?? \"/profile/user/ads\",\n    meta: indexMZH1NxSclQMeta || {},\n    alias: indexMZH1NxSclQMeta?.alias || [],\n    redirect: indexMZH1NxSclQMeta?.redirect,\n    component: () => import(\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/user/ads/index.vue\").then(m => m.default || m)\n  },\n  {\n    name: indexiK54FV57NRMeta?.name ?? \"profile-user\",\n    path: indexiK54FV57NRMeta?.path ?? \"/profile/user\",\n    meta: indexiK54FV57NRMeta || {},\n    alias: indexiK54FV57NRMeta?.alias || [],\n    redirect: indexiK54FV57NRMeta?.redirect,\n    component: () => import(\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/user/index.vue\").then(m => m.default || m)\n  },\n  {\n    name: _91id_93cXtnNiM7WWMeta?.name ?? \"search-id\",\n    path: _91id_93cXtnNiM7WWMeta?.path ?? \"/search/:id()\",\n    meta: _91id_93cXtnNiM7WWMeta || {},\n    alias: _91id_93cXtnNiM7WWMeta?.alias || [],\n    redirect: _91id_93cXtnNiM7WWMeta?.redirect,\n    component: () => import(\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/search/[id].vue\").then(m => m.default || m)\n  },\n  {\n    name: indexCly2Z13TpKMeta?.name ?? \"search\",\n    path: indexCly2Z13TpKMeta?.path ?? \"/search\",\n    meta: indexCly2Z13TpKMeta || {},\n    alias: indexCly2Z13TpKMeta?.alias || [],\n    redirect: indexCly2Z13TpKMeta?.redirect,\n    component: () => import(\"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/search/index.vue\").then(m => m.default || m)\n  }\n]",
+      "start": 1713884695374,
+      "end": 1713884695374,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884695374,
+      "end": 1713884695374,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884695374,
+      "end": 1713884695374,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884695374,
+      "end": 1713884695374,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884695374,
+      "end": 1713884695374,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1713884695374,
+      "end": 1713884695374,
+      "order": "pre"
+    },
+    {
+      "name": "server-only-component-transform",
+      "start": 1713884695374,
+      "end": 1713884695374,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1713884695374,
+      "end": 1713884695374,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1713884695374,
+      "end": 1713884695374,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1713884695374,
+      "end": 1713884695374,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1713884695374,
+      "end": 1713884695374,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1713884695374,
+      "end": 1713884695374,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1713884695374,
+      "end": 1713884695374,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884695374,
+      "end": 1713884695374,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884695374,
+      "end": 1713884695374,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884695374,
+      "end": 1713884695374,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884695374,
+      "end": 1713884695374,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1713884695374,
+      "end": 1713884695374,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884695374,
+      "end": 1713884695375,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1713884695375,
+      "end": 1713884695376,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1713884695376,
+      "end": 1713884695376,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1713884695376,
+      "end": 1713884695376,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1713884695376,
+      "end": 1713884695376,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1713884695376,
+      "end": 1713884695376,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1713884695376,
+      "end": 1713884695376,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1713884695376,
+      "end": 1713884695376,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1713884695376,
+      "end": 1713884695376,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1713884695376,
+      "end": 1713884695376,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884695376,
+      "end": 1713884695376,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884695376,
+      "end": 1713884695376,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884695376,
+      "end": 1713884695378,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884695376,
+      "end": 1713884695378,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884695378,
+      "end": 1713884695378,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884695378,
+      "end": 1713884695378,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884695378,
+      "end": 1713884695378,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884695378,
+      "end": 1713884695378,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1713884695378,
+      "end": 1713884695378,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1713884695378,
+      "end": 1713884695378,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1713884695378,
+      "end": 1713884695378,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1713884695378,
+      "end": 1713884695379,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1713884695379,
+      "end": 1713884695379,
+      "order": "normal"
+    }
+  ]
+}

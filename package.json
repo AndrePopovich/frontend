@@ -12,7 +12,7 @@
     "dependencies": {
         "@nuxtjs/auth": "^4.9.1",
         "axios": "^1.6.8",
-        "nuxt": "^3.11.1",
+        "nuxt": "^3.11.2",
         "primevue": "^3.50.0",
         "vue": "^3.4.21",
         "vue-router": "^4.3.0"

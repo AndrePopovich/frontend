@@ -1,0 +1,294 @@
+{
+  "resolvedId": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/users/index.vue?vue&type=style&index=0&scoped=04385bfb&lang.css",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.white {\n    color: white;\n}\n",
+      "start": 1713884696008,
+      "end": 1713884696009,
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/users/index.vue"
+        ],
+        "names": [],
+        "mappings": ";AA4EA,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;IACH,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB",
+        "file": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/users/index.vue",
+        "sourceRoot": "",
+        "sourcesContent": [
+          "<template>\n    <div class=\"bg-gray-900 h-screen p-5\">\n        <h1 class=\"big-center-text white\">Користувачі</h1>\n        <div v-if=\"users\" class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6\">\n            <div v-for=\"user in users\" :key=\"user.id\" class=\"bg-white rounded-lg shadow-lg p-6\">\n                <div>\n                    <p class=\"font-semibold text-center\">ID: {{ user.id }}</p>\n                    <p class=\"font-semibold\">Ім'я: {{ user.firstName }}</p>\n                    <p class=\"font-semibold\">Прізвище: {{ user.lastName }}</p>\n                    <p class=\"font-semibold\">Електрона пошта: {{ user.email }}</p>\n                    <p class=\"font-semibold\">Номер телефону: {{ user.phone }}</p>\n                    <p class=\"font-semibold\">Дата реєстрації: {{ user.dateOfRegistration }}</p>\n                </div>\n                <div v-if=\"user.id !== myId\" class=\"mt-4\">\n                    <button @click.prevent=\"deleteUser(user.id)\" class=\"red-button\">Видалити</button>\n                </div>\n                <div v-else class=\"mt-4\">\n                    <p class=\"font-semibold\">Це адмін</p>\n                </div>\n            </div>\n\n        </div>\n        <div v-else>\n            <p>Ви не ввійшли в акаунт</p>\n            <nuxt-link to=\"/auth/\">Ввійти</nuxt-link>\n        </div>\n    </div>\n</template>\n\n<script setup>\nimport { ref } from 'vue'; // Імпортуємо ref для створення реактивної змінної\nimport { fetchWithToken, getMyId } from '/utils/auth.js';\n\n// Створюємо реактивну змінну для даних користувача\nconst users = ref([]);\nconst myId = ref(null);\nconst deleteUser = async (id) => {\n    try {\n        const apiUrlDeleteWithId = 'https://buy-sell-api.onrender.com/api/admin/users/' + id;\n        await fetchWithToken(apiUrlDeleteWithId, {\n            method: 'DELETE'\n        })\n        console.log(\"Видалено!!!\")\n        await loadData();\n    } catch (error) {\n        console.error('Помилка при зміні сторінки:', error);\n    }\n}\n// Функція для отримання даних користувача та оновлення userData\nasync function loadData() {\n    try {\n        myId.value = getMyId();\n        const response = await fetchWithToken('https://buy-sell-api.onrender.com/api/admin/users');\n        console.log('Отримані дані:', response);\n        if (response.ok) {\n            const data = await response.json(); // Отримуємо дані у форматі JSON\n            console.log('Дані користувача:', data);\n            console.log('My Id:', myId.value);\n            users.value = data; // Оновлюємо значення userData\n        } else {\n            console.error('Помилка при отриманні даних:', response.statusText);\n        }\n    } catch (error) {\n        console.error('Помилка при отриманні даних:', error);\n    }\n}\n\nonMounted(() => {\n    loadData();\n})\ndefinePageMeta({\n    layout: 'admin'\n})\n</script>\n\n<style scoped>\n.white {\n    color: white;\n}\n</style>\n"
+        ]
+      }
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884696009,
+      "end": 1713884696009,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884696009,
+      "end": 1713884696009,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884696009,
+      "end": 1713884696009,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884696009,
+      "end": 1713884696009,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1713884696009,
+      "end": 1713884696009,
+      "order": "pre"
+    },
+    {
+      "name": "server-only-component-transform",
+      "start": 1713884696009,
+      "end": 1713884696009,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".white{color:#fff}",
+      "start": 1713884696009,
+      "end": 1713884696030,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/users/index.vue",
+        "mappings": "AACA,OACI,UACJ",
+        "names": [],
+        "sources": [
+          "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/users/index.vue"
+        ],
+        "sourcesContent": [
+          "\n.white {\n    color: white;\n}\n"
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1713884696030,
+      "end": 1713884696030,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1713884696030,
+      "end": 1713884696030,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1713884696030,
+      "end": 1713884696030,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": ".white[data-v-04385bfb]{color:#fff}",
+      "start": 1713884696030,
+      "end": 1713884696031,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/users/index.vue",
+        "mappings": "AAAA,wBAAO,UAAU",
+        "names": [],
+        "sources": [
+          "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/users/index.vue"
+        ],
+        "sourcesContent": [
+          null
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1713884696031,
+      "end": 1713884696031,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884696031,
+      "end": 1713884696031,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884696031,
+      "end": 1713884696031,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884696031,
+      "end": 1713884696031,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884696031,
+      "end": 1713884696031,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1713884696031,
+      "end": 1713884696031,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884696031,
+      "end": 1713884696031,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1713884696031,
+      "end": 1713884696032,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1713884696032,
+      "end": 1713884696032,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1713884696032,
+      "end": 1713884696032,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1713884696032,
+      "end": 1713884696032,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1713884696032,
+      "end": 1713884696032,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1713884696032,
+      "end": 1713884696032,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1713884696032,
+      "end": 1713884696032,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1713884696032,
+      "end": 1713884696032,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1713884696032,
+      "end": 1713884696032,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884696032,
+      "end": 1713884696032,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884696032,
+      "end": 1713884696032,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884696032,
+      "end": 1713884696032,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884696032,
+      "end": 1713884696032,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884696032,
+      "end": 1713884696032,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884696032,
+      "end": 1713884696032,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884696032,
+      "end": 1713884696033,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884696032,
+      "end": 1713884696033,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1713884696033,
+      "end": 1713884696033,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1713884696033,
+      "end": 1713884696033,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1713884696033,
+      "end": 1713884696033,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1713884696033,
+      "end": 1713884696033,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1713884696033,
+      "end": 1713884696033,
+      "order": "normal"
+    }
+  ]
+}

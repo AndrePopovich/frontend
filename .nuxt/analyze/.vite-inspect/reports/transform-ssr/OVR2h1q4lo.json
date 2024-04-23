@@ -1,0 +1,294 @@
+{
+  "resolvedId": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/layouts/default.vue?vue&type=style&index=0&scoped=d03084ae&lang.css",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.purple {\n    background-color: #6B46C1;\n    /* Використовуємо колір Purple з Tailwind CSS */\n}\n",
+      "start": 1713884696719,
+      "end": 1713884696719,
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/layouts/default.vue"
+        ],
+        "names": [],
+        "mappings": ";AA0DA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;IACJ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;IACzB,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC;AACnD",
+        "file": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/layouts/default.vue",
+        "sourceRoot": "",
+        "sourcesContent": [
+          "<template>\n    <div>\n        <nav\n            class=\"purple flex items-center justify-between p-4 fixed w-maxpurple flex items-center justify-between p-4 fixed w-full top-0 z-50\">\n            <div>\n                <nuxt-link to=\"/\" class=\"text-white text-2xl font-bold\">BuySell</nuxt-link>\n            </div>\n            <ul>\n                <li>\n                    <div v-if=\"loading\">\n                        Завантаження...\n                    </div>\n                    <div v-else>\n                        <div v-if=\"authenticate\" class=\"flex gap-8\">\n                            <nuxt-link class=\"white-button\" to=\"/profile/user/ads\">Мої оголошення</nuxt-link>\n                            <nuxt-link to=\"/profile/user/\">\n                                <img src=\"/img/navbar/profile-image.png\" alt=\"Мій профіль\" title=\"Мій профіль\"\n                                    class=\"h-9 w-9\">\n                            </nuxt-link>\n                        </div>\n\n                        <div v-else class=\"flex gap-8\">\n                            <nuxt-link to=\"/auth/\" class=\"block black-button\">Ввійти</nuxt-link>\n                            <nuxt-link class=\"block white-button\" to=\"/auth/registration\">Реєстрація</nuxt-link>\n                        </div>\n\n                    </div>\n                </li>\n            </ul>\n        </nav>\n\n        <div class=\"mt-16\"> <!-- Додайте зсув, щоб уникнути перекривання контенту -->\n            <slot />\n        </div>\n    </div>\n</template>\n\n<script setup>\nimport { ref, onMounted } from 'vue';\n\nconst loading = ref(true);\nconst authenticate = ref(false); // Ваша логіка для перевірки аутентифікації\n\n\nasync function loadData() {\n    try {\n        authenticate.value = await isAuthenticated();\n    } finally {\n        loading.value = false;\n    }\n}\n\nonMounted(() => {\n    loadData();\n});\n</script>\n\n<style scoped>\n.purple {\n    background-color: #6B46C1;\n    /* Використовуємо колір Purple з Tailwind CSS */\n}\n</style>\n"
+        ]
+      }
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884696719,
+      "end": 1713884696719,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884696719,
+      "end": 1713884696719,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884696719,
+      "end": 1713884696719,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884696719,
+      "end": 1713884696719,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1713884696719,
+      "end": 1713884696719,
+      "order": "pre"
+    },
+    {
+      "name": "server-only-component-transform",
+      "start": 1713884696719,
+      "end": 1713884696719,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".purple{background-color:#6b46c1}",
+      "start": 1713884696719,
+      "end": 1713884696739,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/layouts/default.vue",
+        "mappings": "AACA,QACI,wBAEJ",
+        "names": [],
+        "sources": [
+          "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/layouts/default.vue"
+        ],
+        "sourcesContent": [
+          "\n.purple {\n    background-color: #6B46C1;\n    /* Використовуємо колір Purple з Tailwind CSS */\n}\n"
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1713884696739,
+      "end": 1713884696739,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1713884696739,
+      "end": 1713884696739,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1713884696739,
+      "end": 1713884696739,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": ".purple[data-v-d03084ae]{background-color:#6b46c1}",
+      "start": 1713884696739,
+      "end": 1713884696739,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/layouts/default.vue",
+        "mappings": "AAAA,yBAAQ,wBAAwB",
+        "names": [],
+        "sources": [
+          "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/layouts/default.vue"
+        ],
+        "sourcesContent": [
+          null
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1713884696739,
+      "end": 1713884696739,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884696739,
+      "end": 1713884696739,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884696739,
+      "end": 1713884696740,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884696740,
+      "end": 1713884696740,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884696740,
+      "end": 1713884696740,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1713884696740,
+      "end": 1713884696740,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884696740,
+      "end": 1713884696740,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1713884696740,
+      "end": 1713884696741,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1713884696741,
+      "end": 1713884696741,
+      "order": "normal"
+    }
+  ]
+}

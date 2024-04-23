@@ -1,0 +1,225 @@
+{
+  "resolvedId": "C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/pages/profile/admin/categories/index.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n    <div>\n        <div v-if=\"profile && profile.role === 'ADMIN'\" class=\"pt-4\">\n            <nuxt-link class=\"green-button w-40 mx-auto block\" to=\"/profile/admin/categories/add\">Додати\n                категорію</nuxt-link>\n            <ListData :apiUrl=\"apiUrl\" :apiUrlEdit=\"apiUrlEdit\" :pathToEdit=\"pathToEdit\" :apiUrlDelete=\"apiUrlDelete\"\n                nameObject=\"Категорій\" nameObjectText=\"Категорії\" />\n        </div>\n        <div v-else>\n            <p>У вас немає прав</p>\n        </div>\n    </div>\n</template>\n\n<script setup>\nimport ListData from '/components/admin/ListData';\nconst apiUrl = 'https://buy-sell-api.onrender.com/api/admin/categories';\nconst apiUrlEdit = 'https://buy-sell-api.onrender.com/api/admin/categories/';\nconst pathToEdit = '/profile/admin/categories/edit';\nconst apiUrlDelete = 'https://buy-sell-api.onrender.com/api/admin/categories/';\nimport { getProfileFromLocalStorage } from '/utils/auth.js';\nimport { onMounted } from 'vue';\n\nconst profile = ref(null);\n\nasync function loadData() {\n    const fetchedProfile = getProfileFromLocalStorage();\n    if (fetchedProfile) {\n        profile.value = fetchedProfile;\n    }\n}\n\nonMounted(() => {\n    loadData();\n});\ndefinePageMeta({\n    layout: 'admin'\n})\n</script>\n\n<style scoped></style>\n",
+      "start": 1713884692236,
+      "end": 1713884692742,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713884692742,
+      "end": 1713884692742,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713884692742,
+      "end": 1713884692742,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1713884692742,
+      "end": 1713884692742,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1713884692742,
+      "end": 1713884692742,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1713884692742,
+      "end": 1713884692742,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1713884692742,
+      "end": 1713884692742,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1713884692742,
+      "end": 1713884692742,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { unref as _unref, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, createElementVNode as _createElementVNode } from \"vue\"\n\nconst _hoisted_1 = {\n  key: 0,\n  class: \"pt-4\"\n}\nconst _hoisted_2 = { key: 1 }\nconst _hoisted_3 = /*#__PURE__*/_createElementVNode(\"p\", null, \"У вас немає прав\", -1)\nconst _hoisted_4 = [\n  _hoisted_3\n]\n\nimport ListData from '/components/admin/ListData';\nimport { getProfileFromLocalStorage } from '/utils/auth.js';\nimport { onMounted } from 'vue';\n\nconst apiUrl = 'https://buy-sell-api.onrender.com/api/admin/categories';\nconst apiUrlEdit = 'https://buy-sell-api.onrender.com/api/admin/categories/';\nconst pathToEdit = '/profile/admin/categories/edit';\nconst apiUrlDelete = 'https://buy-sell-api.onrender.com/api/admin/categories/';\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\nconst profile = ref(null);\n\nasync function loadData() {\n    const fetchedProfile = getProfileFromLocalStorage();\n    if (fetchedProfile) {\n        profile.value = fetchedProfile;\n    }\n}\n\nonMounted(() => {\n    loadData();\n});\ndefinePageMeta({\n    layout: 'admin'\n})\n\nreturn (_ctx, _cache) => {\n  const _component_nuxt_link = _resolveComponent(\"nuxt-link\")\n\n  return (_openBlock(), _createElementBlock(\"div\", null, [\n    (_unref(profile) && _unref(profile).role === 'ADMIN')\n      ? (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n          _createVNode(_component_nuxt_link, {\n            class: \"green-button w-40 mx-auto block\",\n            to: \"/profile/admin/categories/add\"\n          }, {\n            default: _withCtx(() => [\n              _createTextVNode(\"Додати категорію\")\n            ]),\n            _: 1\n          }),\n          _createVNode(_unref(ListData), {\n            apiUrl: apiUrl,\n            apiUrlEdit: apiUrlEdit,\n            pathToEdit: pathToEdit,\n            apiUrlDelete: apiUrlDelete,\n            nameObject: \"Категорій\",\n            nameObjectText: \"Категорії\"\n          })\n        ]))\n      : (_openBlock(), _createElementBlock(\"div\", _hoisted_2, _hoisted_4))\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1713884692742,
+      "end": 1713884692742,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1713884692742,
+      "end": 1713884692743,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884692743,
+      "end": 1713884692743,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713884692743,
+      "end": 1713884692743,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1713884692743,
+      "end": 1713884692743,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1713884692743,
+      "end": 1713884692743,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713884692743,
+      "end": 1713884692743,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1713884692743,
+      "end": 1713884692743,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1713884692743,
+      "end": 1713884692743,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1713884692743,
+      "end": 1713884692743,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1713884692743,
+      "end": 1713884692743,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1713884692743,
+      "end": 1713884692743,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1713884692743,
+      "end": 1713884692743,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1713884692743,
+      "end": 1713884692743,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1713884692743,
+      "end": 1713884692743,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1713884692743,
+      "end": 1713884692743,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713884692743,
+      "end": 1713884692743,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "result": "import { ref } from 'vue';\nimport { definePageMeta } from 'C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/node_modules/nuxt/dist/pages/runtime/composables';\nimport { unref as _unref, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, createElementVNode as _createElementVNode } from \"vue\"\n\nconst _hoisted_1 = {\n  key: 0,\n  class: \"pt-4\"\n}\nconst _hoisted_2 = { key: 1 }\nconst _hoisted_3 = /*#__PURE__*/_createElementVNode(\"p\", null, \"У вас немає прав\", -1)\nconst _hoisted_4 = [\n  _hoisted_3\n]\n\nimport ListData from '/components/admin/ListData';\nimport { getProfileFromLocalStorage } from '/utils/auth.js';\nimport { onMounted } from 'vue';\n\nconst apiUrl = 'https://buy-sell-api.onrender.com/api/admin/categories';\nconst apiUrlEdit = 'https://buy-sell-api.onrender.com/api/admin/categories/';\nconst pathToEdit = '/profile/admin/categories/edit';\nconst apiUrlDelete = 'https://buy-sell-api.onrender.com/api/admin/categories/';\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\nconst profile = ref(null);\n\nasync function loadData() {\n    const fetchedProfile = getProfileFromLocalStorage();\n    if (fetchedProfile) {\n        profile.value = fetchedProfile;\n    }\n}\n\nonMounted(() => {\n    loadData();\n});\ndefinePageMeta({\n    layout: 'admin'\n})\n\nreturn (_ctx, _cache) => {\n  const _component_nuxt_link = _resolveComponent(\"nuxt-link\")\n\n  return (_openBlock(), _createElementBlock(\"div\", null, [\n    (_unref(profile) && _unref(profile).role === 'ADMIN')\n      ? (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n          _createVNode(_component_nuxt_link, {\n            class: \"green-button w-40 mx-auto block\",\n            to: \"/profile/admin/categories/add\"\n          }, {\n            default: _withCtx(() => [\n              _createTextVNode(\"Додати категорію\")\n            ]),\n            _: 1\n          }),\n          _createVNode(_unref(ListData), {\n            apiUrl: apiUrl,\n            apiUrlEdit: apiUrlEdit,\n            pathToEdit: pathToEdit,\n            apiUrlDelete: apiUrlDelete,\n            nameObject: \"Категорій\",\n            nameObjectText: \"Категорії\"\n          })\n        ]))\n      : (_openBlock(), _createElementBlock(\"div\", _hoisted_2, _hoisted_4))\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1713884692743,
+      "end": 1713884692744,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": ";;AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7T;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACT,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACf,CAAC;AACD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC;AACD;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7E,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/E;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1B;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvC,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC;AACD;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACf,CAAC,CAAC,CAAC;AACH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAC;AACF;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7D;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACf,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1E,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC;AACD,CAAC;AACD;AACA,CAAC;AACD;AACA;AACA;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC"
+      }
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713884692744,
+      "end": 1713884692744,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713884692744,
+      "end": 1713884692744,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1713884692744,
+      "end": 1713884692744,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1713884692744,
+      "end": 1713884692744,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "result": "import { default as __nuxt_component_0 } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/node_modules/nuxt/dist/app/components/nuxt-link\";\nimport { ref } from 'vue';\nimport { definePageMeta } from 'C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/node_modules/nuxt/dist/pages/runtime/composables';\nimport { unref as _unref, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, createElementVNode as _createElementVNode } from \"vue\"\n\nconst _hoisted_1 = {\n  key: 0,\n  class: \"pt-4\"\n}\nconst _hoisted_2 = { key: 1 }\nconst _hoisted_3 = /*#__PURE__*/_createElementVNode(\"p\", null, \"У вас немає прав\", -1)\nconst _hoisted_4 = [\n  _hoisted_3\n]\n\nimport ListData from '/components/admin/ListData';\nimport { getProfileFromLocalStorage } from '/utils/auth.js';\nimport { onMounted } from 'vue';\n\nconst apiUrl = 'https://buy-sell-api.onrender.com/api/admin/categories';\nconst apiUrlEdit = 'https://buy-sell-api.onrender.com/api/admin/categories/';\nconst pathToEdit = '/profile/admin/categories/edit';\nconst apiUrlDelete = 'https://buy-sell-api.onrender.com/api/admin/categories/';\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\nconst profile = ref(null);\n\nasync function loadData() {\n    const fetchedProfile = getProfileFromLocalStorage();\n    if (fetchedProfile) {\n        profile.value = fetchedProfile;\n    }\n}\n\nonMounted(() => {\n    loadData();\n});\ndefinePageMeta({\n    layout: 'admin'\n})\n\nreturn (_ctx, _cache) => {\n  const _component_nuxt_link = __nuxt_component_0\n\n  return (_openBlock(), _createElementBlock(\"div\", null, [\n    (_unref(profile) && _unref(profile).role === 'ADMIN')\n      ? (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n          _createVNode(_component_nuxt_link, {\n            class: \"green-button w-40 mx-auto block\",\n            to: \"/profile/admin/categories/add\"\n          }, {\n            default: _withCtx(() => [\n              _createTextVNode(\"Додати категорію\")\n            ]),\n            _: 1\n          }),\n          _createVNode(_unref(ListData), {\n            apiUrl: apiUrl,\n            apiUrlEdit: apiUrlEdit,\n            pathToEdit: pathToEdit,\n            apiUrlDelete: apiUrlDelete,\n            nameObject: \"Категорій\",\n            nameObjectText: \"Категорії\"\n          })\n        ]))\n      : (_openBlock(), _createElementBlock(\"div\", _hoisted_2, _hoisted_4))\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1713884692744,
+      "end": 1713884692745,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "result": "import { default as __nuxt_component_0 } from \"C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/node_modules/nuxt/dist/app/components/nuxt-link\";\nimport { ref } from 'vue';\nimport { definePageMeta } from 'C:/Users/HP GAMING/IdeaProjects/Buysell/frontend/node_modules/nuxt/dist/pages/runtime/composables';\nimport { unref as _unref, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, createElementVNode as _createElementVNode } from \"vue\"\n\nconst _hoisted_1 = {\n  key: 0,\n  class: \"pt-4\"\n}\nconst _hoisted_2 = { key: 1 }\nconst _hoisted_3 = /*#__PURE__*/_createElementVNode(\"p\", null, \"У вас немає прав\", -1)\nconst _hoisted_4 = [\n  _hoisted_3\n]\n\nimport ListData from '/components/admin/ListData';\nimport { getProfileFromLocalStorage } from '/utils/auth.js';\nimport { onMounted } from 'vue';\n\nconst apiUrl = 'https://buy-sell-api.onrender.com/api/admin/categories';\nconst apiUrlEdit = 'https://buy-sell-api.onrender.com/api/admin/categories/';\nconst pathToEdit = '/profile/admin/categories/edit';\nconst apiUrlDelete = 'https://buy-sell-api.onrender.com/api/admin/categories/';\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\nconst profile = ref(null);\n\nasync function loadData() {\n    const fetchedProfile = getProfileFromLocalStorage();\n    if (fetchedProfile) {\n        profile.value = fetchedProfile;\n    }\n}\n\nonMounted(() => {\n    loadData();\n});\n false && /*@__PURE__*/ definePageMeta({\n    layout: 'admin'\n})\n\nreturn (_ctx, _cache) => {\n  const _component_nuxt_link = __nuxt_component_0\n\n  return (_openBlock(), _createElementBlock(\"div\", null, [\n    (_unref(profile) && _unref(profile).role === 'ADMIN')\n      ? (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n          _createVNode(_component_nuxt_link, {\n            class: \"green-button w-40 mx-auto block\",\n            to: \"/profile/admin/categories/add\"\n          }, {\n            default: _withCtx(() => [\n              _createTextVNode(\"Додати категорію\")\n            ]),\n            _: 1\n          }),\n          _createVNode(_unref(ListData), {\n            apiUrl: apiUrl,\n            apiUrlEdit: apiUrlEdit,\n            pathToEdit: pathToEdit,\n            apiUrlDelete: apiUrlDelete,\n            nameObject: \"Категорій\",\n            nameObjectText: \"Категорії\"\n          })\n        ]))\n      : (_openBlock(), _createElementBlock(\"div\", _hoisted_2, _hoisted_4))\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1713884692745,
+      "end": 1713884692745,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1713884692745,
+      "end": 1713884692745,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1713884692745,
+      "end": 1713884692745,
+      "order": "normal"
+    }
+  ]
+}
