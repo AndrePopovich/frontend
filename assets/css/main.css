@@ -1,0 +1,168 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+.btn{
+  background-color: aqua;
+}
+.btn:hover{
+  background-color: rgb(153, 0, 255);
+  cursor: pointer;
+  color: white;
+}
+.btn-admin {
+  background-color: #6B46C1; /* фіолетовий колір */
+  color: #fff; /* білий колір тексту */
+  padding: 0.5rem 1rem; /* відступи */
+  border-radius: 0.375rem; /* закруглені кути */
+  text-align: center; /* вирівнювання тексту по центру */
+  font-weight: 600; /* напівжирний текст */
+  transition: background-color 0.3s ease; /* плавний перехід для hover */
+}
+
+.btn-admin:hover {
+  background-color: #805AD5; /* колір при наведенні */
+}
+.white-button {
+  background-color: #fff; /* білий колір фону */
+  color: #805AD5; /* чорний колір тексту */
+  padding: 0.5rem 1rem; /* відступи */
+  border: none; /* чорна рамка */
+  border-radius: 0.375rem; /* закруглені кути */
+  text-align: center; /* вирівнювання тексту по центру */
+  font-weight: 600; /* напівжирний текст */
+  transition: background-color 0.3s ease, color 0.3s ease; /* плавний перехід для hover */
+  min-width: 100px;
+}
+
+.white-button:hover {
+  background-color: #552fa5; /* чорний колір фону при наведенні */
+  color: #fff; /* білий колір тексту при наведенні */
+}
+
+.black-button {
+  background-color: #000; /* чорний колір фону */
+  color: #fff; /* білий колір тексту */
+  padding: 0.5rem 1rem; /* відступи */
+  border: none; /* без рамки */
+  border-radius: 0.375rem; /* закруглені кути */
+  text-align: center; /* вирівнювання тексту по центру */
+  font-weight: 600; /* напівжирний текст */
+  transition: background-color 0.3s ease, color 0.3s ease; /* плавний перехід для hover */
+  min-width: 100px;
+}
+
+.black-button:hover {
+  background-color: #552fa5; /* білий колір фону при наведенні */
+  color: #fff; /* чорний колір тексту при наведенні */
+}
+
+.red-button {
+  background-color: #b00000; /* чорний колір фону */
+  color: #fff; /* білий колір тексту */
+  padding: 0.5rem 1rem; /* відступи */
+  border: none; /* без рамки */
+  border-radius: 0.375rem; /* закруглені кути */
+  text-align: center; /* вирівнювання тексту по центру */
+  font-weight: 600; /* напівжирний текст */
+  transition: background-color 0.3s ease, color 0.3s ease; /* плавний перехід для hover */
+  min-width: 100px;
+}
+.red-button:hover {
+  background-color: #730000; /* білий колір фону при наведенні */
+  color: #fff; /* чорний колір тексту при наведенні */
+}
+.orange-button {
+  background-color: #c89d1b; /* чорний колір фону */
+  color: #fff; /* білий колір тексту */
+  padding: 0.5rem 1rem; /* відступи */
+  border: none; /* без рамки */
+  border-radius: 0.375rem; /* закруглені кути */
+  text-align: center; /* вирівнювання тексту по центру */
+  font-weight: 600; /* напівжирний текст */
+  transition: background-color 0.3s ease, color 0.3s ease; /* плавний перехід для hover */
+  min-width: 100px;
+}
+.orange-button:hover {
+  background-color: #b08400; /* білий колір фону при наведенні */
+  color: #fff; /* чорний колір тексту при наведенні */
+}
+.green-button {
+  background-color: #00913c; /* чорний колір фону */
+  color: #fff; /* білий колір тексту */
+  padding: 0.5rem 1rem; /* відступи */
+  border: none; /* без рамки */
+  border-radius: 0.375rem; /* закруглені кути */
+  text-align: center; /* вирівнювання тексту по центру */
+  font-weight: 600; /* напівжирний текст */
+  transition: background-color 0.3s ease, color 0.3s ease; /* плавний перехід для hover */
+  min-width: 250px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.green-button:hover {
+  background-color: #236941; /* білий колір фону при наведенні */
+  color: #fff; /* чорний колір тексту при наведенні */
+}
+.big-center-text {
+  font-size: 1.875rem; /* відповідає text-3xl в Tailwind CSS */
+  font-weight: 700; /* відповідає font-bold в Tailwind CSS */
+  text-align: center; /* відповідає text-center в Tailwind CSS */
+  margin-bottom: 1.5rem; /* відповідає mb-6 в Tailwind CSS */
+  margin-top: 1.5rem; /* відповідає mb-6 в Tailwind CSS */
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.input-field-textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: none;
+  /* Вимикаємо можливість зміни розміру полів вводу */
+  min-height: 5rem;
+  /* Мінімальна висота поля вводу *
+  height: auto;
+  /* Автоматично збільшуємо висоту поля вводу */
+}
+
+.input-field-textarea:focus {
+  border-color: #c025eb;
+  outline: 0;
+  box-shadow: 0 0 0 0.125rem rgba(37, 99, 235, 0.25);
+}
+
+.input-field:focus {
+  border-color: #c025eb;
+  outline: 0;
+  box-shadow: 0 0 0 0.125rem rgba(37, 99, 235, 0.25);
+}
+
+.image {
+  max-width: 100%;
+  height: auto;
+  padding-top: 5px;
+  border-radius: 8px;
+  /* Заокруглені кути */
+  display: block;
+  /* Зробити картинку блоком, щоб встановити margin: auto; */
+  margin: 0 auto;
+  /* Центрує картинку */
+}
+
+.rounded-center {
+  border-radius: 5px;
+}
